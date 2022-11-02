@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/skee_ui/skee_palette.dart';
 
 import '../../skee_ui/we_loader.dart';
 import '../../widgets/we_buttons.dart';
@@ -26,6 +27,7 @@ class _ExercisesInfoPageState extends State<ExercisesInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: WEPalette.backgroudColor,
       appBar: const ExercicesInfoAppBar(),
       body: BlocBuilder<GetAllExercisesCubit, GetAllExercisesState>(
         bloc: cubit,
@@ -53,44 +55,44 @@ class _ExercisesInfoPageState extends State<ExercisesInfoPage> {
                     left: 10,
                     right: 10,
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height - 250,
-                        child: ListView.builder(
-                          itemCount: state.exercises.length,
-                          itemBuilder: (cxt, index) {
-                            final ExercisesModel execice = state.exercises[index];
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: ListView.builder(
+                      itemCount: state.exercises.length,
+                      itemBuilder: (cxt, index) {
+                        final ExercisesModel execice = state.exercises[index];
 
-                            return ExerciseCardWidget(
-                              exercise: execice,
-                              ontap: () {
-                                setState(() {
-                                  execice.isSelected = !execice.isSelected;
-                                  if (execice.isSelected) {
-                                    widget.exercisesModel.add(execice);
-                                  }
-                                  if (!execice.isSelected) {
-                                    widget.exercisesModel.removeAt(index);
-                                  }
-                                });
-                              },
-                            );
+                        return ExerciseCardWidget(
+                          exercise: execice,
+                          ontap: () {
+                            setState(() {
+                              execice.isSelected = !execice.isSelected;
+                              if (execice.isSelected) {
+                                widget.exercisesModel.add(execice);
+                              }
+                              if (!execice.isSelected) {
+                                widget.exercisesModel.removeAt(index);
+                              }
+                            });
                           },
-                        ),
-                      ),
-                    ],
+                        );
+                      },
+                    ),
                   ),
                 ),
                 Positioned(
                   bottom: 30,
                   left: 40,
                   right: 40,
-                  child: WeButtons.filled('Save', ontap: () async {
-                    var selectedExercise = widget.exercisesModel;
+                  child: WeButtons.filled(
+                    'Save',
+                    height: 55,
+                    ontap: () async {
+                      var selectedExercise = widget.exercisesModel;
 
-                    Modular.to.pop(selectedExercise);
-                  }),
+                      Modular.to.pop(selectedExercise);
+                    },
+                  ),
                 ),
               ],
             );

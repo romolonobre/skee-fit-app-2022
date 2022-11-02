@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/skee_ui/skee_palette.dart';
 
 import '../../skee_ui/we_loader.dart';
 import '../../widgets/flutter_widgets.dart';
@@ -27,13 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: WEPalette.backgroudColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: WEPalette.backgroudColor,
         elevation: 0,
         centerTitle: false,
         title: WEText.title(
           'Start Workout',
+          color: Colors.white,
         ),
       ),
       body: Padding(
@@ -45,17 +47,20 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                WEText.custom('Quick Start', fontWeight: FontWeight.bold),
+                WEText.custom(
+                  'Quick Start',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
                 const SizedBox(height: 10),
                 WeButtons.filled(
                   'Start a new Workout',
                   fontsize: 15,
                   textAlign: TextAlign.left,
-                  height: 40,
+                  height: 50,
                   ontap: () => _openStartWorkoutBottomsheet(context),
                 ),
-                const SizedBox(height: 50),
-                const SizedBox(height: 20),
+                const SizedBox(height: 25),
                 Column(
                   children: [
                     BlocConsumer<GetFitnessNewsCubit, GetFitnessNewsState>(
@@ -101,18 +106,15 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          WEText.title(
-            'Workout Started!',
-            fontsize: 18,
-          ),
+          WEText.title('Workout Started!', fontsize: 20, color: WEPalette.primaryColor, fontWeight: FontWeight.w700),
           const SizedBox(height: 15),
           WEText.custom('Workout consist of a collection \n of exercises',
-              fontsize: 16, textAlign: TextAlign.center, color: Colors.grey, fontWeight: FontWeight.bold),
+              fontsize: 15, textAlign: TextAlign.center, color: Colors.grey, fontWeight: FontWeight.bold),
           const SizedBox(height: 20),
           WEText.custom("This workout is empty right now, but it's \n super easy to add some exercises to \n perform ",
-              fontsize: 16, textAlign: TextAlign.center, color: Colors.grey, fontWeight: FontWeight.bold),
+              fontsize: 15, textAlign: TextAlign.center, color: Colors.grey, fontWeight: FontWeight.bold),
           const Spacer(),
-          WeButtons.filled(height: 35, "Let's build my workout", ontap: () {
+          WeButtons.filled(height: 50, "Let's build my workout", ontap: () {
             Modular.to.pushNamed('./add-exercise');
             Modular.to.pop();
           }),

@@ -25,7 +25,7 @@ class ExerciseCardWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: SkeeContainer(
-              color: exercise.isSelected ? WEPalette.primaryColor.withOpacity(0.2) : Colors.white,
+              color: exercise.isSelected ? WEPalette.primaryColor.withOpacity(0.5) : WEPalette.cardColor,
               child: Column(
                 children: [
                   ListTile(
@@ -38,18 +38,20 @@ class ExerciseCardWidget extends StatelessWidget {
                       child: WEText.title(
                         '${exercise.name} ',
                         fontsize: 14,
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
                     subtitle: WEText.custom(
                       exercise.target,
                       fontsize: 12,
-                      color: Colors.black,
+                      color: Colors.white,
                       fontWeight: FontWeight.w400,
                     ),
                     trailing: WeButtons.iconButton(
                       icon: Icons.info_outline,
+                      backGroundColor: exercise.isSelected ? Colors.black26 : WEPalette.primaryColor.withOpacity(0.2),
+                      iconColor: exercise.isSelected ? Colors.black : WEPalette.primaryColor.withOpacity(0.75),
                       ontap: () => openExercisesdetailsModal(context, exercise),
                     ),
                   ),
