@@ -53,7 +53,7 @@ class WeButtons {
           label,
           color: color ?? WEPalette.primaryColor,
           fontWeight: FontWeight.bold,
-          fontsize: fontsize ?? 15,
+          fontsize: fontsize ?? 18,
         ),
       ),
     );
