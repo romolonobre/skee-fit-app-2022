@@ -107,10 +107,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 15),
           WEText.custom('Workout consist of a collection \n of exercises',
-              fontsize: 16, textAlign: TextAlign.center, color: Colors.grey, fontWeight: FontWeight.bold),
+              fontsize: 16,
+              textAlign: TextAlign.center,
+              color: Colors.grey,
+              fontWeight: FontWeight.bold),
           const SizedBox(height: 20),
-          WEText.custom("This workout is empty right now, but it's \n super easy to add some exercises to \n perform ",
-              fontsize: 16, textAlign: TextAlign.center, color: Colors.grey, fontWeight: FontWeight.bold),
+          WEText.custom(
+              "This workout is empty right now, but it's \n super easy to add some exercises to \n perform ",
+              fontsize: 16,
+              textAlign: TextAlign.center,
+              color: Colors.grey,
+              fontWeight: FontWeight.bold),
           const Spacer(),
           WeButtons.filled(height: 35, "Let's build my workout", ontap: () {
             Modular.to.pushNamed('./add-exercise');
