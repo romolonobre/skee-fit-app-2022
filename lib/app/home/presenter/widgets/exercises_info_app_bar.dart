@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../skee_ui/skee_palette.dart';
 import '../../../widgets/flutter_widgets.dart';
 
 class ExercicesInfoAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -20,11 +21,12 @@ class ExercicesInfoAppBar extends StatelessWidget with PreferredSizeWidget {
         onPressed: () => Modular.to.pop(),
       ),
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.white,
+      backgroundColor: WEPalette.backgroudColor,
       elevation: 0,
       title: WEText.title(
         'Select Exercises',
-        color: Colors.grey.shade600,
+        fontsize: 28,
+        color: Colors.white,
       ),
     );
   }

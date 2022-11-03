@@ -67,6 +67,7 @@ class _WorkoutTimeWidgetState extends State<WorkoutTimeWidget> {
               '$minutes:$seconds',
               fontsize: 40,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ],
         ),

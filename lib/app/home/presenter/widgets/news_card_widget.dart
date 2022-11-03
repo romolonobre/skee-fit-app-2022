@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/skee_ui/skee_palette.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../skee_ui/skee_container.dart';
@@ -26,31 +27,34 @@ class NewsCardWidget extends StatelessWidget {
           final news = fitnessNews[index];
 
           return SkeeContainer(
-            color: Colors.white,
+            color: WEPalette.cardColor,
             child: Stack(
               clipBehavior: Clip.antiAlias,
               children: [
                 Column(
                   children: [
-                    Image.network(
-                      'https://thumbs.dreamstime.com/b/fitness-news-chalkboard-background-concept-77312565.jpg',
-                      height: 120,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Image.network(
+                        'https://thumbs.dreamstime.com/b/fitness-news-chalkboard-background-concept-77312565.jpg',
+                        height: 120,
+                      ),
                     ),
                     Flexible(
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(left: 10, top: 6),
                         child: WEText.title(
                           news.title,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w400,
-                          fontsize: 12,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontsize: 13,
                         ),
                       ),
                     ),
                   ],
                 ),
                 Positioned(
-                  bottom: 50,
+                  bottom: 65,
                   right: 4,
                   child: WeButtons.filled(
                     'Go to webiste',
@@ -82,7 +86,10 @@ class CustomWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.red.shade700,
+          elevation: 0,
+        ),
         body: WebView(
           initialUrl: url,
         ));
