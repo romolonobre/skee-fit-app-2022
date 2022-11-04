@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: WEPalette.backgroudColor,
       appBar: AppBar(
+        toolbarHeight: 60,
         backgroundColor: WEPalette.backgroudColor,
         elevation: 0,
         centerTitle: false,
@@ -37,6 +38,19 @@ class _HomeScreenState extends State<HomeScreen> {
           'Start Workout',
           color: Colors.white,
         ),
+        actions: [
+          GestureDetector(
+            onTap: () {},
+            child: const CircleAvatar(
+              radius: 60,
+              backgroundColor: WEPalette.primaryColor,
+              child: Icon(
+                Icons.add_a_photo_rounded,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
