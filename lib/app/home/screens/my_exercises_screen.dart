@@ -211,7 +211,7 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 8,
-                  vertical: 15,
+                  vertical: 8,
                 ),
                 margin: const EdgeInsets.only(top: 8),
                 decoration: BoxDecoration(
@@ -260,7 +260,7 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
                         height: 30,
                         width: 30,
                         icon: Icons.done,
-                        backGroundColor: exercise.isDone ? WEPalette.primaryColor : Colors.black26,
+                        backGroundColor: exercise.isDone ? Colors.pink : Colors.black26,
                         iconColor: Colors.black,
                         ontap: () {
                           exercise.isDone = !exercise.isDone;
