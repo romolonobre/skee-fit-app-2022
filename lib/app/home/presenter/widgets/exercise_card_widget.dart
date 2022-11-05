@@ -23,7 +23,7 @@ class ExerciseCardWidget extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: SkeeContainer(
               color: exercise.isSelected ? WEPalette.primaryColor.withOpacity(0.5) : WEPalette.cardColor,
               child: Column(
