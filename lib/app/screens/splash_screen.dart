@@ -16,7 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Future.delayed(const Duration(seconds: 3)).then((value) {
-      Modular.to.pushNamedAndRemoveUntil('/home/', (route) => route.settings.name == '/home/');
+      Modular.to.pushNamedAndRemoveUntil(
+          '/home/', (route) => route.settings.name == '/home/');
     });
   }
 
@@ -26,15 +27,12 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: WEPalette.primaryColor,
-        child: const Center(
-          child: Text(
-            'WeeFit',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-            ),
+        color: WEPalette.splashBackgroundColor,
+        child: Center(
+          child: Image.asset(
+            'assets/skeefit_1_1.png',
+            height: 200,
+            width: 200,
           ),
         ),
       ),
