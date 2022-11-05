@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/home/presenter/widgets/profile_avatar_widget.dart';
 import 'package:skeefiapp/app/skee_ui/skee_palette.dart';
 
 import '../../skee_ui/we_loader.dart';
@@ -38,19 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'Start Workout',
           color: Colors.white,
         ),
-        actions: [
-          GestureDetector(
-            onTap: () {},
-            child: const CircleAvatar(
-              radius: 60,
-              backgroundColor: WEPalette.primaryColor,
-              child: Icon(
-                Icons.add_a_photo_rounded,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
+        actions: const [ProfileAvatarWidget()],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
