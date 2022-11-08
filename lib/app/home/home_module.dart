@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/home/domain/service/image_picker_service.dart';
+import 'package:skeefiapp/app/home/presenter/cubit/imagepicker_cubit.dart';
 
 import 'domain/repositories/get_all_exercices_repository.dart';
 import 'domain/repositories/get_fitness_news_repository.dart';
@@ -18,7 +20,9 @@ class HomeModule extends Module {
         Bind.lazySingleton((i) => GetAllExercisesCubit(i())),
         Bind.lazySingleton<GetFitnessNewsRepository>((i) => GetFitnessNewsRepositoryImpl()),
         Bind.lazySingleton<GetFitnessNewsService>((i) => GetFitnessNewsServiceImpl(repository: i())),
-        Bind.lazySingleton((i) => GetFitnessNewsCubit(i()))
+        Bind.lazySingleton((i) => GetFitnessNewsCubit(i())),
+        Bind.lazySingleton((i) => ImagepickerCubit()),
+        Bind.lazySingleton<ImagePickerService>((i) => ImagePickerServiceImpl()),
       ];
   @override
   List<ModularRoute> get routes => [
