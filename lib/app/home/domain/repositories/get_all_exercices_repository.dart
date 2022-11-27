@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
+import 'package:skeefiapp/app/core/client/api_request.dart';
 
 import '../errors/failure.dart';
 import '../models/exercises_model.dart';
@@ -9,13 +9,13 @@ abstract class GetAllExercisesRepository {
   Future<List<ExercisesModel>> getAllExerceses();
 }
 
-class GetAllExercicesRepositoryImpl implements GetAllExercisesRepository {
+class GetAllExercicesRepositoryImpl extends ApiRequest implements GetAllExercisesRepository {
   List<ExercisesModel> exerciseList = [];
   @override
   Future<List<ExercisesModel>> getAllExerceses() async {
     try {
-      final response = await http.get(
-        Uri.parse('https://exercisedb.p.rapidapi.com/exercises'),
+      final response = await ApiRequest.get(
+        ('https://exercisedb.p.rapidapi.com/exercises'),
         headers: {
           'X-RapidAPI-Key': '1a4a290466msh7bd67dd12d9ce40p173e62jsnb7af6a3d8507',
           'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
