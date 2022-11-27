@@ -13,5 +13,5 @@ class GetAllExercisesServiceImpl extends GetAllExercisesService {
     required this.repository,
   });
   @override
-  Future<List<ExercisesModel>> getAllExerceses() => repository.getAllExerceses();
+  Future<List<ExercisesModel>> getAllExerceses() async => await repository.getAllExerceses();
 }

@@ -10,5 +10,5 @@ class GetFitnessNewsServiceImpl implements GetFitnessNewsService {
 
   GetFitnessNewsServiceImpl({required this.repository});
   @override
-  Future<List<FitnessNewsModel>> getFitnessNews() async => repository.getFitnessNews();
+  Future<List<FitnessNewsModel>> getFitnessNews() async => await repository.getFitnessNews();
 }
