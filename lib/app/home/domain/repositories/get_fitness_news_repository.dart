@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:skeefiapp/app/core/client/api_request.dart';
 
-import '../errors/failure.dart';
+import '../../../core/errors/failure.dart';
 import '../models/fitness_news_model.dart';
 
 abstract class GetFitnessNewsRepository {

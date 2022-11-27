@@ -3,9 +3,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../domain/errors/failure.dart';
-import '../../domain/models/exercises_model.dart';
-import '../../domain/service/get_all_exercises_service.dart';
+import '../../../core/errors/failure.dart';
+import '../../../exercies/domain/models/exercises_model.dart';
+import '../../../exercies/services/get_all_exercises_service.dart';
 
 part 'get_all_exercises_state.dart';
 

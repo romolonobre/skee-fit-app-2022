@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
 
-import '../core/skee_ui/we_loader.dart';
-import '../home/domain/models/exercises_model.dart';
-import '../home/presenter/cubit/get_all_exercises_cubit.dart';
-import '../home/presenter/widgets/exercise_card_widget.dart';
-import '../home/presenter/widgets/exercises_info_app_bar.dart';
-import '../widgets/we_buttons.dart';
+import '../../core/skee_ui/we_loader.dart';
+import '../../home/presenter/cubit/get_all_exercises_cubit.dart';
+import '../../home/presenter/widgets/exercise_card_widget.dart';
+import '../../home/presenter/widgets/exercises_info_app_bar.dart';
+import '../../widgets/we_buttons.dart';
+import '../domain/models/exercises_model.dart';
 
 class ExercisesPage extends StatefulWidget {
   List<ExercisesModel> exercisesModel = [];

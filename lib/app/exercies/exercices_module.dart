@@ -1,9 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../home/domain/repositories/get_all_exercices_repository.dart';
-import '../home/domain/service/get_all_exercises_service.dart';
 import '../home/presenter/cubit/get_all_exercises_cubit.dart';
-import 'exercises_screen.dart';
+import 'presenter/exercises_screen.dart';
+import 'repositories/get_all_exercices_repository.dart';
+import 'services/get_all_exercises_service.dart';
 
 class ExercisesModule extends Module {
   @override

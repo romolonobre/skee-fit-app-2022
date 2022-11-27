@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:skeefiapp/app/core/client/api_request.dart';
 
-import '../errors/failure.dart';
-import '../models/exercises_model.dart';
+import '../../core/errors/failure.dart';
+import '../domain/models/exercises_model.dart';
 
 abstract class GetAllExercisesRepository {
   Future<List<ExercisesModel>> getAllExerceses();
