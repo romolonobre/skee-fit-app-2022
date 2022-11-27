@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:skeefiapp/app/home/domain/service/image_picker_service.dart';
 import 'package:skeefiapp/app/home/presenter/cubit/imagepicker_cubit.dart';
+import 'package:skeefiapp/app/my_exercices/my_exercies_module.dart';
 
 import 'domain/repositories/get_all_exercices_repository.dart';
 import 'domain/repositories/get_fitness_news_repository.dart';
@@ -9,7 +10,6 @@ import 'domain/service/get_fitness_news_service.dart';
 import 'presenter/cubit/get_all_exercises_cubit.dart';
 import 'presenter/cubit/get_fitness_news_cubit.dart';
 import 'screens/home_screen.dart';
-import 'screens/my_exercises_screen.dart';
 
 class HomeModule extends Module {
   @override
@@ -27,6 +27,6 @@ class HomeModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (context, args) => const HomeScreen()),
-        ChildRoute('/add-exercise', child: (context, args) => const AddExercicePage()),
+        ModuleRoute('/my-exercise', module: MyExerciesModule()),
       ];
 }

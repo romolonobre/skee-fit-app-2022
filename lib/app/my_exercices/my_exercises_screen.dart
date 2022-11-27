@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../skee_ui/skee_palette.dart';
-import '../../widgets/we_buttons.dart';
-import '../../widgets/we_modal.dart';
-import '../../widgets/we_text.dart';
-import '../domain/models/exercises_model.dart';
-import '../presenter/cubit/get_all_exercises_cubit.dart';
-import '../presenter/widgets/workout_timer_widget.dart';
-import 'exercises_screen.dart';
+import '../home/domain/models/exercises_model.dart';
+import '../home/presenter/cubit/get_all_exercises_cubit.dart';
+import '../home/presenter/widgets/workout_timer_widget.dart';
+import '../home/screens/exercises_screen.dart';
+import '../skee_ui/skee_palette.dart';
+import '../widgets/we_buttons.dart';
+import '../widgets/we_modal.dart';
+import '../widgets/we_text.dart';
 
-class AddExercicePage extends StatefulWidget {
-  const AddExercicePage({Key? key}) : super(key: key);
+class MyExercicePage extends StatefulWidget {
+  const MyExercicePage({Key? key}) : super(key: key);
 
   @override
-  State<AddExercicePage> createState() => _AddExercicePageState();
+  State<MyExercicePage> createState() => _MyExercicePageState();
 }
 
-class _AddExercicePageState extends State<AddExercicePage> {
+class _MyExercicePageState extends State<MyExercicePage> {
   final cubit = Modular.get<GetAllExercisesCubit>();
   List<ExercisesModel> exercises = [];
 
