@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../../../core/helper/helper.dart';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class FitnessNewsModel {
   final String title;
@@ -21,9 +23,9 @@ class FitnessNewsModel {
 
   factory FitnessNewsModel.fromJson(Map<String, dynamic> json) {
     return FitnessNewsModel(
-      title: json['title'] as String,
-      url: json['url'] as String,
-      source: json['source'] as String,
+      title: Helper.getString(json['title']),
+      url: Helper.getString(json['url']),
+      source: Helper.getString(json['source']),
     );
   }
 

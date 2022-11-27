@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:skeefiapp/app/core/helper/helper.dart';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class ExercisesModel {
   final String bodyPart;
@@ -33,12 +35,12 @@ class ExercisesModel {
 
   factory ExercisesModel.fromJson(Map<String, dynamic> map) {
     return ExercisesModel(
-      bodyPart: map['bodyPart'] as String,
-      equipment: map['equipment'] as String,
-      id: map['id'] as String,
-      name: map['name'] as String,
-      target: map['target'] as String,
-      gifUrl: map['gifUrl'] as String,
+      bodyPart: Helper.getString(map['bodyPart']),
+      equipment: Helper.getString(map['equipment']),
+      id: Helper.getString(map['id']),
+      name: Helper.getString(map['name']),
+      target: Helper.getString(map['target']),
+      gifUrl: Helper.getString(map['gifUrl']),
     );
   }
 
