@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/skee_ui/skee_palette.dart';
+import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../../skee_ui/skee_container.dart';
+import '../../../core/skee_ui/skee_container.dart';
 import '../../../widgets/flutter_widgets.dart';
 import '../../../widgets/we_buttons.dart';
 import '../../domain/models/fitness_news_model.dart';

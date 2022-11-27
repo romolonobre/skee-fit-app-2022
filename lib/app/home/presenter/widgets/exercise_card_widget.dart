@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../skee_ui/skee_container.dart';
-import '../../../skee_ui/skee_palette.dart';
+import '../../../core/skee_ui/skee_container.dart';
+import '../../../core/skee_ui/skee_palette.dart';
 import '../../../widgets/flutter_widgets.dart';
 import '../../../widgets/we_buttons.dart';
 import '../../domain/models/exercises_model.dart';

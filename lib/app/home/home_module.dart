@@ -13,7 +13,6 @@ import 'screens/home_screen.dart';
 
 class HomeModule extends Module {
   @override
-  // TODO: implement binds
   List<Bind<Object>> get binds => [
         Bind.lazySingleton<GetAllExercisesRepository>((i) => GetAllExercicesRepositoryImpl()),
         Bind.lazySingleton<GetAllExercisesService>((i) => GetAllExercisesServiceImpl(repository: i())),

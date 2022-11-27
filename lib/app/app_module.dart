@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/screens/splash_screen.dart';
+import 'package:skeefiapp/app/splashscreen/splash_screen.dart';
 
 import 'home/home_module.dart';
 

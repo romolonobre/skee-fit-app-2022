@@ -8,7 +8,7 @@ import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
 import 'package:skeefiapp/app/widgets/snackbar/we_snackbar_widget.dart';
 import 'package:skeefiapp/app/widgets/we_buttons.dart';
 
-import '../../../skee_ui/skee_palette.dart';
+import '../../../core/skee_ui/skee_palette.dart';
 
 class ProfileAvatarWidget extends StatefulWidget {
   const ProfileAvatarWidget({Key? key}) : super(key: key);
