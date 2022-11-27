@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
 import 'package:skeefiapp/app/home/presenter/widgets/profile_avatar_widget.dart';
-import 'package:skeefiapp/app/skee_ui/skee_palette.dart';
 
-import '../../skee_ui/we_loader.dart';
+import '../../core/skee_ui/we_loader.dart';
 import '../../widgets/flutter_widgets.dart';
 import '../../widgets/we_buttons.dart';
 import '../presenter/cubit/get_fitness_news_cubit.dart';

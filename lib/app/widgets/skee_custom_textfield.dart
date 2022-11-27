@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../skee_ui/skee_palette.dart';
+import '../core/skee_ui/skee_palette.dart';
 
 class SkeeCustomTextfield extends StatefulWidget {
   final String? hintText;

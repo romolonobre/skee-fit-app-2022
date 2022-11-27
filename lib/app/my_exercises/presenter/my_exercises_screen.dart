@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
+import '../../exercies/exercises_screen.dart';
 import '../../home/domain/models/exercises_model.dart';
 import '../../home/presenter/cubit/get_all_exercises_cubit.dart';
-import '../../home/screens/exercises_screen.dart';
 import '../../widgets/we_buttons.dart';
 import '../../widgets/we_modal.dart';
 import '../../widgets/we_text.dart';
 import 'widgets/workout_timer_widget.dart';
 
-class MyExercicePage extends StatefulWidget {
-  const MyExercicePage({Key? key}) : super(key: key);
+class MyExercisesPage extends StatefulWidget {
+  const MyExercisesPage({Key? key}) : super(key: key);
 
   @override
-  State<MyExercicePage> createState() => _MyExercicePageState();
+  State<MyExercisesPage> createState() => _MyExercisesPageState();
 }
 
-class _MyExercicePageState extends State<MyExercicePage> {
+class _MyExercisesPageState extends State<MyExercisesPage> {
   final cubit = Modular.get<GetAllExercisesCubit>();
   List<ExercisesModel> exercises = [];
 
@@ -83,7 +83,7 @@ class _MyExercicePageState extends State<MyExercicePage> {
 
                 final List<ExercisesModel>? result = await Modular.to.push(
                   MaterialPageRoute(
-                    builder: (context) => ExercisesInfoPage(exercisesModel: exercises),
+                    builder: (context) => ExercisesPage(exercisesModel: exercises),
                   ),
                 );
 

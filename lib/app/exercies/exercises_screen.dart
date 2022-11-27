@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/skee_ui/skee_palette.dart';
+import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
 
-import '../../skee_ui/we_loader.dart';
-import '../../widgets/we_buttons.dart';
-import '../domain/models/exercises_model.dart';
-import '../presenter/cubit/get_all_exercises_cubit.dart';
-import '../presenter/widgets/exercise_card_widget.dart';
-import '../presenter/widgets/exercises_info_app_bar.dart';
+import '../core/skee_ui/we_loader.dart';
+import '../home/domain/models/exercises_model.dart';
+import '../home/presenter/cubit/get_all_exercises_cubit.dart';
+import '../home/presenter/widgets/exercise_card_widget.dart';
+import '../home/presenter/widgets/exercises_info_app_bar.dart';
+import '../widgets/we_buttons.dart';
 
-class ExercisesInfoPage extends StatefulWidget {
+class ExercisesPage extends StatefulWidget {
   List<ExercisesModel> exercisesModel = [];
 
-  ExercisesInfoPage({required this.exercisesModel});
+  ExercisesPage({required this.exercisesModel});
 
   @override
-  State<ExercisesInfoPage> createState() => _ExercisesInfoPageState();
+  State<ExercisesPage> createState() => _ExercisesPageState();
 }
 
-class _ExercisesInfoPageState extends State<ExercisesInfoPage> {
+class _ExercisesPageState extends State<ExercisesPage> {
   final cubit = Modular.get<GetAllExercisesCubit>();
 
   int currentIndex = 0;
