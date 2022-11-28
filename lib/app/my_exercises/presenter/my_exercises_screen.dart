@@ -3,8 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
 import '../../exercies/domain/models/exercises_model.dart';
+import '../../exercies/presenter/cubit/get_all_exercises_cubit.dart';
 import '../../exercies/presenter/exercises_screen.dart';
-import '../../home/presenter/cubit/get_all_exercises_cubit.dart';
 import '../../widgets/we_buttons.dart';
 import '../../widgets/we_modal.dart';
 import '../../widgets/we_text.dart';

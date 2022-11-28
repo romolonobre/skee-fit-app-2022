@@ -3,8 +3,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../exercies/domain/models/exercises_model.dart';
-import '../../../exercies/services/get_all_exercises_service.dart';
+import '../../domain/models/exercises_model.dart';
+import '../../services/get_all_exercises_service.dart';
 
 part 'get_all_exercises_state.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../home/presenter/cubit/get_all_exercises_cubit.dart';
+import 'presenter/cubit/get_all_exercises_cubit.dart';
 import 'presenter/exercises_screen.dart';
 import 'repositories/get_all_exercices_repository.dart';
 import 'services/get_all_exercises_service.dart';

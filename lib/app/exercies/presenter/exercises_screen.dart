@@ -5,11 +5,11 @@ import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
 import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
 
 import '../../core/skee_ui/we_loader.dart';
-import '../../home/presenter/cubit/get_all_exercises_cubit.dart';
 import '../../home/presenter/widgets/exercise_card_widget.dart';
 import '../../home/presenter/widgets/exercises_info_app_bar.dart';
 import '../../widgets/we_buttons.dart';
 import '../domain/models/exercises_model.dart';
+import 'cubit/get_all_exercises_cubit.dart';
 
 class ExercisesPage extends StatefulWidget {
   List<ExercisesModel> exercisesModel = [];
