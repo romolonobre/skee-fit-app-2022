@@ -1,12 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/home/domain/service/image_picker_service.dart';
 import 'package:skeefiapp/app/home/presenter/cubit/imagepicker_cubit.dart';
+import 'package:skeefiapp/app/home/service/image_picker_service.dart';
 import 'package:skeefiapp/app/my_exercises/my_exercies_module.dart';
 
-import 'domain/repositories/get_fitness_news_repository.dart';
-import 'domain/service/get_fitness_news_service.dart';
 import 'presenter/cubit/get_fitness_news_cubit.dart';
-import 'screens/home_screen.dart';
+import 'presenter/home_screen.dart';
+import 'repositories/get_fitness_news_repository.dart';
+import 'service/get_fitness_news_service.dart';
 
 class HomeModule extends Module {
   @override

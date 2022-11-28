@@ -7,8 +7,8 @@ import 'package:skeefiapp/app/home/presenter/widgets/profile_avatar_widget.dart'
 import '../../core/skee_ui/we_loader.dart';
 import '../../widgets/flutter_widgets.dart';
 import '../../widgets/we_buttons.dart';
-import '../presenter/cubit/get_fitness_news_cubit.dart';
-import '../presenter/widgets/news_card_widget.dart';
+import 'cubit/get_fitness_news_cubit.dart';
+import 'widgets/news_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

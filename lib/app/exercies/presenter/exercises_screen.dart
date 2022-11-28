@@ -21,14 +21,21 @@ class ExercisesPage extends StatefulWidget {
 
 class _ExercisesPageState extends State<ExercisesPage> {
   final cubit = Modular.get<GetAllExercisesCubit>();
+  final text = TextEditingController();
 
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    cubit.getAllExercises();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: WEPalette.backgroudColor,
-      appBar: const ExercicesInfoAppBar(),
+      appBar: ExercicesInfoAppBar(),
       body: BlocBuilder<GetAllExercisesCubit, GetAllExercisesState>(
         bloc: cubit,
         builder: (ctx, state) {
@@ -38,11 +45,54 @@ class _ExercisesPageState extends State<ExercisesPage> {
             );
           }
 
-          if (state is GetAllExercisesErrorState) {
-            return const Scaffold(
-              body: Center(
-                child: Text('error'),
-              ),
+          if (state is FilterLoaded) {
+            return Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                  ),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: ListView.builder(
+                      itemCount: state.exercises.length,
+                      itemBuilder: (cxt, index) {
+                        final ExercisesModel execice = state.exercises[index];
+
+                        return ExerciseCardWidget(
+                          exercise: execice,
+                          ontap: () {
+                            setState(() {
+                              execice.isSelected = !execice.isSelected;
+                              if (execice.isSelected) {
+                                widget.exercisesModel.add(execice);
+                              }
+                              if (!execice.isSelected) {
+                                widget.exercisesModel.removeAt(index);
+                              }
+                            });
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 30,
+                  left: 40,
+                  right: 40,
+                  child: WeButtons.filled(
+                    'Save',
+                    height: 55,
+                    ontap: () async {
+                      var selectedExercise = widget.exercisesModel;
+
+                      Modular.to.pop(selectedExercise);
+                    },
+                  ),
+                ),
+              ],
             );
           }
 
@@ -51,7 +101,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 20,
+                    top: 10,
                     left: 10,
                     right: 10,
                   ),

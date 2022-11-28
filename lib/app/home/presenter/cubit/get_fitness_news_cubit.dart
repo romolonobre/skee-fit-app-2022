@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/models/fitness_news_model.dart';
-import '../../domain/service/get_fitness_news_service.dart';
+import '../../service/get_fitness_news_service.dart';
 
 part 'get_fitness_news_state.dart';
 

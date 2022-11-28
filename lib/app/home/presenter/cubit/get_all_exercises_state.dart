@@ -19,3 +19,8 @@ class GetAllExercisesErrorState extends GetAllExercisesState {
   final String errorMessage;
   GetAllExercisesErrorState({required this.errorMessage});
 }
+
+class FilterLoaded extends GetAllExercisesState {
+  final List<ExercisesModel> exercises;
+  FilterLoaded({required this.exercises});
+}

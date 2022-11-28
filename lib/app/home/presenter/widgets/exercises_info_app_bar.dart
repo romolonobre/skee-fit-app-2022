@@ -3,34 +3,41 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
 import '../../../widgets/flutter_widgets.dart';
+import '../cubit/get_all_exercises_cubit.dart';
 
 class ExercicesInfoAppBar extends StatelessWidget with PreferredSizeWidget {
-  const ExercicesInfoAppBar({
+  ExercicesInfoAppBar({
     Key? key,
   }) : super(key: key);
-
+  final cubit = Modular.get<GetAllExercisesCubit>();
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back_ios_new,
-          size: 22,
-          color: Colors.grey.shade400,
-        ),
-        onPressed: () => Modular.to.pop(),
-      ),
+      centerTitle: false,
+      toolbarHeight: 140,
       automaticallyImplyLeading: false,
       backgroundColor: WEPalette.backgroudColor,
       elevation: 0,
-      title: WEText.title(
-        'Select Exercises',
-        fontsize: 28,
-        color: Colors.white,
+      title: Column(
+        children: [
+          WEText.title(
+            'Select Exercises',
+            fontsize: 28,
+            color: Colors.white,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+            child: SkeeCustomTextfield(
+              hintText: "Search by body target",
+              onChanged: (value) async => await cubit.filterExercises(value),
+              icon: Icons.search,
+            ),
+          ),
+        ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(60);
+  Size get preferredSize => const Size.fromHeight(90);
 }

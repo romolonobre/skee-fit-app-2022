@@ -3,7 +3,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../core/errors/failure.dart';
 import '../../../exercies/domain/models/exercises_model.dart';
 import '../../../exercies/services/get_all_exercises_service.dart';
 
@@ -16,15 +15,27 @@ class GetAllExercisesCubit extends Cubit<GetAllExercisesState> {
   ) : super(GetAllExercisesInitialState());
 
   Future<void> getAllExercises() async {
+    emit(GetAllExercisesLaodingState());
     try {
-      emit(GetAllExercisesLaodingState());
-
       final exercises = await service.getAllExerceses();
       emit(GetAllExerciseLoadedState(exercises: exercises));
-    } on Failure {
+    } catch (e) {
       emit(GetAllExercisesErrorState(
-        errorMessage: 'sdsdsd',
+        errorMessage: e.toString(),
       ));
+    }
+  }
+
+  Future<void> filterExercises([String? exercisePart]) async {
+    final exercices = await service.getAllExerceses();
+
+    try {
+      final exerciesFiltered =
+          exercices.where((element) => element.target.toLowerCase().contains(exercisePart ?? '')).toList();
+
+      emit(FilterLoaded(exercises: exerciesFiltered));
+    } on Exception catch (error) {
+      emit(GetAllExercisesErrorState(errorMessage: error.toString()));
     }
   }
 }

@@ -17,13 +17,13 @@ class GetAllExercicesRepositoryImpl extends ApiRequest implements GetAllExercise
       final response = await ApiRequest.get(
         ('https://exercisedb.p.rapidapi.com/exercises'),
         headers: {
-          'X-RapidAPI-Key': '1a4a290466msh7bd67dd12d9ce40p173e62jsnb7af6a3d8507',
+          'X-RapidAPI-Key': 'f7e3fbf4cdmsh211a28a0f984a8cp1b4753jsnec5a014fed9',
           'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
         },
       );
 
       final jsonResponse = jsonDecode(response.body) as List;
-      final exerciseList = jsonResponse.map((e) => ExercisesModel.fromJson(e)).toList();
+      final exerciseList = jsonResponse.map<ExercisesModel>((e) => ExercisesModel.fromJson(e)).toList();
 
       return exerciseList;
     } on Exception catch (e, s) {

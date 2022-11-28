@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:skeefiapp/app/home/domain/service/image_picker_service.dart';
+import 'package:skeefiapp/app/home/service/image_picker_service.dart';
 
 part 'imagepicker_state.dart';
 

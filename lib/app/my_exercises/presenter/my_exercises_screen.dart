@@ -79,8 +79,6 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
               'Add Exercises',
               height: 55,
               ontap: () async {
-                cubit.getAllExercises();
-
                 final List<ExercisesModel>? result = await Modular.to.push(
                   MaterialPageRoute(
                     builder: (context) => ExercisesPage(exercisesModel: exercises),

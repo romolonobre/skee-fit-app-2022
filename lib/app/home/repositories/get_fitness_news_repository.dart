@@ -5,8 +5,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:skeefiapp/app/core/client/api_request.dart';
 
-import '../../../core/errors/failure.dart';
-import '../models/fitness_news_model.dart';
+import '../../core/errors/failure.dart';
+import '../domain/models/fitness_news_model.dart';
 
 abstract class GetFitnessNewsRepository {
   Future<List<FitnessNewsModel>> getFitnessNews();
