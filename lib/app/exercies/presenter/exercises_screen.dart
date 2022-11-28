@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
+import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
 
 import '../../core/skee_ui/we_loader.dart';
 import '../../home/presenter/cubit/get_all_exercises_cubit.dart';
@@ -36,8 +37,13 @@ class _ExercisesPageState extends State<ExercisesPage> {
     return Scaffold(
       backgroundColor: WEPalette.backgroudColor,
       appBar: ExercicesInfoAppBar(),
-      body: BlocBuilder<GetAllExercisesCubit, GetAllExercisesState>(
+      body: BlocConsumer<GetAllExercisesCubit, GetAllExercisesState>(
         bloc: cubit,
+        listener: (context, state) {
+          if (state is GetAllExercisesErrorState) {
+            ShowErrorMessage().call(state.errorMessage, context: context);
+          }
+        },
         builder: (ctx, state) {
           if (state is GetAllExercisesLaodingState) {
             return const Center(
