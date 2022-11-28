@@ -20,9 +20,7 @@ class GetAllExercisesCubit extends Cubit<GetAllExercisesState> {
       final exercises = await service.getAllExerceses();
       emit(GetAllExerciseLoadedState(exercises: exercises));
     } catch (e) {
-      emit(GetAllExercisesErrorState(
-        errorMessage: e.toString(),
-      ));
+      emit(GetAllExercisesErrorState(errorMessage: e.toString()));
     }
   }
 
@@ -34,7 +32,7 @@ class GetAllExercisesCubit extends Cubit<GetAllExercisesState> {
           exercices.where((element) => element.target.toLowerCase().contains(exercisePart ?? '')).toList();
 
       emit(FilterLoaded(exercises: exerciesFiltered));
-    } on Exception catch (error) {
+    } catch (error) {
       emit(GetAllExercisesErrorState(errorMessage: error.toString()));
     }
   }
