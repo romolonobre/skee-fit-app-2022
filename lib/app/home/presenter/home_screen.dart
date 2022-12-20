@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -9,6 +10,7 @@ import '../../widgets/flutter_widgets.dart';
 import '../../widgets/we_buttons.dart';
 import 'cubit/get_fitness_news_cubit.dart';
 import 'widgets/news_card_widget.dart';
+import 'widgets/news_not_loaded_widgte.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -55,14 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
-                const SizedBox(height: 10),
-                WeButtons.filled(
-                  'Start a new Workout',
-                  fontsize: 15,
-                  textAlign: TextAlign.left,
-                  height: 50,
-                  ontap: () => _openStartWorkoutBottomsheet(context),
-                ),
+                const SizedBox(height: 15),
+                startWorkoutButton(),
                 const SizedBox(height: 25),
                 Column(
                   children: [
@@ -78,9 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
 
                         if (state is GetFitnessNewsError) {
-                          final errorMessage = state.erroMessage;
                           return Center(
-                            child: Text(errorMessage),
+                            heightFactor: 8,
+                            child: NewsNotLoaded(errorMessage: state.erroMessage),
                           );
                         }
 
@@ -98,6 +94,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget startWorkoutButton() {
+    return WeButtons.filled(
+      'Start a new Workout',
+      fontsize: 15,
+      textAlign: TextAlign.left,
+      height: 50,
+      ontap: () => _openStartWorkoutBottomsheet(context),
     );
   }
 
