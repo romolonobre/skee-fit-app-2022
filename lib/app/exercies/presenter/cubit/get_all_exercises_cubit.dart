@@ -2,6 +2,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:skeefiapp/app/core/helper/helper.dart';
 
 import '../../domain/models/exercises_model.dart';
 import '../../services/get_all_exercises_service.dart';
@@ -20,11 +21,13 @@ class GetAllExercisesCubit extends Cubit<GetAllExercisesState> {
       final exercises = await service.getAllExerceses();
       emit(GetAllExerciseLoadedState(exercises: exercises));
     } catch (e) {
+      debuLog(e.toString());
       emit(GetAllExercisesErrorState(errorMessage: e.toString()));
     }
   }
 
   Future<void> filterExercises([String? exercisePart]) async {
+    emit(GetAllExercisesLaodingState());
     final exercices = await service.getAllExerceses();
 
     try {
