@@ -41,7 +41,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
         bloc: cubit,
         listener: (context, state) {
           if (state is GetAllExercisesErrorState) {
-            ShowErrorMessage().call(state.errorMessage, context: context);
+            ShowErrorMessage().call(state.errorMessage.toString(), context: context);
           }
         },
         builder: (ctx, state) {
@@ -68,17 +68,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
 
                         return ExerciseCardWidget(
                           exercise: execice,
-                          ontap: () {
-                            setState(() {
-                              execice.isSelected = !execice.isSelected;
-                              if (execice.isSelected) {
-                                widget.exercisesModel.add(execice);
-                              }
-                              if (!execice.isSelected) {
-                                widget.exercisesModel.removeAt(index);
-                              }
-                            });
-                          },
+                          ontap: () => setState(() => selecetAndUnSelectExercise(execice, index)),
                         );
                       },
                     ),
@@ -120,17 +110,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
 
                         return ExerciseCardWidget(
                           exercise: execice,
-                          ontap: () {
-                            setState(() {
-                              execice.isSelected = !execice.isSelected;
-                              if (execice.isSelected) {
-                                widget.exercisesModel.add(execice);
-                              }
-                              if (!execice.isSelected) {
-                                widget.exercisesModel.removeAt(index);
-                              }
-                            });
-                          },
+                          ontap: () => setState(() => selecetAndUnSelectExercise(execice, index)),
                         );
                       },
                     ),
@@ -158,5 +138,15 @@ class _ExercisesPageState extends State<ExercisesPage> {
         },
       ),
     );
+  }
+
+  void selecetAndUnSelectExercise(ExercisesModel exercise, int index) {
+    exercise.isSelected = !exercise.isSelected;
+    if (exercise.isSelected) {
+      widget.exercisesModel.add(exercise);
+    }
+    if (!exercise.isSelected) {
+      widget.exercisesModel.removeAt(index);
+    }
   }
 }
