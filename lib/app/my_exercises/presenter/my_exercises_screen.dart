@@ -1,5 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/my_exercises/presenter/widgets/my_exercise_card.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
 import '../../exercies/domain/models/exercises_model.dart';
@@ -11,7 +13,9 @@ import '../../widgets/we_text.dart';
 import 'widgets/workout_timer_widget.dart';
 
 class MyExercisesPage extends StatefulWidget {
-  const MyExercisesPage({Key? key}) : super(key: key);
+  const MyExercisesPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MyExercisesPage> createState() => _MyExercisesPageState();
@@ -55,14 +59,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height,
                           width: MediaQuery.of(context).size.width,
-                          child: exercises.isEmpty
-                              ? WEText.title(
-                                  'No exercises available \n Add a new exercise',
-                                  textAlign: TextAlign.center,
-                                  color: Colors.white,
-                                  fontsize: 26,
-                                )
-                              : MyExercisesCard(exercises: exercises),
+                          child: exercises.isEmpty ? noExerciceAvaliableText() : MyExercisesCard(exercises: exercises),
                         ),
                       ],
                     ),
@@ -93,6 +90,15 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
           )
         ],
       ),
+    );
+  }
+
+  Widget noExerciceAvaliableText() {
+    return WEText.title(
+      'No exercises available. \n Add a new exercise',
+      textAlign: TextAlign.center,
+      color: Colors.white,
+      fontsize: 26,
     );
   }
 
@@ -149,129 +155,6 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class MyExercisesCard extends StatefulWidget {
-  final List<ExercisesModel> exercises;
-  const MyExercisesCard({super.key, required this.exercises});
-
-  @override
-  State<MyExercisesCard> createState() => _MyExercisesCardState();
-}
-
-class _MyExercisesCardState extends State<MyExercisesCard> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 270),
-      child: ListView.builder(
-        itemCount: widget.exercises.length,
-        itemBuilder: (context, index) {
-          final exercise = widget.exercises[index];
-
-          return GestureDetector(
-            onTap: () {
-              exercise.isDone = !exercise.isDone;
-              setState(() {});
-            },
-            child: Dismissible(
-              key: UniqueKey(),
-              direction: DismissDirection.endToStart,
-              background: Container(
-                width: 20,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 15,
-                ),
-                margin: const EdgeInsets.only(top: 8),
-                decoration: BoxDecoration(
-                  color: Colors.red.shade400,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Icon(
-                      Icons.delete_outline_outlined,
-                      size: 50,
-                      color: Colors.grey,
-                    ),
-                  ],
-                ),
-              ),
-              onDismissed: (direction) {
-                widget.exercises.removeAt(index);
-                setState(() {});
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 8,
-                ),
-                margin: const EdgeInsets.only(top: 8),
-                decoration: BoxDecoration(
-                  color: WEPalette.cardColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(14),
-                      child: Image.network(
-                        exercise.gifUrl,
-                        height: 55,
-                        width: 55,
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(left: 8, top: 10),
-                      width: MediaQuery.of(context).size.width - 190,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          WEText.title(
-                            exercise.name,
-                            fontsize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                            textAlign: TextAlign.left,
-                          ),
-                          const SizedBox(height: 7),
-                          WEText.title(
-                            exercise.target,
-                            fontsize: 13,
-                            fontWeight: FontWeight.w200,
-                            color: Colors.white,
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 15),
-                      child: WeButtons.iconButton(
-                        height: 30,
-                        width: 30,
-                        icon: Icons.done,
-                        backGroundColor: exercise.isDone ? Colors.pink : Colors.black26,
-                        iconColor: Colors.black,
-                        ontap: () {
-                          exercise.isDone = !exercise.isDone;
-                          setState(() {});
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
       ),
     );
   }
