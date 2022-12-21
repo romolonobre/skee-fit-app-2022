@@ -1,8 +1,11 @@
+import 'package:either_dart/either.dart';
+
+import '../../core/errors/failure.dart';
 import '../domain/models/fitness_news_model.dart';
 import '../repositories/get_fitness_news_repository.dart';
 
 abstract class GetFitnessNewsService {
-  Future<List<FitnessNewsModel>> getFitnessNews();
+  Future<Either<Failure, List<FitnessNewsModel>>> getFitnessNews();
 }
 
 class GetFitnessNewsServiceImpl implements GetFitnessNewsService {
@@ -10,5 +13,12 @@ class GetFitnessNewsServiceImpl implements GetFitnessNewsService {
 
   GetFitnessNewsServiceImpl({required this.repository});
   @override
-  Future<List<FitnessNewsModel>> getFitnessNews() async => await repository.getFitnessNews();
+  Future<Either<Failure, List<FitnessNewsModel>>> getFitnessNews() async {
+    final response = await repository.getFitnessNews();
+    if (response is Left) {
+      return Left(response.left);
+    }
+
+    return Right(response.right);
+  }
 }

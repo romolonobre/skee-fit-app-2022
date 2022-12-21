@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:either_dart/either.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/models/fitness_news_model.dart';
@@ -12,12 +13,13 @@ class GetFitnessNewsCubit extends Cubit<GetFitnessNewsState> {
 
   Future<void> getFitnessNews() async {
     emit(GetFitnessNewsLoading());
-    try {
-      final response = await service.getFitnessNews();
 
-      emit(GetFitnessNewsLoaded(fitnessNews: response));
-    } catch (e) {
-      emit(GetFitnessNewsError(erroMessage: 'Failed to Load news '));
+    final response = await service.getFitnessNews();
+    if (response is Left) {
+      emit(GetFitnessNewsError(erroMessage: response.left.errorMessage));
+    }
+    if (response is Right) {
+      emit(GetFitnessNewsLoaded(fitnessNews: response.right));
     }
   }
 }
