@@ -29,7 +29,7 @@ class ExercicesInfoAppBar extends StatelessWidget with PreferredSizeWidget {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
             child: SkeeCustomTextfield(
               hintText: "Search by body target",
-              onChanged: (value) async => await cubit.filterExercises(value),
+              onChanged: (value) async => value.length >= 3 ? await cubit.filterExercises(value) : null,
               icon: Icons.search,
             ),
           ),
