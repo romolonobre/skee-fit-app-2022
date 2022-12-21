@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
-import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
+import 'package:skeefiapp/app/widgets/custom_error_widget.dart';
 
 import '../../core/skee_ui/we_loader.dart';
 import '../../home/presenter/widgets/exercise_card_widget.dart';
 import '../../home/presenter/widgets/exercises_info_app_bar.dart';
+import '../../widgets/snackbar/show_error_message.dart';
 import '../../widgets/we_buttons.dart';
 import '../domain/models/exercises_model.dart';
 import 'cubit/get_all_exercises_cubit.dart';
@@ -39,16 +41,21 @@ class _ExercisesPageState extends State<ExercisesPage> {
       appBar: ExercicesInfoAppBar(),
       body: BlocConsumer<GetAllExercisesCubit, GetAllExercisesState>(
         bloc: cubit,
-        listener: (context, state) {
-          if (state is GetAllExercisesErrorState) {
-            ShowErrorMessage().call(state.errorMessage.toString(), context: context);
-          }
-        },
+        listener: (context, state) {},
         builder: (ctx, state) {
           if (state is GetAllExercisesLaodingState) {
             return const Center(
               child: WELoader(),
             );
+          }
+
+          if (state is GetAllExercisesErrorState) {
+            SchedulerBinding.instance.addPostFrameCallback((_) {
+              ShowErrorMessage().call(state.errorMessage.toString(), context: context);
+            });
+
+            return CustomErrorWidget(
+                errorMessage: "Error when tried to load exercises", ontap: () => cubit.getAllExercises());
           }
 
           if (state is FilterLoaded) {
