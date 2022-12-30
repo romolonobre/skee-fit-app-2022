@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
-import 'package:skeefiapp/app/home/presenter/widgets/profile_avatar_widget.dart';
 
+import '../../core/skee_ui/skee_palette.dart';
 import '../../core/skee_ui/we_loader.dart';
 import '../../widgets/flutter_widgets.dart';
 import '../../widgets/we_buttons.dart';
-import 'cubit/get_fitness_news_cubit.dart';
-import 'widgets/news_card_widget.dart';
-import 'widgets/news_not_loaded_widgte.dart';
+import '../domain/models/youtube_model.dart';
+import 'cubit/youtube_videos_cubit.dart';
+import 'widgets/profile_avatar_widget.dart';
+import 'widgets/youtube_videos_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,13 +20,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final cubit = Modular.get<GetFitnessNewsCubit>();
+  final cubit = Modular.get<YoutubeVideosCubit>();
+  late YoutubeModel _channel;
 
   @override
   void initState() {
-    cubit.getFitnessNews();
     super.initState();
+    _init();
   }
+
+  String? channelId;
+
+  Future _init() async {
+    YoutubeModel channel = await cubit.getYoutuveVideos(channelId: channelId ?? 'UC6vkKAsph6kZuAsC5Q8MVNQ');
+    _channel = channel;
+  }
+
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: SingleChildScrollView(
+          child: SizedBox(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -62,33 +71,73 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 25),
                 Column(
                   children: [
-                    BlocConsumer<GetFitnessNewsCubit, GetFitnessNewsState>(
-                      bloc: cubit,
-                      listener: (context, state) {},
-                      builder: (context, state) {
-                        if (state is GetFitnessNewsLoading) {
-                          return const Center(
-                            heightFactor: 12,
-                            child: WELoader(),
-                          );
-                        }
-
-                        if (state is GetFitnessNewsError) {
-                          return Center(
-                            heightFactor: 8,
-                            child: NewsNotLoaded(errorMessage: state.erroMessage),
-                          );
-                        }
-
-                        if (state is GetFitnessNewsLoaded) {
-                          final news = state.fitnessNews;
-                          return NewsCardWidget(fitnessNews: news);
-                        }
-                        return const SizedBox.shrink();
-                      },
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            WeButtons.text(
+                              'Workout Videos',
+                              color: selectedIndex == 0 ? WEPalette.primaryColor : Colors.grey,
+                              ontap: () async {
+                                setState(() => selectedIndex = 0);
+                                _channel = await cubit.getYoutuveVideos(channelId: "UC6vkKAsph6kZuAsC5Q8MVNQ");
+                              },
+                            ),
+                            WeButtons.text('Yoga Videos',
+                                color: selectedIndex == 1 ? WEPalette.primaryColor : Colors.grey, ontap: () async {
+                              setState(() => selectedIndex = 1);
+                              _channel = await cubit.getYoutuveVideos(channelId: "UCxYVPua6HC46HzgT8IIn3vg");
+                            }),
+                          ],
+                        ),
+                        AnimatedAlign(
+                          duration: const Duration(milliseconds: 200),
+                          alignment: selectedIndex == 0 ? Alignment.centerLeft : Alignment.centerRight,
+                          child: Padding(
+                            padding:
+                                EdgeInsets.only(left: selectedIndex == 0 ? 40 : 0, right: selectedIndex == 1 ? 25 : 0),
+                            child: Container(
+                              height: 1.4,
+                              width: 120,
+                              decoration: const BoxDecoration(
+                                color: WEPalette.primaryColor,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ],
-                )
+                ),
+                BlocConsumer<YoutubeVideosCubit, YoutubeVideosState>(
+                    bloc: cubit,
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      if (state is YoutubeVideosLoadingState) {
+                        return const Center(
+                          heightFactor: 13,
+                          child: WELoader(),
+                        );
+                      }
+
+                      if (state is YoutubeVideosLoadedState) {
+                        return IndexedStack(
+                          index: selectedIndex,
+                          children: [
+                            YoutubeVideoView(
+                              channel: _channel,
+                              channelId: channelId ?? "UC6vkKAsph6kZuAsC5Q8MVNQ",
+                            ),
+                            YoutubeVideoView(
+                              channel: _channel,
+                              channelId: channelId ?? "UCaBC9214yCFbAys53dE-IFw",
+                            ),
+                          ],
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    }),
               ],
             ),
           ),
