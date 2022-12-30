@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../widgets/we_buttons.dart';
@@ -46,7 +47,10 @@ class _WorkoutTimeWidgetState extends State<WorkoutTimeWidget> {
     return Center(
       child: Column(
         children: [
-          WeButtons.text('Start workout', ontap: () => startTimer()),
+          WeButtons.text('Start workout', ontap: () async {
+            startTimer();
+            await HapticFeedback.lightImpact();
+          }),
           buildTime(),
         ],
       ),
