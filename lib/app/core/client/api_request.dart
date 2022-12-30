@@ -6,7 +6,11 @@ abstract class ApiRequest {
     String url, {
     Map<String, String>? headers,
   }) async {
-    return http.get(Uri.parse(url), headers: headers);
+    return http.get(
+        Uri.parse(
+          url,
+        ),
+        headers: headers);
   }
 
   static Future<Response> post(
