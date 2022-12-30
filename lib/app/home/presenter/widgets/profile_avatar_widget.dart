@@ -30,7 +30,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
     return GestureDetector(
       onTap: () async {
         openPickerImageBottomSheet();
-        await HapticFeedback.vibrate();
+        await HapticFeedback.lightImpact();
       },
       child: BlocConsumer<ImagepickerCubit, ImagepickerState>(
         bloc: cubit,
