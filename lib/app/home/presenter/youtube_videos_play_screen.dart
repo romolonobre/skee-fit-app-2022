@@ -6,10 +6,10 @@ import '../../widgets/we_text.dart';
 import '../domain/models/youtube_model.dart';
 
 class YoutuveVideoPlayerScren extends StatefulWidget {
-  final YoutubeModel channel;
+  final YoutubeModel? channel;
   const YoutuveVideoPlayerScren({
     Key? key,
-    required this.channel,
+    this.channel,
     required this.id,
   }) : super(key: key);
   final String id;
@@ -44,7 +44,7 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
         body: Column(
           children: [
             WEText.custom('@YoutubechannelName', color: Colors.grey),
-            WEText.title(widget.channel.title, color: Colors.white),
+            WEText.title(widget.channel?.title ?? '', color: Colors.white),
             Center(
               heightFactor: 2,
               child: YoutubePlayer(

@@ -9,13 +9,13 @@ import '../youtube_videos_play_screen.dart';
 class YoutubeVideoView extends StatefulWidget {
   const YoutubeVideoView({
     Key? key,
-    required YoutubeModel channel,
-    required this.channelId,
+    required YoutubeModel? channel,
+    // required this.channelId,
   })  : _channel = channel,
         super(key: key);
 
-  final YoutubeModel _channel;
-  final String channelId;
+  final YoutubeModel? _channel;
+  // final String channelId;
 
   @override
   State<YoutubeVideoView> createState() => _YoutubeVideoViewState();
@@ -28,9 +28,9 @@ class _YoutubeVideoViewState extends State<YoutubeVideoView> {
       color: WEPalette.backgroudColor,
       height: MediaQuery.of(context).size.height - 290,
       child: ListView.builder(
-        itemCount: widget._channel.videos!.length,
+        itemCount: widget._channel?.videos?.length,
         itemBuilder: (context, index) {
-          final video = widget._channel.videos?[index];
+          final video = widget._channel?.videos?[index];
 
           return GestureDetector(
             onTap: (() => Modular.to.push(

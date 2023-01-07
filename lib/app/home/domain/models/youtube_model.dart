@@ -1,19 +1,19 @@
 class YoutubeModel {
-  final String id;
-  final String title;
-  final String profilePictureUrl;
-  final String subscriberCount;
-  final String videoCount;
-  final String uploadPlaylistId;
+  final String? id;
+  final String? title;
+  final String? profilePictureUrl;
+  final String? subscriberCount;
+  final String? videoCount;
+  final String? uploadPlaylistId;
   List<Video>? videos;
 
   YoutubeModel({
-    required this.id,
-    required this.title,
-    required this.profilePictureUrl,
-    required this.subscriberCount,
-    required this.videoCount,
-    required this.uploadPlaylistId,
+    this.id,
+    this.title,
+    this.profilePictureUrl,
+    this.subscriberCount,
+    this.videoCount,
+    this.uploadPlaylistId,
     this.videos,
   });
 

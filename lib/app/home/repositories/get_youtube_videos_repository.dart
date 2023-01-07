@@ -51,7 +51,7 @@ class GetYoutubeVideosRepositoryImpl implements GetYoutubeVideosRepository {
       // print(response.body);
       // Fetch first batch of videos from uploads playlist
 
-      channel.videos = await fetchVideosFromPlaylist(playlistId: channel.uploadPlaylistId);
+      channel.videos = await fetchVideosFromPlaylist(playlistId: channel.uploadPlaylistId ?? '');
 
       return Right(channel);
     } on Failure catch (e, s) {
