@@ -41,7 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(selectedIndex);
     return Scaffold(
       backgroundColor: WEPalette.backgroudColor,
       appBar: const HomeScreenAppBar(),
@@ -128,14 +127,29 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          WEText.title('Workout Started!', fontsize: 20, color: WEPalette.primaryColor, fontWeight: FontWeight.w700),
+          WEText.title(
+            'Workout Started!',
+            fontsize: 20,
+            color: WEPalette.primaryColor,
+            fontWeight: FontWeight.w700,
+          ),
           const SizedBox(height: 15),
-          WEText.custom('Workout consist of a collection \n of exercises',
-              fontsize: 16, textAlign: TextAlign.center, color: Colors.grey, fontWeight: FontWeight.bold),
+          WEText.custom(
+            'Workout consist of a collection \n of exercises',
+            fontsize: 16,
+            textAlign: TextAlign.center,
+            color: Colors.grey,
+            fontWeight: FontWeight.bold,
+          ),
           const SizedBox(height: 20),
-          WEText.custom("This workout is empty right now, but it's \n super easy to add some exercises to \n perform ",
-              fontsize: 16, textAlign: TextAlign.center, color: Colors.grey, fontWeight: FontWeight.bold),
-          const Spacer(),
+          WEText.custom(
+            "This workout is empty right now, but it's \n super easy to add some exercises to \n perform ",
+            fontsize: 16,
+            textAlign: TextAlign.center,
+            color: Colors.grey,
+            fontWeight: FontWeight.bold,
+          ),
+          const SizedBox(height: 20),
           WeButtons.filled(height: 50, "Let's build my workout", ontap: () {
             Modular.to.pushNamed('./my-exercise/');
             Modular.to.pop();

@@ -1,24 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import '../../../exercies/domain/models/exercises_model.dart';
 import '../../../widgets/we_buttons.dart';
 
 // ignore: must_be_immutable
-class AddExerciseButton extends StatefulWidget {
-  List<ExercisesModel> exercises;
-  Function ontap;
+class AddExercisebutton extends StatelessWidget {
+  final Function ontap;
+  const AddExercisebutton({super.key, required this.ontap});
 
-  AddExerciseButton({
-    Key? key,
-    required this.exercises,
-    required this.ontap,
-  }) : super(key: key);
-  @override
-  State<AddExerciseButton> createState() => _AddExerciseButtonState();
-}
-
-class _AddExerciseButtonState extends State<AddExerciseButton> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -28,7 +17,7 @@ class _AddExerciseButtonState extends State<AddExerciseButton> {
       child: WeButtons.filled(
         'Add Exercises',
         height: 55,
-        ontap: widget.ontap(),
+        ontap: () => ontap(),
       ),
     );
   }

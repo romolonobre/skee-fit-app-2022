@@ -10,6 +10,7 @@ import '../../exercies/presenter/exercises_screen.dart';
 import '../../widgets/we_buttons.dart';
 import '../../widgets/we_modal.dart';
 import '../../widgets/we_text.dart';
+import 'widgets/add_exercises_button.dart';
 import 'widgets/workout_timer_widget.dart';
 
 class MyExercisesPage extends StatefulWidget {
@@ -55,7 +56,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
                     child: Column(
                       children: [
                         const WorkoutTimeWidget(),
-                        SizedBox(height: exercises.isEmpty ? MediaQuery.of(context).size.height - 700 : 0),
+                        SizedBox(height: exercises.isEmpty ? MediaQuery.of(context).size.height - 600 : 0),
                         SizedBox(
                           height: MediaQuery.of(context).size.height,
                           width: MediaQuery.of(context).size.width,
@@ -68,25 +69,13 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
               ),
             ),
           ),
-          Positioned(
-            bottom: 35,
-            left: 20,
-            right: 20,
-            child: WeButtons.filled(
-              'Add Exercises',
-              height: 55,
-              ontap: () async {
-                final List<ExercisesModel>? result = await Modular.to.push(
-                  MaterialPageRoute(
-                    builder: (context) => ExercisesPage(exercisesModel: exercises),
-                  ),
-                );
-
-                setState(() {
-                  exercises = result ?? [];
-                });
-              },
-            ),
+          AddExercisebutton(
+            ontap: () async {
+              final List<ExercisesModel>? result = await Modular.to.push(
+                MaterialPageRoute(builder: (context) => ExercisesPage(exercisesModel: exercises)),
+              );
+              setState(() => exercises = result ?? []);
+            },
           )
         ],
       ),
