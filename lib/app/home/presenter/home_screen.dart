@@ -9,7 +9,8 @@ import '../../widgets/flutter_widgets.dart';
 import '../../widgets/we_buttons.dart';
 import '../domain/models/youtube_model.dart';
 import 'cubit/youtube_videos_cubit.dart';
-import 'widgets/profile_avatar_widget.dart';
+import 'widgets/home_screen_app_bar.dart';
+import 'widgets/tab_buttons.dart';
 import 'widgets/youtube_videos_view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +22,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final cubit = Modular.get<YoutubeVideosCubit>();
-  late YoutubeModel _channel;
+  YoutubeModel? _channel;
+
+  int selectedIndex = 0;
 
   @override
   void initState() {
@@ -29,130 +32,103 @@ class _HomeScreenState extends State<HomeScreen> {
     _init();
   }
 
-  String? channelId;
-
   Future _init() async {
-    YoutubeModel channel = await cubit.getYoutuveVideos(channelId: channelId ?? 'UC6vkKAsph6kZuAsC5Q8MVNQ');
+    YoutubeModel channel =
+        await cubit.getYoutuveVideos(channelId: selectedIndex == 0 ? 'UC6vkKAsph6kZuAsC5Q8MVNQ' : '');
     _channel = channel;
   }
 
-  int selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
+    print(selectedIndex);
     return Scaffold(
       backgroundColor: WEPalette.backgroudColor,
-      appBar: AppBar(
-        toolbarHeight: 60,
-        backgroundColor: WEPalette.backgroudColor,
-        elevation: 0,
-        centerTitle: false,
-        title: WEText.title(
-          'Start Workout',
-          color: Colors.white,
-        ),
-        actions: const [ProfileAvatarWidget()],
-      ),
+      appBar: const HomeScreenAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SizedBox(
-          child: SizedBox(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            WEText.custom(
+              'Quick Start',
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            const SizedBox(height: 15),
+            startWorkoutButton(),
+            const SizedBox(height: 25),
+            Column(
               children: [
-                const SizedBox(height: 20),
-                WEText.custom(
-                  'Quick Start',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-                const SizedBox(height: 15),
-                startWorkoutButton(),
-                const SizedBox(height: 25),
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            WeButtons.text(
-                              'Workout Videos',
-                              color: selectedIndex == 0 ? WEPalette.primaryColor : Colors.grey,
-                              ontap: () async {
-                                setState(() => selectedIndex = 0);
-                                _channel = await cubit.getYoutuveVideos(channelId: "UC6vkKAsph6kZuAsC5Q8MVNQ");
-                              },
-                            ),
-                            WeButtons.text('Yoga Videos',
-                                color: selectedIndex == 1 ? WEPalette.primaryColor : Colors.grey, ontap: () async {
-                              setState(() => selectedIndex = 1);
-                              _channel = await cubit.getYoutuveVideos(channelId: "UCxYVPua6HC46HzgT8IIn3vg");
-                            }),
-                          ],
-                        ),
-                        AnimatedAlign(
-                          duration: const Duration(milliseconds: 200),
-                          alignment: selectedIndex == 0 ? Alignment.centerLeft : Alignment.centerRight,
-                          child: Padding(
-                            padding:
-                                EdgeInsets.only(left: selectedIndex == 0 ? 40 : 0, right: selectedIndex == 1 ? 25 : 0),
-                            child: Container(
-                              height: 1.4,
-                              width: 120,
-                              decoration: const BoxDecoration(
-                                color: WEPalette.primaryColor,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
+                    TabButton(
+                      selectedIndex: selectedIndex,
+                      channel: _channel,
+                      color: selectedIndex == 0 ? WEPalette.primaryColor : Colors.grey,
+                      title: 'Workout Videos',
+                      ontap: () async {
+                        setState(() => selectedIndex = 0);
+                        _channel = await cubit.getYoutuveVideos(channelId: "UC6vkKAsph6kZuAsC5Q8MVNQ");
+                      },
                     ),
+                    TabButton(
+                        selectedIndex: selectedIndex,
+                        channel: _channel,
+                        color: selectedIndex == 1 ? WEPalette.primaryColor : Colors.grey,
+                        title: 'Yoga Videos',
+                        ontap: () async {
+                          setState(() => selectedIndex = 1);
+                          _channel = await cubit.getYoutuveVideos(channelId: "UCaBC9214yCFbAys53dE-IFw");
+                        }),
                   ],
                 ),
-                BlocConsumer<YoutubeVideosCubit, YoutubeVideosState>(
-                    bloc: cubit,
-                    listener: (context, state) {},
-                    builder: (context, state) {
-                      if (state is YoutubeVideosLoadingState) {
-                        return const Center(
-                          heightFactor: 13,
-                          child: WELoader(),
-                        );
-                      }
-
-                      if (state is YoutubeVideosLoadedState) {
-                        return IndexedStack(
-                          index: selectedIndex,
-                          children: [
-                            YoutubeVideoView(
-                              channel: _channel,
-                              channelId: channelId ?? "UC6vkKAsph6kZuAsC5Q8MVNQ",
-                            ),
-                            YoutubeVideoView(
-                              channel: _channel,
-                              channelId: channelId ?? "UCaBC9214yCFbAys53dE-IFw",
-                            ),
-                          ],
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    }),
+                AnimatedAlign(
+                  duration: const Duration(milliseconds: 200),
+                  alignment: selectedIndex == 0 ? Alignment.centerLeft : Alignment.centerRight,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: selectedIndex == 0 ? 80 : 0, right: selectedIndex == 1 ? 60 : 0),
+                    child: Container(
+                      height: 1.4,
+                      width: selectedIndex == 0 ? 45 : 45,
+                      decoration: const BoxDecoration(
+                        color: WEPalette.primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
-          ),
+            BlocConsumer<YoutubeVideosCubit, YoutubeVideosState>(
+                bloc: cubit,
+                listener: (context, state) {},
+                builder: (context, state) {
+                  if (state is YoutubeVideosLoadingState) {
+                    return const Center(
+                      heightFactor: 10,
+                      child: SKEELoader(),
+                    );
+                  }
+
+                  if (state is YoutubeVideosLoadedState) {
+                    return IndexedStack(
+                      index: selectedIndex,
+                      children: [
+                        YoutubeVideoView(
+                          channel: _channel,
+                        ),
+                        YoutubeVideoView(
+                          channel: _channel,
+                        ),
+                      ],
+                    );
+                  }
+                  return const SizedBox.shrink();
+                }),
+          ],
         ),
       ),
-    );
-  }
-
-  Widget startWorkoutButton() {
-    return WeButtons.filled(
-      'Start a new Workout',
-      fontsize: 15,
-      textAlign: TextAlign.left,
-      height: 50,
-      ontap: () => _openStartWorkoutBottomsheet(context),
     );
   }
 
@@ -179,6 +155,16 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 30)
         ],
       ),
+    );
+  }
+
+  Widget startWorkoutButton() {
+    return WeButtons.filled(
+      'Start a new Workout',
+      fontsize: 15,
+      textAlign: TextAlign.left,
+      height: 50,
+      ontap: () => _openStartWorkoutBottomsheet(context),
     );
   }
 }
