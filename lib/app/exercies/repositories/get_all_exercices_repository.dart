@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:either_dart/either.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:skeefiapp/app/core/client/api_request.dart';
 import 'package:skeefiapp/app/exercies/domain/errors/exercises_not_found_error.dart';
 
@@ -20,7 +21,7 @@ class GetAllExercicesRepositoryImpl extends ApiRequest implements GetAllExercise
       final response = await ApiRequest.get(
         ('https://exercisedb.p.rapidapi.com/exercises'),
         headers: {
-          'X-RapidAPI-Key': 'f7e3fbf4cdmsh211a28a0f984a8cp1b4753jsnec5a014fed93',
+          'X-RapidAPI-Key': dotenv.env['EXERCISE_API_KEY'] ?? '',
           'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
         },
       );

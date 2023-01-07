@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:either_dart/either.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:skeefiapp/app/core/errors/error_handle.dart';
 import 'package:skeefiapp/app/core/errors/failure.dart';
@@ -21,7 +22,7 @@ class GetYoutubeVideosRepositoryImpl implements GetYoutubeVideosRepository {
     Map<String, String> parameters = {
       'part': 'snippet, contentDetails, statistics',
       'id': channelId,
-      'key': 'AIzaSyC1nSHrkmpXehhE4os8Jl2ckS7-UnthFdI',
+      'key': dotenv.env['YOUTUBE_API_KEY'] ?? '',
     };
 
     Map<String, String> headers = {
@@ -68,7 +69,7 @@ class GetYoutubeVideosRepositoryImpl implements GetYoutubeVideosRepository {
       'playlistId': playlistId,
       'maxResults': '100',
       'pageToken': _nextPageToken,
-      'key': 'AIzaSyC1nSHrkmpXehhE4os8Jl2ckS7-UnthFdI',
+      'key': dotenv.env['YOUTUBE_API_KEY'] ?? '',
     };
     Uri uri = Uri.https(
       _baseUrl,
