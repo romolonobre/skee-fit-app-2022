@@ -44,10 +44,6 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
         body: Column(
           children: [
             WEText.custom('@YoutubechannelName', color: Colors.grey),
-            const Text(
-              'ola gustavo',
-              style: TextStyle(color: Colors.red),
-            ),
             WEText.title(widget.channel.title, color: Colors.white),
             Center(
               heightFactor: 2,
@@ -60,7 +56,7 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
               ),
             ),
             WEText.custom(
-                "This channel will be avaliable for 7 more days, \n then a new channel will be added. If you desire, continue fallowing this channel on Youtube",
+                "This channel will be avaliable until the next app release more days, \n then a new channel will be added. If you desire, continue fallowing this channel on Youtube",
                 color: Colors.grey,
                 textAlign: TextAlign.center)
           ],
