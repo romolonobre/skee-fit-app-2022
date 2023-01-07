@@ -13,7 +13,7 @@ import 'widgets/profile_avatar_widget.dart';
 import 'widgets/youtube_videos_view.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
