@@ -45,7 +45,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
         builder: (ctx, state) {
           if (state is GetAllExercisesLaodingState) {
             return const Center(
-              child: WELoader(),
+              child: SKEELoader(),
             );
           }
 
