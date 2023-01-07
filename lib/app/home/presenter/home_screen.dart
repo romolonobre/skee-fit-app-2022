@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/home/presenter/widgets/tab_indicator_widget.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
 import '../../core/skee_ui/we_loader.dart';
@@ -84,20 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         }),
                   ],
                 ),
-                AnimatedAlign(
-                  duration: const Duration(milliseconds: 200),
-                  alignment: selectedIndex == 0 ? Alignment.centerLeft : Alignment.centerRight,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: selectedIndex == 0 ? 80 : 0, right: selectedIndex == 1 ? 60 : 0),
-                    child: Container(
-                      height: 1.4,
-                      width: selectedIndex == 0 ? 45 : 45,
-                      decoration: const BoxDecoration(
-                        color: WEPalette.primaryColor,
-                      ),
-                    ),
-                  ),
-                ),
+                TabIndicatorWidget(selectedIndex: selectedIndex)
               ],
             ),
             BlocConsumer<YoutubeVideosCubit, YoutubeVideosState>(
