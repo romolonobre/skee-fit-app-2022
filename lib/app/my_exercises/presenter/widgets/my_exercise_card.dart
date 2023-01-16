@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
 import '../../../exercies/domain/models/exercises_model.dart';
 import '../../../widgets/we_buttons.dart';
-import '../../../widgets/we_text.dart';
 
 class MyExercisesCard extends StatefulWidget {
   final List<ExercisesModel> exercises;
+
   const MyExercisesCard({super.key, required this.exercises});
 
   @override
@@ -16,6 +18,7 @@ class MyExercisesCard extends StatefulWidget {
 class _MyExercisesCardState extends State<MyExercisesCard> {
   @override
   Widget build(BuildContext context) {
+    // print(currentIndex);
     return Padding(
       padding: const EdgeInsets.only(bottom: 270),
       child: ListView.builder(
@@ -25,8 +28,10 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
 
           return GestureDetector(
             onTap: () {
-              exercise.isDone = !exercise.isDone;
-              setState(() {});
+              setState(() => exercise.isDone = !exercise.isDone);
+              _isWorkoutCompleted()
+                  ? _openWorkOutCompletedModal(ontap: () => setState(() => exercise.isDone = !exercise.isDone))
+                  : null;
             },
             child: Dismissible(
               key: UniqueKey(),
@@ -92,6 +97,41 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  bool _isWorkoutCompleted() {
+    return widget.exercises.every((element) => element.isDone == true);
+  }
+
+  Future<void> _openWorkOutCompletedModal({required Function ontap}) async {
+    WEModal(
+      context,
+      onCancel: () => ontap(),
+      onConfirm: () => Modular.to.pushNamed('/home'),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        height: 180,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            WEText.title('Well done!', fontsize: 15),
+            const SizedBox(height: 14),
+            WEText.custom(
+              "You have completed your workout.",
+              fontsize: 15,
+              color: Colors.grey,
+              fontWeight: FontWeight.bold,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
