@@ -47,7 +47,7 @@ class _WorkoutTimeWidgetState extends State<WorkoutTimeWidget> {
     return Center(
       child: Column(
         children: [
-          WeButtons.text('Start workout', ontap: () async {
+          WeButtons.text('Start workout', fontsize: 18, ontap: () async {
             startTimer();
             await HapticFeedback.lightImpact();
           }),
@@ -69,15 +69,16 @@ class _WorkoutTimeWidgetState extends State<WorkoutTimeWidget> {
           children: [
             WEText.custom(
               '$minutes:$seconds',
-              fontsize: 40,
-              fontWeight: FontWeight.bold,
+              fontsize: 35,
+              fontWeight: FontWeight.w400,
               color: Colors.white,
             ),
           ],
         ),
         Center(
           child: WeButtons.text(
-            'Cancel Workout',
+            'Stop Workout',
+            fontsize: 18,
             ontap: () => Modular.to.pop(),
           ),
         ),
