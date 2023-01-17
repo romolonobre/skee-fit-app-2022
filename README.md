@@ -3,7 +3,7 @@
 Version 2.0.0
 
 On the Version 2.0.0 
-- removed the News feature and added the Workout videos feature
+- Removed the News feature and added the Workout videos feature
 - Ability to search exercises by body target 
 - Added new logo
 - UI improvements
