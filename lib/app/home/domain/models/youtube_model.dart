@@ -1,3 +1,5 @@
+import 'package:skeefiapp/app/core/helper/helper.dart';
+
 class YoutubeModel {
   final String? id;
   final String? title;
@@ -19,12 +21,12 @@ class YoutubeModel {
 
   factory YoutubeModel.fromMap(Map<String, dynamic> map) {
     return YoutubeModel(
-      id: map['id'],
-      title: map['snippet']['title'],
-      profilePictureUrl: map['snippet']['thumbnails']['default']['url'],
-      subscriberCount: map['statistics']['subscriberCount'],
-      videoCount: map['statistics']['videoCount'],
-      uploadPlaylistId: map['contentDetails']['relatedPlaylists']['uploads'],
+      id: Helper.getString(map['id']),
+      title: Helper.getString(map['snippet']['title']),
+      profilePictureUrl: Helper.getString(map['snippet']['thumbnails']['default']['url']),
+      subscriberCount: Helper.getString(map['statistics']['subscriberCount']),
+      videoCount: Helper.getString(map['statistics']['videoCount']),
+      uploadPlaylistId: Helper.getString(map['contentDetails']['relatedPlaylists']['uploads']),
     );
   }
 }
@@ -44,10 +46,10 @@ class Video {
 
   factory Video.fromMap(Map<String, dynamic> snippet) {
     return Video(
-      id: snippet['resourceId']['videoId'],
-      title: snippet['title'],
-      thumbnailUrl: snippet['thumbnails']['high']['url'],
-      channelTitle: snippet['channelTitle'],
+      id: Helper.getString(snippet['resourceId']['videoId']),
+      title: Helper.getString(snippet['title']),
+      thumbnailUrl: Helper.getString(snippet['thumbnails']['high']['url']),
+      channelTitle: Helper.getString(snippet['channelTitle']),
     );
   }
 }
