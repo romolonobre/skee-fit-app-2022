@@ -11,7 +11,7 @@ abstract class GetAllExercisesService {
 }
 
 class GetAllExercisesServiceImpl extends GetAllExercisesService {
-  final GetAllExercicesRepositoryImpl repository;
+  final GetAllExercisesRepository repository;
   GetAllExercisesServiceImpl({required this.repository});
   @override
   Future<Either<Failure, List<ExercisesModel>>> getAllExerceses() async {

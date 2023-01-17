@@ -1,19 +1,19 @@
 part of 'get_fitness_news_cubit.dart';
 
 @immutable
-abstract class GetFitnessNewsState {}
+abstract class FitnessNewsState {}
 
-class GetFitnessNewsInitial extends GetFitnessNewsState {}
+class FitnessNewsInitial extends FitnessNewsState {}
 
-class GetFitnessNewsLoading extends GetFitnessNewsState {}
+class FitnessNewsLoading extends FitnessNewsState {}
 
-class GetFitnessNewsLoaded extends GetFitnessNewsState {
+class FitnessNewsLoaded extends FitnessNewsState {
   final List<FitnessNewsModel> fitnessNews;
 
-  GetFitnessNewsLoaded({required this.fitnessNews});
+  FitnessNewsLoaded({required this.fitnessNews});
 }
 
-class GetFitnessNewsError extends GetFitnessNewsState {
+class GetFitnessNewsError extends FitnessNewsState {
   final String erroMessage;
 
   GetFitnessNewsError({required this.erroMessage});

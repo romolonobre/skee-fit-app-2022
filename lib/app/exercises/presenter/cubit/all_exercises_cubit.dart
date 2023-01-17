@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 import '../../domain/models/exercises_model.dart';
 import '../../services/get_all_exercises_service.dart';
 
-part 'get_all_exercises_state.dart';
+part 'all_exercises_state.dart';
 
 class GetAllExercisesCubit extends Cubit<GetAllExercisesState> {
   final GetAllExercisesServiceImpl service;
@@ -21,10 +21,10 @@ class GetAllExercisesCubit extends Cubit<GetAllExercisesState> {
     final response = await service.getAllExerceses();
 
     if (response is Right) {
-      emit(GetAllExerciseLoadedState(exercises: response.right));
+      emit(AllExerciseLoadedState(exercises: response.right));
     }
     if (response is Left) {
-      emit(GetAllExercisesErrorState(errorMessage: response.left.errorMessage));
+      emit(AllExercisesErrorState(errorMessage: response.left.errorMessage));
     }
   }
 
@@ -38,7 +38,7 @@ class GetAllExercisesCubit extends Cubit<GetAllExercisesState> {
 
       emit(FilterLoaded(exercises: exerciesFiltered));
     } catch (error) {
-      emit(GetAllExercisesErrorState(errorMessage: error.toString()));
+      emit(AllExercisesErrorState(errorMessage: error.toString()));
     }
   }
 }

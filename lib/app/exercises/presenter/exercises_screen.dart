@@ -3,16 +3,16 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
+import 'package:skeefiapp/app/exercises/presenter/widgets/exercise_card_widget.dart';
 import 'package:skeefiapp/app/widgets/custom_error_widget.dart';
 
 import '../../core/skee_ui/we_loader.dart';
-import '../../home/presenter/widgets/exercise_card_widget.dart';
 import '../../my_exercises/presenter/widgets/exercises_info_app_bar.dart';
 import '../../widgets/snackbar/show_error_message.dart';
 import '../../widgets/we_buttons.dart';
 import '../../widgets/we_modal.dart';
 import '../domain/models/exercises_model.dart';
-import 'cubit/get_all_exercises_cubit.dart';
+import 'cubit/all_exercises_cubit.dart';
 
 class ExercisesPage extends StatefulWidget {
   List<ExercisesModel> exercisesModel = [];
@@ -53,7 +53,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
             );
           }
 
-          if (state is GetAllExercisesErrorState) {
+          if (state is AllExercisesErrorState) {
             SchedulerBinding.instance.addPostFrameCallback((_) {
               ShowErrorMessage().call(state.errorMessage.toString(), context: context);
             });
@@ -80,6 +80,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                         return ExerciseCardWidget(
                           exercise: exercise,
                           ontap: () => setState(() => selecetAndUnSelectExercise(exercise, index)),
+                          color: exercise.isSelected ? WEPalette.primaryColor.withOpacity(0.5) : WEPalette.cardColor,
                           trailing: WeButtons.iconButton(
                             icon: Icons.info_outline,
                             backGroundColor:
@@ -110,7 +111,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
             );
           }
 
-          if (state is GetAllExerciseLoadedState) {
+          if (state is AllExerciseLoadedState) {
             return Stack(
               children: [
                 Padding(

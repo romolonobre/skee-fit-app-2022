@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../exercises/domain/models/exercises_model.dart';
-import '../../../home/presenter/widgets/exercise_card_widget.dart';
+import '../../../exercises/presenter/widgets/exercise_card_widget.dart';
 import '../../../widgets/we_buttons.dart';
 import '../../../widgets/we_modal.dart';
 import '../../../widgets/we_text.dart';
