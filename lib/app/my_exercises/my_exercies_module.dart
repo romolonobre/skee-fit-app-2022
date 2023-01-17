@@ -1,9 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/exercies/exercices_module.dart';
 
-import '../exercies/presenter/cubit/get_all_exercises_cubit.dart';
-import '../exercies/repositories/get_all_exercices_repository.dart';
-import '../exercies/services/get_all_exercises_service.dart';
+import '../exercises/exercices_module.dart';
+import '../exercises/presenter/cubit/get_all_exercises_cubit.dart';
+import '../exercises/repositories/get_all_exercices_repository.dart';
+import '../exercises/services/get_all_exercises_service.dart';
 import 'presenter/my_exercises_screen.dart';
 
 class MyExerciesModule extends Module {

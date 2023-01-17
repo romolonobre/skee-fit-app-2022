@@ -1,17 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/my_exercises/presenter/widgets/workout_timer_widget.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
-import '../../exercies/domain/models/exercises_model.dart';
-import '../../exercies/presenter/cubit/get_all_exercises_cubit.dart';
-import '../../exercies/presenter/exercises_screen.dart';
+import '../../exercises/domain/models/exercises_model.dart';
+import '../../exercises/presenter/cubit/get_all_exercises_cubit.dart';
+import '../../exercises/presenter/exercises_screen.dart';
 import '../../widgets/we_buttons.dart';
 import '../../widgets/we_modal.dart';
 import '../../widgets/we_text.dart';
 import 'widgets/add_exercises_button.dart';
 import 'widgets/my_exercise_card.dart';
+import 'widgets/workout_timer_widget.dart';
 
 class MyExercisesPage extends StatefulWidget {
   const MyExercisesPage({

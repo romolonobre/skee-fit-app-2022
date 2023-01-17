@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/home/presenter/widgets/exercise_card_widget.dart';
-import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
 
-import '../../../exercies/domain/models/exercises_model.dart';
+import '../../../exercises/domain/models/exercises_model.dart';
+import '../../../home/presenter/widgets/exercise_card_widget.dart';
 import '../../../widgets/we_buttons.dart';
+import '../../../widgets/we_modal.dart';
+import '../../../widgets/we_text.dart';
 
 class MyExercisesCard extends StatefulWidget {
   final List<ExercisesModel> exercises;

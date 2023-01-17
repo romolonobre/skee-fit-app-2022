@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/skee_ui/skee_container.dart';
 import '../../../core/skee_ui/skee_palette.dart';
-import '../../../exercies/domain/models/exercises_model.dart';
+import '../../../exercises/domain/models/exercises_model.dart';
 import '../../../widgets/flutter_widgets.dart';
 
 class ExerciseCardWidget extends StatelessWidget {
