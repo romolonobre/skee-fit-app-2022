@@ -7,7 +7,7 @@ import 'package:skeefiapp/app/widgets/custom_error_widget.dart';
 
 import '../../core/skee_ui/we_loader.dart';
 import '../../home/presenter/widgets/exercise_card_widget.dart';
-import '../../home/presenter/widgets/exercises_info_app_bar.dart';
+import '../../my_exercises/presenter/widgets/exercises_info_app_bar.dart';
 import '../../widgets/snackbar/show_error_message.dart';
 import '../../widgets/we_buttons.dart';
 import '../../widgets/we_modal.dart';
