@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/my_exercises/presenter/widgets/my_exercise_card.dart';
+import 'package:skeefiapp/app/my_exercises/presenter/widgets/workout_timer_widget.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
 import '../../exercies/domain/models/exercises_model.dart';
@@ -11,7 +11,7 @@ import '../../widgets/we_buttons.dart';
 import '../../widgets/we_modal.dart';
 import '../../widgets/we_text.dart';
 import 'widgets/add_exercises_button.dart';
-import 'widgets/workout_timer_widget.dart';
+import 'widgets/my_exercise_card.dart';
 
 class MyExercisesPage extends StatefulWidget {
   const MyExercisesPage({
@@ -32,62 +32,55 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: WEPalette.backgroudColor,
-      appBar: AppBar(
-        backgroundColor: const Color(0xff1e222e),
-        elevation: 0,
-        actions: [
-          WeButtons.text(
-            'Finish Workout',
-            ontap: () => _finishWorkoutModal(),
-          ),
-        ],
-      ),
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: SizedBox(
-              child: CustomScrollView(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                slivers: [
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Column(
-                      children: [
-                        const WorkoutTimeWidget(),
-                        SizedBox(height: exercises.isEmpty ? MediaQuery.of(context).size.height - 600 : 0),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          child: exercises.isEmpty ? noExerciceAvaliableText() : MyExercisesCard(exercises: exercises),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          AddExercisebutton(
-            ontap: () async {
-              final List<ExercisesModel>? result = await Modular.to.push(
-                MaterialPageRoute(builder: (context) => ExercisesPage(exercisesModel: exercises)),
-              );
-              setState(() => exercises = result ?? []);
-            },
-          )
-        ],
+      body: NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              elevation: 0,
+              pinned: true,
+              snap: true,
+              floating: true,
+              bottom: const PreferredSize(preferredSize: Size(0, 120), child: WorkoutTimeWidget()),
+              backgroundColor: WEPalette.backgroudColor,
+              actions: [
+                WeButtons.text(
+                  'Finish Workout',
+                  ontap: () => _finishWorkoutModal(),
+                ),
+              ],
+            )
+          ];
+        },
+        body: Stack(
+          alignment: Alignment.center,
+          children: [
+            exercises.isEmpty ? noExerciceAvaliableText() : MyExercisesCard(exercises: exercises),
+            AddExercisebutton(
+              ontap: () async {
+                final List<ExercisesModel>? result = await Modular.to
+                    .push(MaterialPageRoute(builder: (context) => ExercisesPage(exercisesModel: exercises)));
+                setState(() => exercises = result ?? []);
+              },
+            )
+          ],
+        ),
       ),
     );
   }
 
   Widget noExerciceAvaliableText() {
-    return WEText.title(
-      'No exercises available. \n Add a new exercise',
-      textAlign: TextAlign.center,
-      color: Colors.white,
-      fontsize: 26,
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 120,
+      ),
+      child: WEText.title(
+        'No exercises available. \n Add a new exercise',
+        textAlign: TextAlign.center,
+        fontWeight: FontWeight.w300,
+        color: Colors.white,
+        fontsize: 24,
+      ),
     );
   }
 
