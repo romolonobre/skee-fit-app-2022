@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:either_dart/either.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:skeefiapp/app/core/client/api_request.dart';
-import 'package:skeefiapp/app/exercies/domain/errors/exercises_not_found_error.dart';
 
 import '../../core/errors/error_handle.dart';
 import '../../core/errors/failure.dart';
+import '../domain/errors/exercises_not_found_error.dart';
 import '../domain/models/exercises_model.dart';
 
 abstract class GetAllExercisesRepository {
