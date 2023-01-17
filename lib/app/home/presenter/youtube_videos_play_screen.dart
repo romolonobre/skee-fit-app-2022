@@ -50,15 +50,15 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
               child: YoutubePlayer(
                 controller: _controller,
                 showVideoProgressIndicator: true,
-                onReady: () {
-                  print('Player is ready.');
-                },
               ),
             ),
-            WEText.custom(
-                "This channel will be avaliable until the next app release more days, \n then a new channel will be added. If you desire, continue fallowing this channel on Youtube",
-                color: Colors.grey,
-                textAlign: TextAlign.center)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: WEText.custom(
+                  "This channel will be avaliable until the next app \n release, then a new channel will be added. If you desire, continue fallowing this channel on Youtube",
+                  color: Colors.grey,
+                  textAlign: TextAlign.center),
+            )
           ],
         ));
   }
