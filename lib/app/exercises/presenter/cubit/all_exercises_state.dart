@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'get_all_exercises_cubit.dart';
+part of 'all_exercises_cubit.dart';
 
 @immutable
 abstract class GetAllExercisesState {}
@@ -8,16 +8,16 @@ class GetAllExercisesInitialState extends GetAllExercisesState {}
 
 class GetAllExercisesLaodingState extends GetAllExercisesState {}
 
-class GetAllExerciseLoadedState extends GetAllExercisesState {
+class AllExerciseLoadedState extends GetAllExercisesState {
   List<ExercisesModel> exercises;
-  GetAllExerciseLoadedState({
+  AllExerciseLoadedState({
     required this.exercises,
   });
 }
 
-class GetAllExercisesErrorState extends GetAllExercisesState {
+class AllExercisesErrorState extends GetAllExercisesState {
   final String errorMessage;
-  GetAllExercisesErrorState({required this.errorMessage});
+  AllExercisesErrorState({required this.errorMessage});
 }
 
 class FilterLoaded extends GetAllExercisesState {

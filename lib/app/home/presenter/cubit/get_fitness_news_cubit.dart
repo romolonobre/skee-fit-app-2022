@@ -7,19 +7,19 @@ import '../../service/get_fitness_news_service.dart';
 
 part 'get_fitness_news_state.dart';
 
-class GetFitnessNewsCubit extends Cubit<GetFitnessNewsState> {
+class GetFitnessNewsCubit extends Cubit<FitnessNewsState> {
   final GetFitnessNewsService service;
-  GetFitnessNewsCubit(this.service) : super(GetFitnessNewsInitial());
+  GetFitnessNewsCubit(this.service) : super(FitnessNewsInitial());
 
   Future<void> getFitnessNews() async {
-    emit(GetFitnessNewsLoading());
+    emit(FitnessNewsLoading());
 
     final response = await service.getFitnessNews();
     if (response is Left) {
       emit(GetFitnessNewsError(erroMessage: response.left.errorMessage));
     }
     if (response is Right) {
-      emit(GetFitnessNewsLoaded(fitnessNews: response.right));
+      emit(FitnessNewsLoaded(fitnessNews: response.right));
     }
   }
 }

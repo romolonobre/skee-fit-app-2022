@@ -13,7 +13,7 @@ abstract class GetAllExercisesRepository {
   Future<Either<Failure, List<ExercisesModel>>> getAllExerceses();
 }
 
-class GetAllExercicesRepositoryImpl extends ApiRequest implements GetAllExercisesRepository {
+class GetAllExercisesRepositoryImpl extends ApiRequest implements GetAllExercisesRepository {
   List<ExercisesModel> exerciseList = [];
   @override
   Future<Either<Failure, List<ExercisesModel>>> getAllExerceses() async {
