@@ -1,19 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import '../../../core/skee_ui/skee_container.dart';
 import '../../../core/skee_ui/skee_palette.dart';
 import '../../../exercies/domain/models/exercises_model.dart';
 import '../../../widgets/flutter_widgets.dart';
-import '../../../widgets/we_buttons.dart';
 
 class ExerciseCardWidget extends StatelessWidget {
   final ExercisesModel exercise;
   final Function? ontap;
+  final Color? color;
+  final Widget trailing;
+  bool? isSelected;
 
-  const ExerciseCardWidget({
+  ExerciseCardWidget({
     Key? key,
     required this.exercise,
+    required this.trailing,
     this.ontap,
+    this.color,
+    this.isSelected,
   }) : super(key: key);
 
   @override
@@ -25,36 +31,30 @@ class ExerciseCardWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: SkeeContainer(
-              color: exercise.isSelected ? WEPalette.primaryColor.withOpacity(0.5) : WEPalette.cardColor,
+              color: color ?? WEPalette.cardColor,
               child: Column(
                 children: [
                   ListTile(
-                    leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(exercise.gifUrl),
-                    ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(bottom: 5),
-                      child: WEText.title(
-                        '${exercise.name} ',
-                        fontsize: 14,
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(exercise.gifUrl),
+                      ),
+                      title: Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: WEText.title(
+                          '${exercise.name} ',
+                          fontsize: 14,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      subtitle: WEText.custom(
+                        exercise.target,
+                        fontsize: 12,
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
                       ),
-                    ),
-                    subtitle: WEText.custom(
-                      exercise.target,
-                      fontsize: 12,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    trailing: WeButtons.iconButton(
-                      icon: Icons.info_outline,
-                      backGroundColor: exercise.isSelected ? Colors.black26 : WEPalette.primaryColor.withOpacity(0.2),
-                      iconColor: exercise.isSelected ? Colors.black : WEPalette.primaryColor.withOpacity(0.75),
-                      ontap: () => openExercisesdetailsModal(context, exercise),
-                    ),
-                  ),
+                      trailing: trailing),
                 ],
               ),
             ),
@@ -91,9 +91,23 @@ class ExerciseCardWidget extends StatelessWidget {
   }
 }
 
-List<String> instructions = [
-  '1. The first thing to do is warm up. It doesn’t matter what else follows. Your warm-up is essential to a safe and effective workout.',
-  '2. Dynamic stretches are the building blocks of most warm-ups. These are high tempo,',
-  '3. They engage muscles and practice the range of movements that you’re planning to use in your session. You’ve probably done plenty of these before.',
-  '4. Arm circles. Chest claps. Alternating side bends. '
-];
+class ExerciseGifCard extends StatelessWidget {
+  const ExerciseGifCard({
+    Key? key,
+    required this.exercise,
+  }) : super(key: key);
+
+  final ExercisesModel exercise;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(14),
+      child: Image.network(
+        exercise.gifUrl,
+        height: 55,
+        width: 55,
+      ),
+    );
+  }
+}
