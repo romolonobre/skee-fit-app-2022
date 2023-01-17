@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../skee_ui/skee_palette.dart';
+import '../core/skee_ui/skee_palette.dart';
 
 class SkeeCustomTextfield extends StatefulWidget {
   final String? hintText;
@@ -46,43 +46,46 @@ class _SkeeCustomTextfieldState extends State<SkeeCustomTextfield> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextFormField(
-          keyboardType: widget.keyboardType,
-          key: widget.formFieldKey,
-          obscureText: isObscure,
-          controller: widget.controller,
-          validator: widget.validator,
-          onChanged: widget.onChanged,
-          style: const TextStyle(color: WEPalette.primaryColor),
-          decoration: InputDecoration(
-            suffixIcon: widget.isSecret
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        isObscure = !isObscure;
-                      });
-                    },
-                    icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),
-                  )
-                : null,
-            hintText: widget.hintText,
-            hintStyle: const TextStyle(color: WEPalette.primaryColor),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(color: WEPalette.primaryColor, width: 1.0),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18),
-              borderSide: const BorderSide(
-                color: WEPalette.primaryColor,
-                width: 1.0,
+        SizedBox(
+          height: 45,
+          child: TextFormField(
+            keyboardType: widget.keyboardType,
+            key: widget.formFieldKey,
+            obscureText: isObscure,
+            controller: widget.controller,
+            validator: widget.validator,
+            onChanged: widget.onChanged,
+            style: const TextStyle(color: WEPalette.primaryColor),
+            decoration: InputDecoration(
+              suffixIcon: widget.isSecret
+                  ? IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      },
+                      icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),
+                    )
+                  : null,
+              hintText: widget.hintText,
+              hintStyle: const TextStyle(color: WEPalette.primaryColor, fontSize: 12),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: WEPalette.primaryColor, width: 1.0),
               ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(
-                color: WEPalette.primaryColor,
-                width: 1.0,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: const BorderSide(
+                  color: WEPalette.primaryColor,
+                  width: 1.0,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(
+                  color: WEPalette.primaryColor,
+                  width: 1.0,
+                ),
               ),
             ),
           ),
