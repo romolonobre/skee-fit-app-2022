@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
 import '../../exercises/domain/models/exercises_model.dart';
-import '../../exercises/presenter/cubit/get_all_exercises_cubit.dart';
+import '../../exercises/presenter/cubit/all_exercises_cubit.dart';
 import '../../exercises/presenter/exercises_screen.dart';
 import '../../widgets/we_buttons.dart';
 import '../../widgets/we_modal.dart';
