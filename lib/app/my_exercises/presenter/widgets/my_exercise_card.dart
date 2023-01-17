@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/home/presenter/widgets/exercise_card_widget.dart';
 import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
 
-import '../../../core/skee_ui/skee_palette.dart';
 import '../../../exercies/domain/models/exercises_model.dart';
 import '../../../widgets/we_buttons.dart';
 
@@ -17,10 +17,13 @@ class MyExercisesCard extends StatefulWidget {
 
 class _MyExercisesCardState extends State<MyExercisesCard> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // print(currentIndex);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 270),
+    return SizedBox(
       child: ListView.builder(
         itemCount: widget.exercises.length,
         itemBuilder: (context, index) {
@@ -62,36 +65,15 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
                 widget.exercises.removeAt(index);
                 setState(() {});
               },
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 8,
-                ),
-                margin: const EdgeInsets.only(top: 8),
-                decoration: BoxDecoration(
-                  color: WEPalette.cardColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ExerciseGifCard(exercise: exercise),
-                    ExerciseNameAndTarget(exercise: exercise),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 15),
-                      child: WeButtons.iconButton(
-                        height: 30,
-                        width: 30,
-                        icon: Icons.done,
-                        backGroundColor: exercise.isDone ? Colors.pink : Colors.black26,
-                        iconColor: Colors.black,
-                        ontap: () {
-                          exercise.isDone = !exercise.isDone;
-                          setState(() {});
-                        },
-                      ),
-                    )
-                  ],
+              child: ExerciseCardWidget(
+                exercise: exercise,
+                trailing: WeButtons.iconButton(
+                  height: 30,
+                  width: 30,
+                  icon: Icons.done,
+                  backGroundColor: exercise.isDone ? Colors.pink : Colors.black26,
+                  iconColor: Colors.black,
+                  ontap: () => setState(() => exercise.isDone = !exercise.isDone),
                 ),
               ),
             ),
