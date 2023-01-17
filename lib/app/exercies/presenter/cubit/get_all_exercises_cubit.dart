@@ -28,7 +28,7 @@ class GetAllExercisesCubit extends Cubit<GetAllExercisesState> {
     }
   }
 
-  Future<void> filterExercises([String? exercisePart]) async {
+  Future<void> filterExercises(String? exercisePart) async {
     emit(GetAllExercisesLaodingState());
     final exercices = await service.getAllExerceses();
 
