@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
-import '../../../exercises/presenter/cubit/get_all_exercises_cubit.dart';
+import '../../../exercises/presenter/cubit/all_exercises_cubit.dart';
 import '../../../widgets/flutter_widgets.dart';
 
 class ExercicesInfoAppBar extends StatelessWidget with PreferredSizeWidget {
