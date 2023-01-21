@@ -20,7 +20,7 @@ class WeButtons {
         height: height ?? 50,
         width: width ?? double.infinity,
         decoration: BoxDecoration(
-          color: color ?? WEPalette.primaryColor,
+          color: color ?? SkeePalette.primaryColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
@@ -51,7 +51,7 @@ class WeButtons {
         onTap: ontap,
         child: WEText.custom(
           label,
-          color: color ?? WEPalette.primaryColor,
+          color: color ?? SkeePalette.primaryColor,
           fontWeight: FontWeight.bold,
           fontsize: fontsize ?? 18,
         ),
@@ -73,13 +73,13 @@ class WeButtons {
           height: height ?? 33,
           width: width ?? 33,
           decoration: BoxDecoration(
-            color: backGroundColor ?? WEPalette.primaryColor.withOpacity(0.2),
+            color: backGroundColor ?? SkeePalette.primaryColor.withOpacity(0.2),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Icon(
             icon,
             size: 20,
-            color: iconColor ?? WEPalette.primaryColor,
+            color: iconColor ?? SkeePalette.primaryColor,
           )),
     );
   }

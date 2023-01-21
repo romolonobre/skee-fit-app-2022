@@ -16,7 +16,7 @@ class ExercicesInfoAppBar extends StatelessWidget with PreferredSizeWidget {
       centerTitle: false,
       toolbarHeight: 140,
       automaticallyImplyLeading: false,
-      backgroundColor: WEPalette.backgroudColor,
+      backgroundColor: SkeePalette.backgroudColor,
       elevation: 0,
       title: Column(
         children: [

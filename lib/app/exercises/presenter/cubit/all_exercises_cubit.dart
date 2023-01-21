@@ -5,7 +5,7 @@ import 'package:either_dart/either.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/models/exercises_model.dart';
-import '../../services/get_all_exercises_service.dart';
+import '../../services/get_all_exercises_service_impl.dart';
 
 part 'all_exercises_state.dart';
 
@@ -15,30 +15,33 @@ class GetAllExercisesCubit extends Cubit<GetAllExercisesState> {
     this.service,
   ) : super(GetAllExercisesInitialState());
 
+  // Method to get all Exercises
+  //
   Future<void> getAllExercises() async {
     emit(GetAllExercisesLaodingState());
 
-    final response = await service.getAllExerceses();
+    final response = await service.getAllExercises();
 
-    if (response is Right) {
-      emit(AllExerciseLoadedState(exercises: response.right));
-    }
     if (response is Left) {
       emit(AllExercisesErrorState(errorMessage: response.left.errorMessage));
     }
+
+    emit(AllExerciseLoadedState(exercises: response.right));
   }
 
+  // Method to search exercises by body target
+  //
   Future<void> filterExercises(String? exercisePart) async {
     emit(GetAllExercisesLaodingState());
-    final exercices = await service.getAllExerceses();
 
-    try {
-      final exerciesFiltered =
-          exercices.right.where((element) => element.target.toLowerCase().contains(exercisePart ?? '')).toList();
+    final response = await service.getAllExercises();
 
-      emit(FilterLoaded(exercises: exerciesFiltered));
-    } catch (error) {
-      emit(AllExercisesErrorState(errorMessage: error.toString()));
+    if (response is Left) {
+      emit(AllExercisesErrorState(errorMessage: response.left.errorMessage));
     }
+    final exerciesFiltered =
+        response.right.where((element) => element.target.toLowerCase().contains(exercisePart ?? '')).toList();
+
+    emit(FilterLoaded(exercises: exerciesFiltered));
   }
 }

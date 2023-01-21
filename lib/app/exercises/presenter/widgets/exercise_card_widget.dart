@@ -31,7 +31,7 @@ class ExerciseCardWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: SkeeContainer(
-              color: color ?? WEPalette.cardColor,
+              color: color ?? SkeePalette.cardColor,
               child: Column(
                 children: [
                   ListTile(

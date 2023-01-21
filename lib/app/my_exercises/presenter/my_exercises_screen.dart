@@ -31,7 +31,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: WEPalette.backgroudColor,
+      backgroundColor: SkeePalette.backgroudColor,
       body: NestedScrollView(
         floatHeaderSlivers: true,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -42,7 +42,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
               snap: true,
               floating: true,
               bottom: const PreferredSize(preferredSize: Size(0, 120), child: WorkoutTimeWidget()),
-              backgroundColor: WEPalette.backgroudColor,
+              backgroundColor: SkeePalette.backgroudColor,
               actions: [
                 WeButtons.text(
                   'Finish Workout',

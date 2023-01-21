@@ -55,7 +55,7 @@ class _SkeeCustomTextfieldState extends State<SkeeCustomTextfield> {
             controller: widget.controller,
             validator: widget.validator,
             onChanged: widget.onChanged,
-            style: const TextStyle(color: WEPalette.primaryColor),
+            style: const TextStyle(color: SkeePalette.primaryColor),
             decoration: InputDecoration(
               suffixIcon: widget.isSecret
                   ? IconButton(
@@ -68,22 +68,22 @@ class _SkeeCustomTextfieldState extends State<SkeeCustomTextfield> {
                     )
                   : null,
               hintText: widget.hintText,
-              hintStyle: const TextStyle(color: WEPalette.primaryColor, fontSize: 12),
+              hintStyle: const TextStyle(color: SkeePalette.primaryColor, fontSize: 12),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(color: WEPalette.primaryColor, width: 1.0),
+                borderSide: const BorderSide(color: SkeePalette.primaryColor, width: 1.0),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
                 borderSide: const BorderSide(
-                  color: WEPalette.primaryColor,
+                  color: SkeePalette.primaryColor,
                   width: 1.0,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: const BorderSide(
-                  color: WEPalette.primaryColor,
+                  color: SkeePalette.primaryColor,
                   width: 1.0,
                 ),
               ),

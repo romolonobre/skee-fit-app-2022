@@ -43,7 +43,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
           if (state is ImagepickerError) {
             return const CircleAvatar(
               radius: 60,
-              backgroundColor: WEPalette.primaryColor,
+              backgroundColor: SkeePalette.primaryColor,
               child: Icon(Icons.camera_alt_rounded),
             );
           }
@@ -51,7 +51,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
           if (state is ImagepickerLoaded) {
             return CircleAvatar(
               radius: 60,
-              backgroundColor: WEPalette.primaryColor,
+              backgroundColor: SkeePalette.primaryColor,
               backgroundImage: state.image != null ? AssetImage(state.image!.path) : null,
               child: state.image == null ? const Icon(Icons.camera_alt_rounded) : null,
             );

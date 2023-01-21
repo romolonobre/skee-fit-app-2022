@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:skeefiapp/app/home/presenter/widgets/tab_indicator_widget.dart';
 
+import '../../core/skee_ui/skee_loader.dart';
 import '../../core/skee_ui/skee_palette.dart';
-import '../../core/skee_ui/we_loader.dart';
 import '../../widgets/flutter_widgets.dart';
 import '../../widgets/we_buttons.dart';
 import '../domain/models/youtube_model.dart';
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: WEPalette.backgroudColor,
+      backgroundColor: SkeePalette.backgroudColor,
       appBar: const HomeScreenAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     TabButton(
                       selectedIndex: selectedIndex,
                       channel: _channel,
-                      color: selectedIndex == 0 ? WEPalette.primaryColor : Colors.grey,
+                      color: selectedIndex == 0 ? SkeePalette.primaryColor : Colors.grey,
                       title: 'Workout Videos',
                       ontap: () async {
                         setState(() => selectedIndex = 0);
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     TabButton(
                         selectedIndex: selectedIndex,
                         channel: _channel,
-                        color: selectedIndex == 1 ? WEPalette.primaryColor : Colors.grey,
+                        color: selectedIndex == 1 ? SkeePalette.primaryColor : Colors.grey,
                         title: 'Yoga Videos',
                         ontap: () async {
                           setState(() => selectedIndex = 1);
@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (state is YoutubeVideosLoadingState) {
                     return const Center(
                       heightFactor: 10,
-                      child: SKEELoader(),
+                      child: SkeeLoader(),
                     );
                   }
 
@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
           WEText.title(
             'Workout Started!',
             fontsize: 20,
-            color: WEPalette.primaryColor,
+            color: SkeePalette.primaryColor,
             fontWeight: FontWeight.w700,
           ),
           const SizedBox(height: 15),

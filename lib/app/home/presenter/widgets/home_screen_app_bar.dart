@@ -10,7 +10,7 @@ class HomeScreenAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: 60,
-      backgroundColor: WEPalette.backgroudColor,
+      backgroundColor: SkeePalette.backgroudColor,
       elevation: 0,
       centerTitle: false,
       title: WEText.title(
