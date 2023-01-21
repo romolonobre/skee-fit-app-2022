@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'skee_palette.dart';
 
-class SKEELoader extends StatelessWidget {
-  const SKEELoader({
+class SkeeLoader extends StatelessWidget {
+  const SkeeLoader({
     Key? key,
   }) : super(key: key);
 

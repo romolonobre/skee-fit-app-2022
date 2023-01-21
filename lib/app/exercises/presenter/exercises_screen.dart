@@ -6,7 +6,7 @@ import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
 import 'package:skeefiapp/app/exercises/presenter/widgets/exercise_card_widget.dart';
 import 'package:skeefiapp/app/widgets/custom_error_widget.dart';
 
-import '../../core/skee_ui/we_loader.dart';
+import '../../core/skee_ui/skee_loader.dart';
 import '../../my_exercises/presenter/widgets/exercises_info_app_bar.dart';
 import '../../widgets/snackbar/show_error_message.dart';
 import '../../widgets/we_buttons.dart';
@@ -49,7 +49,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
         builder: (ctx, state) {
           if (state is GetAllExercisesLaodingState) {
             return const Center(
-              child: SKEELoader(),
+              child: SkeeLoader(),
             );
           }
 
