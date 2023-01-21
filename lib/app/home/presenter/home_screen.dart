@@ -33,9 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _init();
   }
 
-  Future _init() async {
+  Future<void> _init() async {
     YoutubeModel channel =
-        await cubit.getYoutuveVideos(channelId: selectedIndex == 0 ? 'UC6vkKAsph6kZuAsC5Q8MVNQ' : '');
+        await cubit.getYoutubeVideos(channelId: selectedIndex == 0 ? 'UC6vkKAsph6kZuAsC5Q8MVNQ' : '');
     _channel = channel;
   }
 
@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       title: 'Workout Videos',
                       ontap: () async {
                         setState(() => selectedIndex = 0);
-                        _channel = await cubit.getYoutuveVideos(channelId: "UC6vkKAsph6kZuAsC5Q8MVNQ");
+                        _channel = await cubit.getYoutubeVideos(channelId: "UC6vkKAsph6kZuAsC5Q8MVNQ");
                       },
                     ),
                     TabButton(
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: 'Yoga Videos',
                         ontap: () async {
                           setState(() => selectedIndex = 1);
-                          _channel = await cubit.getYoutuveVideos(channelId: "UCaBC9214yCFbAys53dE-IFw");
+                          _channel = await cubit.getYoutubeVideos(channelId: "UCaBC9214yCFbAys53dE-IFw");
                         }),
                   ],
                 ),

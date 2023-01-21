@@ -11,7 +11,7 @@ class YoutubeVideosCubit extends Cubit<YoutubeVideosState> {
   final GetYoutubeVideosService service;
   YoutubeVideosCubit({required this.service}) : super(YoutubeVideosInitial());
 
-  Future<YoutubeModel> getYoutuveVideos({required String channelId}) async {
+  Future<YoutubeModel> getYoutubeVideos({required String channelId}) async {
     emit(YoutubeVideosLoadingState());
 
     final response = await service.fetchChannel(channelId: channelId);

@@ -23,13 +23,13 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
   @override
   void initState() {
     super.initState();
+    _init();
+  }
+
+  void _init() {
     _controller = YoutubePlayerController(
       initialVideoId: widget.id,
-      flags: const YoutubePlayerFlags(
-        mute: false,
-        autoPlay: true,
-        startAt: 5,
-      ),
+      flags: const YoutubePlayerFlags(mute: false, autoPlay: true, startAt: 5),
     );
   }
 
