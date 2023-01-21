@@ -5,7 +5,7 @@ import 'package:either_dart/either.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/models/exercises_model.dart';
-import '../../services/get_all_exercises_service.dart';
+import '../../services/get_all_exercises_service_impl.dart';
 
 part 'all_exercises_state.dart';
 
