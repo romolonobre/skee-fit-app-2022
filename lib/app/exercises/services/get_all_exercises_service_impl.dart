@@ -11,7 +11,7 @@ class GetAllExercisesServiceImpl extends GetAllExercisesService {
   final GetAllExercisesRepository repository;
   GetAllExercisesServiceImpl({required this.repository});
   @override
-  Future<Either<Failure, List<ExercisesModel>>> getAllExerceses() async {
+  Future<Either<Failure, List<ExercisesModel>>> getAllExercises() async {
     final exercises = await repository.getAllExerceses();
 
     if (exercises is Left) {
