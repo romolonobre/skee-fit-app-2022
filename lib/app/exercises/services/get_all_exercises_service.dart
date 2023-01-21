@@ -4,7 +4,7 @@ import 'package:either_dart/either.dart';
 
 import '../../core/errors/failure.dart';
 import '../domain/models/exercises_model.dart';
-import '../repositories/get_all_exercices_repository.dart';
+import '../repositories/get_all_exercises_repository.dart';
 
 abstract class GetAllExercisesService {
   Future<Either<Failure, List<ExercisesModel>>> getAllExerceses();

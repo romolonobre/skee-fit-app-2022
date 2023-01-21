@@ -8,10 +8,7 @@ import '../../core/errors/error_handle.dart';
 import '../../core/errors/failure.dart';
 import '../domain/errors/exercises_not_found_error.dart';
 import '../domain/models/exercises_model.dart';
-
-abstract class GetAllExercisesRepository {
-  Future<Either<Failure, List<ExercisesModel>>> getAllExerceses();
-}
+import 'get_all_exercises_repository.dart';
 
 class GetAllExercisesRepositoryImpl extends ApiRequest implements GetAllExercisesRepository {
   List<ExercisesModel> exerciseList = [];
