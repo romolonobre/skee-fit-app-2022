@@ -22,7 +22,7 @@ class TabIndicatorWidget extends StatelessWidget {
           height: 1.4,
           width: selectedIndex == 0 ? 45 : 45,
           decoration: const BoxDecoration(
-            color: WEPalette.primaryColor,
+            color: SkeePalette.primaryColor,
           ),
         ),
       ),

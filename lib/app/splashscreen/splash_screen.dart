@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: WEPalette.cardColor,
+        color: SkeePalette.cardColor,
         child: Center(
           child: Image.asset(
             'assets/skeefit_1_1.png',

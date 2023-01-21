@@ -25,7 +25,7 @@ class _YoutubeVideoViewState extends State<YoutubeVideoView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: WEPalette.backgroudColor,
+      color: SkeePalette.backgroudColor,
       height: MediaQuery.of(context).size.height - 290,
       child: ListView.builder(
         itemCount: widget._channel?.videos?.length,
@@ -48,7 +48,7 @@ class _YoutubeVideoViewState extends State<YoutubeVideoView> {
               ),
               margin: const EdgeInsets.only(top: 8),
               decoration: BoxDecoration(
-                color: WEPalette.cardColor,
+                color: SkeePalette.cardColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(

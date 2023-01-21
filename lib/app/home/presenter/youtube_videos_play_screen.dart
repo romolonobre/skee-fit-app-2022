@@ -36,10 +36,10 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: WEPalette.backgroudColor,
+        backgroundColor: SkeePalette.backgroudColor,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: WEPalette.backgroudColor,
+          backgroundColor: SkeePalette.backgroudColor,
         ),
         body: Column(
           children: [

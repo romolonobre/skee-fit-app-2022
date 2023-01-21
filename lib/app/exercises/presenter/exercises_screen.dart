@@ -41,7 +41,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: WEPalette.backgroudColor,
+      backgroundColor: SkeePalette.backgroudColor,
       appBar: ExercicesInfoAppBar(),
       body: BlocConsumer<GetAllExercisesCubit, GetAllExercisesState>(
         bloc: cubit,
@@ -80,12 +80,13 @@ class _ExercisesPageState extends State<ExercisesPage> {
                         return ExerciseCardWidget(
                           exercise: exercise,
                           ontap: () => setState(() => selecetAndUnSelectExercise(exercise, index)),
-                          color: exercise.isSelected ? WEPalette.primaryColor.withOpacity(0.5) : WEPalette.cardColor,
+                          color:
+                              exercise.isSelected ? SkeePalette.primaryColor.withOpacity(0.5) : SkeePalette.cardColor,
                           trailing: WeButtons.iconButton(
                             icon: Icons.info_outline,
                             backGroundColor:
-                                exercise.isSelected ? Colors.black26 : WEPalette.primaryColor.withOpacity(0.2),
-                            iconColor: exercise.isSelected ? Colors.black : WEPalette.primaryColor.withOpacity(0.75),
+                                exercise.isSelected ? Colors.black26 : SkeePalette.primaryColor.withOpacity(0.2),
+                            iconColor: exercise.isSelected ? Colors.black : SkeePalette.primaryColor.withOpacity(0.75),
                             ontap: () => openExercisesdetailsModal(context, exercise),
                           ),
                         );
@@ -130,12 +131,13 @@ class _ExercisesPageState extends State<ExercisesPage> {
                         return ExerciseCardWidget(
                           exercise: exercise,
                           ontap: () => setState(() => selecetAndUnSelectExercise(exercise, index)),
-                          color: exercise.isSelected ? WEPalette.primaryColor.withOpacity(0.5) : WEPalette.cardColor,
+                          color:
+                              exercise.isSelected ? SkeePalette.primaryColor.withOpacity(0.5) : SkeePalette.cardColor,
                           trailing: WeButtons.iconButton(
                             icon: Icons.info_outline,
                             backGroundColor:
-                                exercise.isSelected ? Colors.black26 : WEPalette.primaryColor.withOpacity(0.2),
-                            iconColor: exercise.isSelected ? Colors.black : WEPalette.primaryColor.withOpacity(0.75),
+                                exercise.isSelected ? Colors.black26 : SkeePalette.primaryColor.withOpacity(0.2),
+                            iconColor: exercise.isSelected ? Colors.black : SkeePalette.primaryColor.withOpacity(0.75),
                             ontap: () => openExercisesdetailsModal(context, exercise),
                           ),
                         );

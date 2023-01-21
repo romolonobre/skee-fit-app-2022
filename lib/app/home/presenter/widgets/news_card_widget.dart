@@ -27,7 +27,7 @@ class NewsCardWidget extends StatelessWidget {
           final news = fitnessNews[index];
 
           return SkeeContainer(
-            color: WEPalette.cardColor,
+            color: SkeePalette.cardColor,
             child: Stack(
               clipBehavior: Clip.antiAlias,
               children: [
