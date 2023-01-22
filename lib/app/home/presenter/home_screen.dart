@@ -7,7 +7,7 @@ import 'package:skeefiapp/app/home/presenter/widgets/tab_indicator_widget.dart';
 import '../../core/skee_ui/skee_loader.dart';
 import '../../core/skee_ui/skee_palette.dart';
 import '../../widgets/flutter_widgets.dart';
-import '../../widgets/we_buttons.dart';
+import '../../widgets/skee_button.dart';
 import '../domain/models/youtube_model.dart';
 import 'cubit/youtube_videos_cubit.dart';
 import 'widgets/home_screen_app_bar.dart';

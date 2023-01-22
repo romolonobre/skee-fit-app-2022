@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../core/skee_ui/skee_ui.dart';
-import '../../widgets/we_text.dart';
+import '../../widgets/skee_text.dart';
 import '../domain/models/youtube_model.dart';
 
 class YoutuveVideoPlayerScren extends StatefulWidget {

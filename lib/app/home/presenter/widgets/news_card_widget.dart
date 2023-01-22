@@ -5,7 +5,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../core/skee_ui/skee_container.dart';
 import '../../../widgets/flutter_widgets.dart';
-import '../../../widgets/we_buttons.dart';
+import '../../../widgets/skee_button.dart';
 import '../../domain/models/fitness_news_model.dart';
 
 class NewsCardWidget extends StatelessWidget {

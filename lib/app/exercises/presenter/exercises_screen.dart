@@ -7,9 +7,9 @@ import 'package:skeefiapp/app/exercises/presenter/widgets/exercise_card_widget.d
 import 'package:skeefiapp/app/widgets/custom_error_widget.dart';
 
 import '../../core/skee_ui/skee_loader.dart';
+import '../../widgets/skee_button.dart';
+import '../../widgets/skee_modal.dart';
 import '../../widgets/snackbar/show_error_message.dart';
-import '../../widgets/we_buttons.dart';
-import '../../widgets/we_modal.dart';
 import '../domain/models/exercises_model.dart';
 import 'cubit/all_exercises_cubit.dart';
 import 'widgets/exercises_info_app_bar.dart';

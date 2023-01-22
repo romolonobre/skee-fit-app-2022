@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'we_buttons.dart';
-import 'we_text.dart';
+import 'skee_button.dart';
+import 'skee_text.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   final String errorMessage;

@@ -3,9 +3,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../exercises/domain/models/exercises_model.dart';
 import '../../../exercises/presenter/widgets/exercise_card_widget.dart';
-import '../../../widgets/we_buttons.dart';
-import '../../../widgets/we_modal.dart';
-import '../../../widgets/we_text.dart';
+import '../../../widgets/skee_button.dart';
+import '../../../widgets/skee_modal.dart';
+import '../../../widgets/skee_text.dart';
 
 class MyExercisesCard extends StatefulWidget {
   final List<ExercisesModel> exercises;

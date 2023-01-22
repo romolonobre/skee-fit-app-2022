@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../widgets/we_buttons.dart';
+import '../../../widgets/skee_button.dart';
 import '../../domain/models/youtube_model.dart';
 import '../cubit/youtube_videos_cubit.dart';
 

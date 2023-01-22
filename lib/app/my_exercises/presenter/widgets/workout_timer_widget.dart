@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../widgets/we_buttons.dart';
-import '../../../widgets/we_text.dart';
+import '../../../widgets/skee_button.dart';
+import '../../../widgets/skee_text.dart';
 
 class WorkoutTimeWidget extends StatefulWidget {
   const WorkoutTimeWidget({Key? key}) : super(key: key);

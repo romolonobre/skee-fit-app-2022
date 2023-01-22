@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../widgets/we_text.dart';
+import '../../../widgets/skee_text.dart';
 
 class AddTemplateWidget extends StatelessWidget {
   const AddTemplateWidget({
