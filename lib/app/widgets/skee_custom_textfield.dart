@@ -14,18 +14,20 @@ class SkeeCustomTextfield extends StatefulWidget {
   String? Function(String?)? validator;
   final TextEditingController? controller;
   final Function(String)? onChanged;
+  final Function? ontap;
 
   SkeeCustomTextfield({
     Key? key,
+    this.hintText,
     this.keyboardType,
     this.formFieldKey,
     this.isSecret = false,
-    this.hintText,
     required this.icon,
     this.obscureText = false,
+    this.validator,
     this.controller,
     this.onChanged,
-    this.validator,
+    this.ontap,
   }) : super(key: key);
 
   @override
@@ -33,13 +35,9 @@ class SkeeCustomTextfield extends StatefulWidget {
 }
 
 class _SkeeCustomTextfieldState extends State<SkeeCustomTextfield> {
-  bool isObscure = false;
-
   @override
   void initState() {
     super.initState();
-
-    isObscure = widget.isSecret;
   }
 
   @override
@@ -51,37 +49,30 @@ class _SkeeCustomTextfieldState extends State<SkeeCustomTextfield> {
           child: TextFormField(
             keyboardType: widget.keyboardType,
             key: widget.formFieldKey,
-            obscureText: isObscure,
             controller: widget.controller,
             validator: widget.validator,
             onChanged: widget.onChanged,
             style: const TextStyle(color: SkeePalette.primaryColor),
             decoration: InputDecoration(
-              suffixIcon: widget.isSecret
-                  ? IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isObscure = !isObscure;
-                        });
-                      },
-                      icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),
-                    )
-                  : null,
+              suffixIcon: IconButton(
+                icon: const Icon(Icons.search, color: Colors.white),
+                onPressed: widget.ontap != null ? () => widget.ontap!() : null,
+              ),
               hintText: widget.hintText,
               hintStyle: const TextStyle(color: SkeePalette.primaryColor, fontSize: 12),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(color: SkeePalette.primaryColor, width: 1.0),
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(
                   color: SkeePalette.primaryColor,
                   width: 1.0,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(
                   color: SkeePalette.primaryColor,
                   width: 1.0,
