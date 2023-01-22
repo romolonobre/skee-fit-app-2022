@@ -7,12 +7,12 @@ import 'package:skeefiapp/app/exercises/presenter/widgets/exercise_card_widget.d
 import 'package:skeefiapp/app/widgets/custom_error_widget.dart';
 
 import '../../core/skee_ui/skee_loader.dart';
-import '../../my_exercises/presenter/widgets/exercises_info_app_bar.dart';
 import '../../widgets/snackbar/show_error_message.dart';
 import '../../widgets/we_buttons.dart';
 import '../../widgets/we_modal.dart';
 import '../domain/models/exercises_model.dart';
 import 'cubit/all_exercises_cubit.dart';
+import 'widgets/exercises_info_app_bar.dart';
 
 class ExercisesPage extends StatefulWidget {
   List<ExercisesModel> exercisesModel = [];
@@ -28,7 +28,6 @@ class ExercisesPage extends StatefulWidget {
 
 class _ExercisesPageState extends State<ExercisesPage> {
   final cubit = Modular.get<GetAllExercisesCubit>();
-  final text = TextEditingController();
 
   int currentIndex = 0;
 
