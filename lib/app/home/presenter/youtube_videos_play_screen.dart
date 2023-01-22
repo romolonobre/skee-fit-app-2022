@@ -43,8 +43,13 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
         ),
         body: Column(
           children: [
+            // View Header
+            //
             WEText.custom('@YoutubechannelName', color: Colors.grey),
             WEText.title(widget.channel?.title ?? '', color: Colors.white),
+
+            // Youtube video
+            //
             Center(
               heightFactor: 2,
               child: YoutubePlayer(
@@ -52,6 +57,9 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
                 showVideoProgressIndicator: true,
               ),
             ),
+
+            // Message
+            //
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: WEText.custom(
