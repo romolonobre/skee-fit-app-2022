@@ -3,9 +3,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../exercises/domain/models/exercises_model.dart';
 import '../../../exercises/presenter/widgets/exercise_card_widget.dart';
-import '../../../widgets/we_buttons.dart';
-import '../../../widgets/we_modal.dart';
-import '../../../widgets/we_text.dart';
+import '../../../widgets/skee_button.dart';
+import '../../../widgets/skee_modal.dart';
+import '../../../widgets/skee_text.dart';
 
 class MyExercisesCard extends StatefulWidget {
   final List<ExercisesModel> exercises;
@@ -68,7 +68,7 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
               },
               child: ExerciseCardWidget(
                 exercise: exercise,
-                trailing: WeButtons.iconButton(
+                trailing: SkeeButton.iconButton(
                   height: 30,
                   width: 30,
                   icon: Icons.done,
@@ -89,7 +89,7 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
   }
 
   Future<void> _openWorkOutCompletedModal({required Function ontap}) async {
-    WEModal(
+    SkeeModal(
       context,
       onCancel: () => ontap(),
       onConfirm: () => Modular.to.pushNamed('/home'),
@@ -104,9 +104,9 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            WEText.title('Well done!', fontsize: 15),
+            SkeeText.title('Well done!', fontsize: 15),
             const SizedBox(height: 14),
-            WEText.custom(
+            SkeeText.custom(
               "You have completed your workout.",
               fontsize: 15,
               color: Colors.grey,
@@ -137,7 +137,7 @@ class ExerciseNameAndTarget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          WEText.title(
+          SkeeText.title(
             exercise.name,
             fontsize: 13,
             fontWeight: FontWeight.w500,
@@ -145,7 +145,7 @@ class ExerciseNameAndTarget extends StatelessWidget {
             textAlign: TextAlign.left,
           ),
           const SizedBox(height: 7),
-          WEText.title(
+          SkeeText.title(
             exercise.target,
             fontsize: 13,
             fontWeight: FontWeight.w200,

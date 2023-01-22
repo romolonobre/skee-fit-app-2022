@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
-import '../../../widgets/we_text.dart';
+import '../../../widgets/skee_text.dart';
 import '../../domain/models/youtube_model.dart';
 import '../youtube_videos_play_screen.dart';
 
@@ -64,7 +64,7 @@ class _YoutubeVideoViewState extends State<YoutubeVideoView> {
                     ),
                   ),
                   const SizedBox(width: 13),
-                  Expanded(child: WEText.custom(video?.title ?? '', color: Colors.white)),
+                  Expanded(child: SkeeText.custom(video?.title ?? '', color: Colors.white)),
                 ],
               ),
             ),

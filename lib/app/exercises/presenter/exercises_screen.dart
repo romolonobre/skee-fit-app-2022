@@ -7,12 +7,12 @@ import 'package:skeefiapp/app/exercises/presenter/widgets/exercise_card_widget.d
 import 'package:skeefiapp/app/widgets/custom_error_widget.dart';
 
 import '../../core/skee_ui/skee_loader.dart';
-import '../../my_exercises/presenter/widgets/exercises_info_app_bar.dart';
+import '../../widgets/skee_button.dart';
+import '../../widgets/skee_modal.dart';
 import '../../widgets/snackbar/show_error_message.dart';
-import '../../widgets/we_buttons.dart';
-import '../../widgets/we_modal.dart';
 import '../domain/models/exercises_model.dart';
 import 'cubit/all_exercises_cubit.dart';
+import 'widgets/exercises_info_app_bar.dart';
 
 class ExercisesPage extends StatefulWidget {
   List<ExercisesModel> exercisesModel = [];
@@ -28,7 +28,6 @@ class ExercisesPage extends StatefulWidget {
 
 class _ExercisesPageState extends State<ExercisesPage> {
   final cubit = Modular.get<GetAllExercisesCubit>();
-  final text = TextEditingController();
 
   int currentIndex = 0;
 
@@ -82,7 +81,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                           ontap: () => setState(() => selecetAndUnSelectExercise(exercise, index)),
                           color:
                               exercise.isSelected ? SkeePalette.primaryColor.withOpacity(0.5) : SkeePalette.cardColor,
-                          trailing: WeButtons.iconButton(
+                          trailing: SkeeButton.iconButton(
                             icon: Icons.info_outline,
                             backGroundColor:
                                 exercise.isSelected ? Colors.black26 : SkeePalette.primaryColor.withOpacity(0.2),
@@ -98,7 +97,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                   bottom: 30,
                   left: 40,
                   right: 40,
-                  child: WeButtons.filled(
+                  child: SkeeButton.filled(
                     'Save',
                     height: 55,
                     ontap: () async {
@@ -133,7 +132,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                           ontap: () => setState(() => selecetAndUnSelectExercise(exercise, index)),
                           color:
                               exercise.isSelected ? SkeePalette.primaryColor.withOpacity(0.5) : SkeePalette.cardColor,
-                          trailing: WeButtons.iconButton(
+                          trailing: SkeeButton.iconButton(
                             icon: Icons.info_outline,
                             backGroundColor:
                                 exercise.isSelected ? Colors.black26 : SkeePalette.primaryColor.withOpacity(0.2),
@@ -149,7 +148,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                   bottom: 30,
                   left: 40,
                   right: 40,
-                  child: WeButtons.filled(
+                  child: SkeeButton.filled(
                     'Save',
                     height: 55,
                     ontap: () async {
@@ -170,7 +169,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
   }
 
   Future openExercisesdetailsModal(BuildContext context, ExercisesModel exercise) async {
-    WEModal(
+    SkeeModal(
       context,
       height: 300,
       cancelText: 'Done',

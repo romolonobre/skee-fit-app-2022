@@ -5,8 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:skeefiapp/app/home/presenter/cubit/imagepicker_cubit.dart';
 import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
-import 'package:skeefiapp/app/widgets/snackbar/we_snackbar_widget.dart';
-import 'package:skeefiapp/app/widgets/we_buttons.dart';
+import 'package:skeefiapp/app/widgets/skee_button.dart';
+import 'package:skeefiapp/app/widgets/snackbar/skee_snackbar_widget.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
 
@@ -63,7 +63,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
   }
 
   Future<void> openPickerImageBottomSheet() async {
-    return WeBottomSheet.show(
+    return SkeeBottomSheet.show(
       context,
       floatted: true,
       content: SizedBox(
@@ -71,7 +71,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              WeButtons.filled(
+              SkeeButton.filled(
                 'Gallery',
                 ontap: () async {
                   Modular.to.pop();
@@ -79,7 +79,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
                 },
               ),
               const SizedBox(height: 10),
-              WeButtons.filled('Camera', ontap: () async {
+              SkeeButton.filled('Camera', ontap: () async {
                 Modular.to.pop();
                 await cubit.pickImage(ImageSource.camera);
               }),

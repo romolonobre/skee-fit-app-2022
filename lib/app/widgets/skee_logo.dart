@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WeLogo extends StatelessWidget {
-  const WeLogo({Key? key}) : super(key: key);
+class SkeeLogo extends StatelessWidget {
+  const SkeeLogo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

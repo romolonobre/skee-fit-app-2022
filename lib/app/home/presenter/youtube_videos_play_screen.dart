@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../core/skee_ui/skee_ui.dart';
-import '../../widgets/we_text.dart';
+import '../../widgets/skee_text.dart';
 import '../domain/models/youtube_model.dart';
 
 class YoutuveVideoPlayerScren extends StatefulWidget {
@@ -23,13 +23,13 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
   @override
   void initState() {
     super.initState();
+    _init();
+  }
+
+  void _init() {
     _controller = YoutubePlayerController(
       initialVideoId: widget.id,
-      flags: const YoutubePlayerFlags(
-        mute: false,
-        autoPlay: true,
-        startAt: 5,
-      ),
+      flags: const YoutubePlayerFlags(mute: false, autoPlay: true, startAt: 5),
     );
   }
 
@@ -43,8 +43,13 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
         ),
         body: Column(
           children: [
-            WEText.custom('@YoutubechannelName', color: Colors.grey),
-            WEText.title(widget.channel?.title ?? '', color: Colors.white),
+            // View Header
+            //
+            SkeeText.custom('@YoutubechannelName', color: Colors.grey),
+            SkeeText.title(widget.channel?.title ?? '', color: Colors.white),
+
+            // Youtube video
+            //
             Center(
               heightFactor: 2,
               child: YoutubePlayer(
@@ -52,9 +57,12 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
                 showVideoProgressIndicator: true,
               ),
             ),
+
+            // Message
+            //
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: WEText.custom(
+              child: SkeeText.custom(
                   "This channel will be avaliable until the next app \n release, then a new channel will be added. If you desire, continue fallowing this channel on Youtube",
                   color: Colors.grey,
                   textAlign: TextAlign.center),

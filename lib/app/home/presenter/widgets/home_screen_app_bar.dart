@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
-import '../../../widgets/we_text.dart';
+import '../../../widgets/skee_text.dart';
 
 class HomeScreenAppBar extends StatelessWidget with PreferredSizeWidget {
   const HomeScreenAppBar({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class HomeScreenAppBar extends StatelessWidget with PreferredSizeWidget {
       backgroundColor: SkeePalette.backgroudColor,
       elevation: 0,
       centerTitle: false,
-      title: WEText.title(
+      title: SkeeText.title(
         'Start Workout',
         color: Colors.white,
       ),

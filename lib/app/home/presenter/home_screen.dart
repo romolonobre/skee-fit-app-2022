@@ -7,7 +7,7 @@ import 'package:skeefiapp/app/home/presenter/widgets/tab_indicator_widget.dart';
 import '../../core/skee_ui/skee_loader.dart';
 import '../../core/skee_ui/skee_palette.dart';
 import '../../widgets/flutter_widgets.dart';
-import '../../widgets/we_buttons.dart';
+import '../../widgets/skee_button.dart';
 import '../domain/models/youtube_model.dart';
 import 'cubit/youtube_videos_cubit.dart';
 import 'widgets/home_screen_app_bar.dart';
@@ -33,9 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _init();
   }
 
-  Future _init() async {
+  Future<void> _init() async {
     YoutubeModel channel =
-        await cubit.getYoutuveVideos(channelId: selectedIndex == 0 ? 'UC6vkKAsph6kZuAsC5Q8MVNQ' : '');
+        await cubit.getYoutubeVideos(channelId: selectedIndex == 0 ? 'UC6vkKAsph6kZuAsC5Q8MVNQ' : '');
     _channel = channel;
   }
 
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            WEText.custom(
+            SkeeText.custom(
               'Quick Start',
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       title: 'Workout Videos',
                       ontap: () async {
                         setState(() => selectedIndex = 0);
-                        _channel = await cubit.getYoutuveVideos(channelId: "UC6vkKAsph6kZuAsC5Q8MVNQ");
+                        _channel = await cubit.getYoutubeVideos(channelId: "UC6vkKAsph6kZuAsC5Q8MVNQ");
                       },
                     ),
                     TabButton(
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: 'Yoga Videos',
                         ontap: () async {
                           setState(() => selectedIndex = 1);
-                          _channel = await cubit.getYoutuveVideos(channelId: "UCaBC9214yCFbAys53dE-IFw");
+                          _channel = await cubit.getYoutubeVideos(channelId: "UCaBC9214yCFbAys53dE-IFw");
                         }),
                   ],
                 ),
@@ -120,21 +120,21 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future _openStartWorkoutBottomsheet(BuildContext context) async {
-    WeBottomSheet.show(
+    SkeeBottomSheet.show(
       context,
       floatted: true,
       content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          WEText.title(
+          SkeeText.title(
             'Workout Started!',
             fontsize: 20,
             color: SkeePalette.primaryColor,
             fontWeight: FontWeight.w700,
           ),
           const SizedBox(height: 15),
-          WEText.custom(
+          SkeeText.custom(
             'Workout consist of a collection \n of exercises',
             fontsize: 16,
             textAlign: TextAlign.center,
@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
           const SizedBox(height: 20),
-          WEText.custom(
+          SkeeText.custom(
             "This workout is empty right now, but it's \n super easy to add some exercises to \n perform ",
             fontsize: 16,
             textAlign: TextAlign.center,
@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
           const SizedBox(height: 20),
-          WeButtons.filled(height: 50, "Let's build my workout", ontap: () {
+          SkeeButton.filled(height: 50, "Let's build my workout", ontap: () {
             Modular.to.pushNamed('./my-exercise/');
             Modular.to.pop();
           }),
@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget startWorkoutButton() {
-    return WeButtons.filled(
+    return SkeeButton.filled(
       'Start a new Workout',
       fontsize: 15,
       textAlign: TextAlign.left,

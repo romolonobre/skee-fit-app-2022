@@ -26,12 +26,11 @@ class GetAllExercisesRepositoryImpl extends ApiRequest implements GetAllExercise
       final jsonResponse = jsonDecode(response.body) as List;
       final exerciseList = jsonResponse.map<ExercisesModel>((e) => ExercisesModel.fromJson(e)).toList();
 
-      if (exerciseList.isEmpty) {
-        return Left(ExercisesNotFoundError(errorMessage: "List of exercises is empty"));
-      }
-
       if (response is Left) {
         return Left(ExercisesNotFoundError(errorMessage: "Exercise not found "));
+      }
+      if (exerciseList.isEmpty) {
+        return Left(ExercisesNotFoundError(errorMessage: "List of exercises is empty"));
       }
 
       return Right(exerciseList);
@@ -40,7 +39,7 @@ class GetAllExercisesRepositoryImpl extends ApiRequest implements GetAllExercise
       return Left(ExercisesNotFoundError(errorMessage: e.toString(), stackTrace: s));
     } catch (error, stackTrace) {
       ErrorHandle.externalErrorHandle(error, stackTrace: stackTrace);
-      return Left(ExercisesNotFoundError(errorMessage: 'Unknown error'));
+      return Left(ExercisesNotFoundError(errorMessage: error.toString()));
     }
   }
 }

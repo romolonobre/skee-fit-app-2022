@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'we_buttons.dart';
-import 'we_text.dart';
+import 'skee_button.dart';
+import 'skee_text.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   final String errorMessage;
@@ -17,13 +17,13 @@ class CustomErrorWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        WEText.title(
+        SkeeText.title(
           errorMessage,
           color: Colors.white,
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 10),
-        WeButtons.text(
+        SkeeButton.text(
           "Try again",
           fontsize: 14,
           ontap: ontap,

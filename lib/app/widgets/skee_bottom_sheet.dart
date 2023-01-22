@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'flutter_widgets.dart';
-import 'we_buttons.dart';
+import 'skee_button.dart';
 
-class WeBottomSheet {
+class SkeeBottomSheet {
   static Future show(
     BuildContext context, {
     required Widget content,
@@ -44,7 +44,7 @@ class WeBottomSheet {
                   height: 60,
                   child: Stack(
                     children: [
-                      if (showLeading) WeButtons.text(leadingLabel!, ontap: () => leadingAction),
+                      if (showLeading) SkeeButton.text(leadingLabel!, ontap: () => leadingAction),
                       Align(
                         alignment: Alignment.topCenter,
                         child: _swipeIndicator,
@@ -61,7 +61,7 @@ class WeBottomSheet {
                                 size: 15,
                                 color: Colors.grey,
                               ),
-                              WEText.custom(
+                              SkeeText.custom(
                                 'close',
                                 fontsize: 12,
                                 color: Colors.grey,
