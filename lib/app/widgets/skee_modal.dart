@@ -1,7 +1,7 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:skeefiapp/app/widgets/we_buttons.dart';
+import 'package:skeefiapp/app/widgets/skee_button.dart';
 
 Future WEModal(
   BuildContext context, {
