@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            WEText.custom(
+            SkeeText.custom(
               'Quick Start',
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -120,21 +120,21 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future _openStartWorkoutBottomsheet(BuildContext context) async {
-    WeBottomSheet.show(
+    SkeeBottomSheet.show(
       context,
       floatted: true,
       content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          WEText.title(
+          SkeeText.title(
             'Workout Started!',
             fontsize: 20,
             color: SkeePalette.primaryColor,
             fontWeight: FontWeight.w700,
           ),
           const SizedBox(height: 15),
-          WEText.custom(
+          SkeeText.custom(
             'Workout consist of a collection \n of exercises',
             fontsize: 16,
             textAlign: TextAlign.center,
@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
           const SizedBox(height: 20),
-          WEText.custom(
+          SkeeText.custom(
             "This workout is empty right now, but it's \n super easy to add some exercises to \n perform ",
             fontsize: 16,
             textAlign: TextAlign.center,
@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
           const SizedBox(height: 20),
-          WeButtons.filled(height: 50, "Let's build my workout", ontap: () {
+          SkeeButton.filled(height: 50, "Let's build my workout", ontap: () {
             Modular.to.pushNamed('./my-exercise/');
             Modular.to.pop();
           }),
@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget startWorkoutButton() {
-    return WeButtons.filled(
+    return SkeeButton.filled(
       'Start a new Workout',
       fontsize: 15,
       textAlign: TextAlign.left,

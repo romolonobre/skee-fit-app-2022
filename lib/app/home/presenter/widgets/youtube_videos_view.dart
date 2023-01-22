@@ -64,7 +64,7 @@ class _YoutubeVideoViewState extends State<YoutubeVideoView> {
                     ),
                   ),
                   const SizedBox(width: 13),
-                  Expanded(child: WEText.custom(video?.title ?? '', color: Colors.white)),
+                  Expanded(child: SkeeText.custom(video?.title ?? '', color: Colors.white)),
                 ],
               ),
             ),

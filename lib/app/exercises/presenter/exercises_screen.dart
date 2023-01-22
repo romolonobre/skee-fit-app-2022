@@ -81,7 +81,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                           ontap: () => setState(() => selecetAndUnSelectExercise(exercise, index)),
                           color:
                               exercise.isSelected ? SkeePalette.primaryColor.withOpacity(0.5) : SkeePalette.cardColor,
-                          trailing: WeButtons.iconButton(
+                          trailing: SkeeButton.iconButton(
                             icon: Icons.info_outline,
                             backGroundColor:
                                 exercise.isSelected ? Colors.black26 : SkeePalette.primaryColor.withOpacity(0.2),
@@ -97,7 +97,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                   bottom: 30,
                   left: 40,
                   right: 40,
-                  child: WeButtons.filled(
+                  child: SkeeButton.filled(
                     'Save',
                     height: 55,
                     ontap: () async {
@@ -132,7 +132,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                           ontap: () => setState(() => selecetAndUnSelectExercise(exercise, index)),
                           color:
                               exercise.isSelected ? SkeePalette.primaryColor.withOpacity(0.5) : SkeePalette.cardColor,
-                          trailing: WeButtons.iconButton(
+                          trailing: SkeeButton.iconButton(
                             icon: Icons.info_outline,
                             backGroundColor:
                                 exercise.isSelected ? Colors.black26 : SkeePalette.primaryColor.withOpacity(0.2),
@@ -148,7 +148,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                   bottom: 30,
                   left: 40,
                   right: 40,
-                  child: WeButtons.filled(
+                  child: SkeeButton.filled(
                     'Save',
                     height: 55,
                     ontap: () async {
@@ -169,7 +169,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
   }
 
   Future openExercisesdetailsModal(BuildContext context, ExercisesModel exercise) async {
-    WEModal(
+    SkeeModal(
       context,
       height: 300,
       cancelText: 'Done',

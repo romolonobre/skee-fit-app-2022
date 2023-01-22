@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:skeefiapp/app/widgets/skee_button.dart';
 
-Future WEModal(
+Future SkeeModal(
   BuildContext context, {
   required Widget child,
   String? cancelText,
@@ -45,7 +45,7 @@ Future WEModal(
                         // / Cancel button
 
                         Flexible(
-                          child: WeButtons.filled(
+                          child: SkeeButton.filled(
                             cancelText ?? 'Cancel',
                             height: 30,
                             width: 100,
@@ -66,7 +66,7 @@ Future WEModal(
                         // /
                         if (onConfirm != null)
                           Flexible(
-                            child: WeButtons.filled(
+                            child: SkeeButton.filled(
                               'Confirm',
                               height: 30,
                               width: 100,

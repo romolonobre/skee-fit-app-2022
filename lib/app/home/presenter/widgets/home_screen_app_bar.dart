@@ -13,7 +13,7 @@ class HomeScreenAppBar extends StatelessWidget with PreferredSizeWidget {
       backgroundColor: SkeePalette.backgroudColor,
       elevation: 0,
       centerTitle: false,
-      title: WEText.title(
+      title: SkeeText.title(
         'Start Workout',
         color: Colors.white,
       ),

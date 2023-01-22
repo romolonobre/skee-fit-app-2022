@@ -26,12 +26,12 @@ class AddTemplateWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            WEText.title(
+            SkeeText.title(
               'New template',
               fontsize: 18,
             ),
             const SizedBox(height: 12),
-            WEText.custom(
+            SkeeText.custom(
               'ab Wheel',
               color: Colors.grey,
             )

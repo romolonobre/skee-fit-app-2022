@@ -41,14 +41,14 @@ class ExerciseCardWidget extends StatelessWidget {
                       ),
                       title: Padding(
                         padding: const EdgeInsets.only(bottom: 5),
-                        child: WEText.title(
+                        child: SkeeText.title(
                           '${exercise.name} ',
                           fontsize: 14,
                           color: Colors.white,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      subtitle: WEText.custom(
+                      subtitle: SkeeText.custom(
                         exercise.target,
                         fontsize: 12,
                         color: Colors.white,
@@ -65,7 +65,7 @@ class ExerciseCardWidget extends StatelessWidget {
   }
 
   Future openExercisesdetailsModal(BuildContext context, ExercisesModel exercise) async {
-    WEModal(
+    SkeeModal(
       context,
       height: 300,
       cancelText: 'Done',

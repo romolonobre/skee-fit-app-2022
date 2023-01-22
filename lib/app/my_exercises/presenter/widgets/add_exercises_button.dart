@@ -14,7 +14,7 @@ class AddExercisebutton extends StatelessWidget {
       bottom: 35,
       left: 20,
       right: 20,
-      child: WeButtons.filled(
+      child: SkeeButton.filled(
         'Add Exercises',
         height: 55,
         ontap: () => ontap(),

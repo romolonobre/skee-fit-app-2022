@@ -47,7 +47,7 @@ class _WorkoutTimeWidgetState extends State<WorkoutTimeWidget> {
     return Center(
       child: Column(
         children: [
-          WeButtons.text('Start workout', fontsize: 18, ontap: () async {
+          SkeeButton.text('Start workout', fontsize: 18, ontap: () async {
             startTimer();
             await HapticFeedback.lightImpact();
           }),
@@ -67,7 +67,7 @@ class _WorkoutTimeWidgetState extends State<WorkoutTimeWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            WEText.custom(
+            SkeeText.custom(
               '$minutes:$seconds',
               fontsize: 35,
               fontWeight: FontWeight.w400,
@@ -76,7 +76,7 @@ class _WorkoutTimeWidgetState extends State<WorkoutTimeWidget> {
           ],
         ),
         Center(
-          child: WeButtons.text(
+          child: SkeeButton.text(
             'Stop Workout',
             fontsize: 18,
             ontap: () => Modular.to.pop(),

@@ -45,8 +45,8 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
           children: [
             // View Header
             //
-            WEText.custom('@YoutubechannelName', color: Colors.grey),
-            WEText.title(widget.channel?.title ?? '', color: Colors.white),
+            SkeeText.custom('@YoutubechannelName', color: Colors.grey),
+            SkeeText.title(widget.channel?.title ?? '', color: Colors.white),
 
             // Youtube video
             //
@@ -62,7 +62,7 @@ class _YoutuveVideoPlayerScrenState extends State<YoutuveVideoPlayerScren> {
             //
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: WEText.custom(
+              child: SkeeText.custom(
                   "This channel will be avaliable until the next app \n release, then a new channel will be added. If you desire, continue fallowing this channel on Youtube",
                   color: Colors.grey,
                   textAlign: TextAlign.center),

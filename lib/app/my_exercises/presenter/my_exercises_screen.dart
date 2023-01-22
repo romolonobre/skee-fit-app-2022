@@ -44,7 +44,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
               bottom: const PreferredSize(preferredSize: Size(0, 120), child: WorkoutTimeWidget()),
               backgroundColor: SkeePalette.backgroudColor,
               actions: [
-                WeButtons.text(
+                SkeeButton.text(
                   'Finish Workout',
                   ontap: () => _finishWorkoutModal(),
                 ),
@@ -74,7 +74,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
       padding: const EdgeInsets.only(
         bottom: 120,
       ),
-      child: WEText.title(
+      child: SkeeText.title(
         'No exercises available. \n Add a new exercise',
         textAlign: TextAlign.center,
         fontWeight: FontWeight.w300,
@@ -85,7 +85,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
   }
 
   Future<void> _finishWorkoutModal() async {
-    WEModal(
+    SkeeModal(
       context,
       onCancel: () {},
       onConfirm: () => Modular.to.pushNamed('/home'),
@@ -100,9 +100,9 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            WEText.title('Finish Workout ?', fontsize: 15),
+            SkeeText.title('Finish Workout ?', fontsize: 15),
             const SizedBox(height: 14),
-            WEText.custom(
+            SkeeText.custom(
               "All the exercises will be removed. \n if you did not finish the workout \nthe exercises will be mark as \ncompleted",
               fontsize: 15,
               color: Colors.grey,
@@ -116,7 +116,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
   }
 
   Future openExercisesdetailsModal(BuildContext context, ExercisesModel exercise) async {
-    WEModal(
+    SkeeModal(
       context,
       child: Container(
         decoration: BoxDecoration(

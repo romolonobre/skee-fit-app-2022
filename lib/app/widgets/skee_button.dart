@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/skee_ui/skee_palette.dart';
 import 'flutter_widgets.dart';
 
-class WeButtons {
+class SkeeButton {
   static Widget filled(
     String label, {
     Color? color,
@@ -49,7 +49,7 @@ class WeButtons {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: ontap,
-        child: WEText.custom(
+        child: SkeeText.custom(
           label,
           color: color ?? SkeePalette.primaryColor,
           fontWeight: FontWeight.bold,

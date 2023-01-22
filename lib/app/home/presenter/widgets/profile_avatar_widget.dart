@@ -63,7 +63,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
   }
 
   Future<void> openPickerImageBottomSheet() async {
-    return WeBottomSheet.show(
+    return SkeeBottomSheet.show(
       context,
       floatted: true,
       content: SizedBox(
@@ -71,7 +71,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              WeButtons.filled(
+              SkeeButton.filled(
                 'Gallery',
                 ontap: () async {
                   Modular.to.pop();
@@ -79,7 +79,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
                 },
               ),
               const SizedBox(height: 10),
-              WeButtons.filled('Camera', ontap: () async {
+              SkeeButton.filled('Camera', ontap: () async {
                 Modular.to.pop();
                 await cubit.pickImage(ImageSource.camera);
               }),

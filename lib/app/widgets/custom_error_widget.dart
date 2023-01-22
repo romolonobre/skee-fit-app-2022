@@ -17,13 +17,13 @@ class CustomErrorWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        WEText.title(
+        SkeeText.title(
           errorMessage,
           color: Colors.white,
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 10),
-        WeButtons.text(
+        SkeeButton.text(
           "Try again",
           fontsize: 14,
           ontap: ontap,

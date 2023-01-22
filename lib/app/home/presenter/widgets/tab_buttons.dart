@@ -34,7 +34,7 @@ class _TabButtonState extends State<TabButton> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            WeButtons.text(
+            SkeeButton.text(
               widget.title,
               color: widget.color,
               ontap: (() async => widget.ontap()),

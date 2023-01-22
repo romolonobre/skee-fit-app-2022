@@ -43,7 +43,7 @@ class NewsCardWidget extends StatelessWidget {
                     Flexible(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10, top: 6),
-                        child: WEText.title(
+                        child: SkeeText.title(
                           news.title,
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
@@ -56,7 +56,7 @@ class NewsCardWidget extends StatelessWidget {
                 Positioned(
                   bottom: 65,
                   right: 4,
-                  child: WeButtons.filled(
+                  child: SkeeButton.filled(
                     'Go to webiste',
                     height: 22,
                     width: 105,
