@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/my_exercises/presenter/widgets/bottomsheets/open_bottomsheet.dart';
+import 'package:skeefiapp/app/my_exercises/presenter/widgets/bottomsheets/bottomsheet.dart';
 import 'package:skeefiapp/app/my_exercises/presenter/widgets/no_exercise_widget.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
@@ -65,3 +65,4 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
       ),
     );
   }
+}
