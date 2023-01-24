@@ -7,16 +7,16 @@ import '../../../widgets/skee_button.dart';
 import '../../../widgets/skee_modal.dart';
 import '../../../widgets/skee_text.dart';
 
-class MyExercisesCard extends StatefulWidget {
+class MyExercisesBody extends StatefulWidget {
   final List<ExercisesModel> exercises;
 
-  const MyExercisesCard({super.key, required this.exercises});
+  const MyExercisesBody({super.key, required this.exercises});
 
   @override
-  State<MyExercisesCard> createState() => _MyExercisesCardState();
+  State<MyExercisesBody> createState() => _MyExercisesBodyState();
 }
 
-class _MyExercisesCardState extends State<MyExercisesCard> {
+class _MyExercisesBodyState extends State<MyExercisesBody> {
   @override
   void initState() {
     super.initState();
@@ -30,53 +30,43 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
         itemBuilder: (context, index) {
           final exercise = widget.exercises[index];
 
-          return GestureDetector(
-            onTap: () {
-              setState(() => exercise.isDone = !exercise.isDone);
-              _isWorkoutCompleted()
-                  ? _openWorkOutCompletedModal(ontap: () => setState(() => exercise.isDone = !exercise.isDone))
-                  : null;
-            },
-            child: Dismissible(
-              key: UniqueKey(),
-              direction: DismissDirection.endToStart,
-              background: Container(
-                width: 20,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 15,
-                ),
-                margin: const EdgeInsets.only(top: 8),
-                decoration: BoxDecoration(
-                  color: Colors.red.shade400,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Icon(
-                      Icons.delete_outline_outlined,
-                      size: 50,
-                      color: Colors.grey,
-                    ),
-                  ],
-                ),
+          return Dismissible(
+            key: UniqueKey(),
+            direction: DismissDirection.endToStart,
+            background: Container(
+              width: 20,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 15,
               ),
-              onDismissed: (direction) {
-                widget.exercises.removeAt(index);
-                setState(() {});
-              },
-              child: ExerciseCardWidget(
-                exercise: exercise,
-                trailing: SkeeButton.iconButton(
-                  height: 30,
-                  width: 30,
-                  icon: Icons.done,
-                  backGroundColor: exercise.isDone ? Colors.pink : Colors.black26,
-                  iconColor: Colors.black,
-                  ontap: () => setState(() => exercise.isDone = !exercise.isDone),
-                ),
+              margin: const EdgeInsets.only(top: 8),
+              decoration: BoxDecoration(
+                color: Colors.red.shade400,
+                borderRadius: BorderRadius.circular(10),
               ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: const [
+                  Icon(
+                    Icons.delete_outline_outlined,
+                    size: 50,
+                    color: Colors.grey,
+                  ),
+                ],
+              ),
+            ),
+            onDismissed: (direction) => setState(() => widget.exercises.removeAt(index)),
+            child: ExerciseCardWidget(
+              exercise: exercise,
+              trailing: SkeeButton.iconButton(
+                height: 30,
+                width: 30,
+                icon: Icons.done,
+                backGroundColor: exercise.isDone ? Colors.pink : Colors.black26,
+                iconColor: Colors.black,
+                ontap: () {},
+              ),
+              ontap: () => setState(() => exercise.isDone = !exercise.isDone),
             ),
           );
         },
@@ -115,65 +105,6 @@ class _MyExercisesCardState extends State<MyExercisesCard> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ExerciseNameAndTarget extends StatelessWidget {
-  const ExerciseNameAndTarget({
-    Key? key,
-    required this.exercise,
-  }) : super(key: key);
-
-  final ExercisesModel exercise;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 8, top: 10),
-      width: MediaQuery.of(context).size.width - 190,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SkeeText.title(
-            exercise.name,
-            fontsize: 13,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-            textAlign: TextAlign.left,
-          ),
-          const SizedBox(height: 7),
-          SkeeText.title(
-            exercise.target,
-            fontsize: 13,
-            fontWeight: FontWeight.w200,
-            color: Colors.white,
-            textAlign: TextAlign.left,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ExerciseGifCard extends StatelessWidget {
-  const ExerciseGifCard({
-    Key? key,
-    required this.exercise,
-  }) : super(key: key);
-
-  final ExercisesModel exercise;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(14),
-      child: Image.network(
-        exercise.gifUrl,
-        height: 55,
-        width: 55,
       ),
     );
   }
