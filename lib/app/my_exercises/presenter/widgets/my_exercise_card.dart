@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../exercises/domain/models/exercises_model.dart';
@@ -43,7 +44,10 @@ class _MyExercisesBodyState extends State<MyExercisesBody> {
                 iconColor: Colors.black,
                 ontap: () {},
               ),
-              ontap: () => setState(() => exercise.isDone = !exercise.isDone),
+              ontap: () async => {
+                await HapticFeedback.lightImpact(),
+                setState(() => exercise.isDone = !exercise.isDone),
+              },
             ),
             onDismissed: (direction) => setState(() => widget.exercises.removeAt(index)),
           );
