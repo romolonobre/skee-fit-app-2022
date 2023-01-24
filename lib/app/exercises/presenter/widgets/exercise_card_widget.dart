@@ -33,52 +33,10 @@ class ExerciseCardWidget extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                  leading: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(exercise.gifUrl),
-                  ),
-                  title: Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: SkeeText.title(
-                      '${exercise.name} ',
-                      fontsize: 14,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  subtitle: SkeeText.custom(
-                    exercise.target,
-                    fontsize: 12,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  leading: _ExerciseGifCard(exercise: exercise),
+                  title: _ExerciseName(exercise: exercise),
+                  subtitle: _ExerciseDescrition(exercise: exercise),
                   trailing: trailing),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future openExercisesdetailsModal(BuildContext context, ExercisesModel exercise) async {
-    SkeeModal(
-      context,
-      height: 300,
-      cancelText: 'Done',
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.network(
-                exercise.gifUrl,
-                height: 190,
-              ),
             ],
           ),
         ),
@@ -87,8 +45,49 @@ class ExerciseCardWidget extends StatelessWidget {
   }
 }
 
-class ExerciseGifCard extends StatelessWidget {
-  const ExerciseGifCard({
+class _ExerciseName extends StatelessWidget {
+  const _ExerciseName({
+    Key? key,
+    required this.exercise,
+  }) : super(key: key);
+
+  final ExercisesModel exercise;
+
+  @override
+  Widget build(BuildContext context) {
+    return SkeeText.custom(
+      exercise.target,
+      fontsize: 12,
+      color: Colors.white,
+      fontWeight: FontWeight.w400,
+    );
+  }
+}
+
+class _ExerciseDescrition extends StatelessWidget {
+  const _ExerciseDescrition({
+    Key? key,
+    required this.exercise,
+  }) : super(key: key);
+
+  final ExercisesModel exercise;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 5),
+      child: SkeeText.title(
+        '${exercise.name} ',
+        fontsize: 14,
+        color: Colors.white,
+        fontWeight: FontWeight.w400,
+      ),
+    );
+  }
+}
+
+class _ExerciseGifCard extends StatelessWidget {
+  const _ExerciseGifCard({
     Key? key,
     required this.exercise,
   }) : super(key: key);
