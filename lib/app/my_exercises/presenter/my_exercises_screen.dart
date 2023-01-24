@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/my_exercises/presenter/widgets/no_exercise_widget.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
 import '../../exercises/domain/models/exercises_model.dart';
@@ -55,7 +56,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            exercises.isEmpty ? noExerciceAvaliableText() : MyExercisesBody(exercises: exercises),
+            exercises.isEmpty ? const NoExerciseWidget() : MyExercisesBody(exercises: exercises),
             AddExercisebutton(
               ontap: () async {
                 final List<ExercisesModel>? result = await Modular.to
@@ -65,21 +66,6 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
             )
           ],
         ),
-      ),
-    );
-  }
-
-  Widget noExerciceAvaliableText() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 120,
-      ),
-      child: SkeeText.title(
-        'No exercises available. \n Add a new exercise',
-        textAlign: TextAlign.center,
-        fontWeight: FontWeight.w300,
-        color: Colors.white,
-        fontsize: 24,
       ),
     );
   }
