@@ -65,7 +65,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     TabButton(
                       selectedIndex: selectedIndex,
-                      channel: _channel,
                       color: selectedIndex == 0 ? SkeePalette.primaryColor : Colors.grey,
                       title: 'Workout Videos',
                       ontap: () async {
@@ -75,7 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     TabButton(
                         selectedIndex: selectedIndex,
-                        channel: _channel,
                         color: selectedIndex == 1 ? SkeePalette.primaryColor : Colors.grey,
                         title: 'Yoga Videos',
                         ontap: () async {

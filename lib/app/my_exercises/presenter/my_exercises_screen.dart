@@ -41,10 +41,16 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
               pinned: true,
               snap: true,
               floating: true,
-              bottom: const PreferredSize(preferredSize: Size(0, 120), child: WorkoutTimeWidget()),
+              bottom: const PreferredSize(
+                preferredSize: Size(0, 120),
+                child: WorkoutTimeWidget(),
+              ),
               backgroundColor: SkeePalette.backgroudColor,
               actions: [
-                SkeeButton.text('Finish Workout', ontap: () => OpenBottomsheet.finishWorkout(context)),
+                SkeeButton.text(
+                  'Finish Workout',
+                  ontap: () => OpenBottomsheet.finishWorkout(context),
+                ),
               ],
             )
           ];
@@ -55,8 +61,9 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
             exercises.isEmpty ? const NoExerciseWidget() : MyExercisesBody(exercises: exercises),
             AddExercisebutton(
               ontap: () async {
-                final List<ExercisesModel>? result = await Modular.to
-                    .push(MaterialPageRoute(builder: (context) => ExercisesPage(exercisesModel: exercises)));
+                final List<ExercisesModel>? result = await Modular.to.push(
+                  MaterialPageRoute(builder: (context) => ExercisesPage(exercisesModel: exercises)),
+                );
                 setState(() => exercises = result ?? []);
               },
             )
