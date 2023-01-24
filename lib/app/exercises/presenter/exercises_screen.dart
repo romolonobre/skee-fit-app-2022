@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:skeefiapp/app/core/skee_ui/skee_palette.dart';
@@ -8,10 +7,9 @@ import 'package:skeefiapp/app/widgets/custom_error_widget.dart';
 
 import '../../core/skee_ui/skee_loader.dart';
 import '../../widgets/skee_button.dart';
-import '../../widgets/skee_modal.dart';
-import '../../widgets/snackbar/show_error_message.dart';
 import '../domain/models/exercises_model.dart';
 import 'cubit/all_exercises_cubit.dart';
+import 'widgets/details_bottomsheet.dart';
 import 'widgets/exercises_info_app_bar.dart';
 
 class ExercisesPage extends StatefulWidget {
@@ -53,44 +51,36 @@ class _ExercisesPageState extends State<ExercisesPage> {
           }
 
           if (state is AllExercisesErrorState) {
-            SchedulerBinding.instance.addPostFrameCallback((_) {
-              ShowErrorMessage().call(state.errorMessage.toString(), context: context);
-            });
-
             return CustomErrorWidget(
-                errorMessage: "Error when tried to load exercises", ontap: () => cubit.getAllExercises());
+              errorMessage: state.errorMessage,
+              ontap: () => cubit.getAllExercises(),
+            );
           }
 
           if (state is FilterLoaded) {
             return Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 10,
-                    right: 10,
-                  ),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: ListView.builder(
-                      itemCount: state.exercises.length,
-                      itemBuilder: (cxt, index) {
-                        final ExercisesModel exercise = state.exercises[index];
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView.builder(
+                    itemCount: state.exercises.length,
+                    itemBuilder: (cxt, index) {
+                      final ExercisesModel exercise = state.exercises[index];
 
-                        return ExerciseCardWidget(
-                          exercise: exercise,
-                          ontap: () => setState(() => selecetAndUnSelectExercise(exercise, index)),
-                          color:
-                              exercise.isSelected ? SkeePalette.primaryColor.withOpacity(0.5) : SkeePalette.cardColor,
-                          trailing: SkeeButton.iconButton(
-                            icon: Icons.info_outline,
-                            backGroundColor:
-                                exercise.isSelected ? Colors.black26 : SkeePalette.primaryColor.withOpacity(0.2),
-                            iconColor: exercise.isSelected ? Colors.black : SkeePalette.primaryColor.withOpacity(0.75),
-                            ontap: () => openExercisesdetailsModal(context, exercise),
-                          ),
-                        );
-                      },
-                    ),
+                      return ExerciseCardWidget(
+                        exercise: exercise,
+                        ontap: () => setState(() => onExerciseSelected(exercise, index)),
+                        color: exercise.isSelected ? SkeePalette.primaryColor.withOpacity(0.5) : SkeePalette.cardColor,
+                        trailing: SkeeButton.iconButton(
+                          icon: Icons.info_outline,
+                          backGroundColor:
+                              exercise.isSelected ? Colors.black26 : SkeePalette.primaryColor.withOpacity(0.2),
+                          iconColor: exercise.isSelected ? Colors.black : SkeePalette.primaryColor.withOpacity(0.75),
+                          ontap: () => DetailsBottomsheet.openExercisesdetail(context, exercise),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 Positioned(
@@ -114,34 +104,32 @@ class _ExercisesPageState extends State<ExercisesPage> {
           if (state is AllExerciseLoadedState) {
             return Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    left: 10,
-                    right: 10,
-                  ),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: ListView.builder(
-                      itemCount: state.exercises.length,
-                      itemBuilder: (cxt, index) {
-                        final ExercisesModel exercise = state.exercises[index];
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  height: MediaQuery.of(context).size.height,
+                  child: ListView.builder(
+                    itemCount: state.exercises.length,
+                    itemBuilder: (cxt, index) {
+                      final ExercisesModel exercise = state.exercises[index];
 
-                        return ExerciseCardWidget(
-                          exercise: exercise,
-                          ontap: () => setState(() => selecetAndUnSelectExercise(exercise, index)),
-                          color:
-                              exercise.isSelected ? SkeePalette.primaryColor.withOpacity(0.5) : SkeePalette.cardColor,
-                          trailing: SkeeButton.iconButton(
-                            icon: Icons.info_outline,
-                            backGroundColor:
-                                exercise.isSelected ? Colors.black26 : SkeePalette.primaryColor.withOpacity(0.2),
-                            iconColor: exercise.isSelected ? Colors.black : SkeePalette.primaryColor.withOpacity(0.75),
-                            ontap: () => openExercisesdetailsModal(context, exercise),
-                          ),
-                        );
-                      },
-                    ),
+                      return ExerciseCardWidget(
+                        exercise: exercise,
+                        ontap: () => setState(() => onExerciseSelected(exercise, index)),
+                        color: exercise.isSelected
+                            ? SkeePalette.primaryColor.withOpacity(0.5) //
+                            : SkeePalette.cardColor,
+                        trailing: SkeeButton.iconButton(
+                          icon: Icons.info_outline,
+                          backGroundColor: exercise.isSelected
+                              ? Colors.black26 //
+                              : SkeePalette.primaryColor.withOpacity(0.2),
+                          iconColor: exercise.isSelected
+                              ? Colors.black //
+                              : SkeePalette.primaryColor.withOpacity(0.75),
+                          ontap: () => DetailsBottomsheet.openExercisesdetail(context, exercise),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 Positioned(
@@ -168,33 +156,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
     );
   }
 
-  Future openExercisesdetailsModal(BuildContext context, ExercisesModel exercise) async {
-    SkeeModal(
-      context,
-      height: 300,
-      cancelText: 'Done',
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.network(
-                exercise.gifUrl,
-                height: 190,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  void selecetAndUnSelectExercise(ExercisesModel exercise, int index) {
+  void onExerciseSelected(ExercisesModel exercise, int index) {
     exercise.isSelected = !exercise.isSelected;
     if (exercise.isSelected) {
       widget.exercisesModel.add(exercise);
