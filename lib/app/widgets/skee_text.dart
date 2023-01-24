@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class WEText {
+class SkeeText {
   static Widget custom(
     String label, {
     double fontsize = 15,

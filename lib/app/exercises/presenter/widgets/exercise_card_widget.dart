@@ -25,41 +25,37 @@ class ExerciseCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => ontap != null ? ontap!() : null,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: SkeeContainer(
-              color: color ?? SkeePalette.cardColor,
-              child: Column(
-                children: [
-                  ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(exercise.gifUrl),
-                      ),
-                      title: Padding(
-                        padding: const EdgeInsets.only(bottom: 5),
-                        child: SkeeText.title(
-                          '${exercise.name} ',
-                          fontsize: 14,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      subtitle: SkeeText.custom(
-                        exercise.target,
-                        fontsize: 12,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      trailing: trailing),
-                ],
-              ),
-            ),
+      onTap: ontap != null ? () => ontap!() : null,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: SkeeContainer(
+          color: color ?? SkeePalette.cardColor,
+          child: Column(
+            children: [
+              ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(exercise.gifUrl),
+                  ),
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: SkeeText.title(
+                      '${exercise.name} ',
+                      fontsize: 14,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  subtitle: SkeeText.custom(
+                    exercise.target,
+                    fontsize: 12,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  trailing: trailing),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

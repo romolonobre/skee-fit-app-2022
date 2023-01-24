@@ -55,7 +55,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            exercises.isEmpty ? noExerciceAvaliableText() : MyExercisesCard(exercises: exercises),
+            exercises.isEmpty ? noExerciceAvaliableText() : MyExercisesBody(exercises: exercises),
             AddExercisebutton(
               ontap: () async {
                 final List<ExercisesModel>? result = await Modular.to
