@@ -18,11 +18,6 @@ class MyExercisesBody extends StatefulWidget {
 
 class _MyExercisesBodyState extends State<MyExercisesBody> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: ListView.builder(
