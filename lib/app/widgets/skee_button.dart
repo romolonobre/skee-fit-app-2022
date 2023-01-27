@@ -66,6 +66,7 @@ class SkeeButton {
     Color? iconColor,
     double? height,
     double? width,
+    double? iconSize,
   }) {
     return InkWell(
       onTap: ontap,
@@ -78,7 +79,7 @@ class SkeeButton {
           ),
           child: Icon(
             icon,
-            size: 20,
+            size: iconSize ?? 20,
             color: iconColor ?? SkeePalette.primaryColor,
           )),
     );
