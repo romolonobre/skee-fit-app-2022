@@ -1,87 +1,127 @@
-import 'dart:async';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
+import 'package:skeefiapp/app/widgets/skee_button.dart';
 
-import '../../../widgets/skee_button.dart';
-import '../../../widgets/skee_text.dart';
-
-class WorkoutTimeWidget extends StatefulWidget {
-  const WorkoutTimeWidget({Key? key}) : super(key: key);
+class WorkoutTimerWidget extends StatefulWidget {
+  const WorkoutTimerWidget({Key? key}) : super(key: key);
 
   @override
-  State<WorkoutTimeWidget> createState() => _WorkoutTimeWidgetState();
+  State<WorkoutTimerWidget> createState() => _WorkoutTimerWidgetState();
 }
 
-class _WorkoutTimeWidgetState extends State<WorkoutTimeWidget> {
-  Duration duration = const Duration();
-  Timer? timer;
+class _WorkoutTimerWidgetState extends State<WorkoutTimerWidget> with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  double progress = 1.0;
 
   @override
   void initState() {
     super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 60),
+    );
+    controller.addListener(() {
+      if (controller.isAnimating) {
+        setState(() {
+          progress = controller.value;
+        });
+      } else {
+        setState(() {
+          progress = 1.0;
+        });
+      }
+    });
   }
 
-  void startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 1), ((timer) {
-      addTime();
-      setState(() {});
-    }));
+  String get countText {
+    Duration count = controller.duration! * controller.value;
+    return controller.isDismissed
+        ? '${(controller.duration!.inHours % 60).toString()}:${(controller.duration!.inMinutes % 60).toString().padLeft(2, '0')}:${(controller.duration!.inSeconds % 60).toString().padLeft(2, '0')}'
+        : '${(count.inHours % 60).toString()}:${(count.inMinutes % 60).toString().padLeft(2, '0')}:${(count.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   @override
   void dispose() {
-    timer?.cancel();
-    super.dispose();
-  }
+    controller.dispose();
 
-  void addTime() {
-    const addSecond = 1;
-    final seconds = duration.inSeconds + addSecond;
-    duration = Duration(seconds: seconds);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          SkeeButton.text('Start workout', fontsize: 18, ontap: () async {
-            startTimer();
-            await HapticFeedback.lightImpact();
-          }),
-          buildTime(),
-        ],
-      ),
-    );
-  }
-
-  Widget buildTime() {
-    String towDigits(int n) => n.toString().padLeft(2, '0');
-    final minutes = towDigits(duration.inMinutes.remainder(60));
-    final seconds = towDigits(duration.inSeconds.remainder(60));
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        Stack(
+          alignment: Alignment.center,
           children: [
-            SkeeText.custom(
-              '$minutes:$seconds',
-              fontsize: 35,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
+            SizedBox(
+                height: 100,
+                width: 100,
+                child: CircularProgressIndicator(
+                  value: progress,
+                  backgroundColor: Colors.white30,
+                  strokeWidth: 6,
+                )),
+            GestureDetector(
+              onTap: () {
+                if (controller.isDismissed) {
+                  SkeeBottomSheet.show(
+                    context,
+                    floatted: true,
+                    content: SizedBox(
+                      height: 400,
+                      child: CupertinoTimerPicker(
+                        initialTimerDuration: controller.duration!,
+                        onTimerDurationChanged: (time) {
+                          setState(() {
+                            controller.duration = time;
+                          });
+                        },
+                      ),
+                    ),
+                  );
+                }
+              },
+              child: AnimatedBuilder(
+                animation: controller,
+                builder: (context, child) {
+                  return SkeeText.title(countText, color: Colors.white, fontWeight: FontWeight.w500);
+                },
+              ),
             ),
           ],
         ),
-        Center(
-          child: SkeeButton.text(
-            'Stop Workout',
-            fontsize: 18,
-            ontap: () => Modular.to.pop(),
-          ),
-        ),
+        Row(
+          children: [
+            SkeeButton.text(
+              'Start',
+              ontap: () {
+                controller.reverse(
+                  from: controller.value == 0 ? 1.0 : controller.value,
+                );
+              },
+            ),
+            SkeeButton.text(
+              'Stop',
+              ontap: () {
+                if (controller.isAnimating) {
+                  controller.stop();
+                } else {
+                  controller.reverse(
+                    from: controller.value == 0 ? 1.0 : controller.value,
+                  );
+                }
+              },
+            ),
+            SkeeButton.text(
+              'resume',
+              ontap: () {
+                setState(() {});
+              },
+            ),
+          ],
+        )
       ],
     );
   }
