@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../widgets/skee_button.dart';
-import '../../domain/models/youtube_model.dart';
 import '../cubit/youtube_videos_cubit.dart';
 
 class TabButton extends StatefulWidget {
-  YoutubeModel? channel;
   int selectedIndex;
   final Function ontap;
   final String title;
   Color color;
   TabButton({
     Key? key,
-    required this.channel,
     required this.selectedIndex,
     required this.ontap,
     required this.title,

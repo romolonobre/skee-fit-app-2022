@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:skeefiapp/app/home/presenter/home_bottom_sheet/home_bottom_sheet.dart';
 import 'package:skeefiapp/app/home/presenter/widgets/tab_indicator_widget.dart';
 
 import '../../core/skee_ui/skee_loader.dart';
@@ -65,7 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     TabButton(
                       selectedIndex: selectedIndex,
-                      channel: _channel,
                       color: selectedIndex == 0 ? SkeePalette.primaryColor : Colors.grey,
                       title: 'Workout Videos',
                       ontap: () async {
@@ -75,7 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     TabButton(
                         selectedIndex: selectedIndex,
-                        channel: _channel,
                         color: selectedIndex == 1 ? SkeePalette.primaryColor : Colors.grey,
                         title: 'Yoga Videos',
                         ontap: () async {
@@ -119,54 +118,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future _openStartWorkoutBottomsheet(BuildContext context) async {
-    SkeeBottomSheet.show(
-      context,
-      floatted: true,
-      content: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SkeeText.title(
-            'Workout Started!',
-            fontsize: 20,
-            color: SkeePalette.primaryColor,
-            fontWeight: FontWeight.w700,
-          ),
-          const SizedBox(height: 15),
-          SkeeText.custom(
-            'Workout consist of a collection \n of exercises',
-            fontsize: 16,
-            textAlign: TextAlign.center,
-            color: Colors.grey,
-            fontWeight: FontWeight.bold,
-          ),
-          const SizedBox(height: 20),
-          SkeeText.custom(
-            "This workout is empty right now, but it's \n super easy to add some exercises to \n perform ",
-            fontsize: 16,
-            textAlign: TextAlign.center,
-            color: Colors.grey,
-            fontWeight: FontWeight.bold,
-          ),
-          const SizedBox(height: 20),
-          SkeeButton.filled(height: 50, "Let's build my workout", ontap: () {
-            Modular.to.pushNamed('./my-exercise/');
-            Modular.to.pop();
-          }),
-          const SizedBox(height: 30)
-        ],
-      ),
-    );
-  }
-
   Widget startWorkoutButton() {
     return SkeeButton.filled(
       'Start a new Workout',
       fontsize: 15,
       textAlign: TextAlign.left,
       height: 50,
-      ontap: () => _openStartWorkoutBottomsheet(context),
+      ontap: () => HomeBottomSheet.openStartWorkout(context),
     );
   }
 }

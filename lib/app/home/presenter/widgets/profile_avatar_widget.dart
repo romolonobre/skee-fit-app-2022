@@ -29,7 +29,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        openPickerImageBottomSheet();
+        _openPickerImageBottomSheet();
         await HapticFeedback.lightImpact();
       },
       child: BlocConsumer<ImagepickerCubit, ImagepickerState>(
@@ -62,7 +62,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
     );
   }
 
-  Future<void> openPickerImageBottomSheet() async {
+  Future<void> _openPickerImageBottomSheet() async {
     return SkeeBottomSheet.show(
       context,
       floatted: true,
