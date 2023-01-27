@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:skeefiapp/app/my_exercises/presenter/widgets/bottomsheets/bottomsheet.dart';
 import 'package:skeefiapp/app/my_exercises/presenter/widgets/no_exercise_widget.dart';
+import 'package:skeefiapp/app/my_exercises/presenter/widgets/workout_timer_widget.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
 import '../../exercises/domain/models/exercises_model.dart';
@@ -11,7 +12,6 @@ import '../../exercises/presenter/exercises_screen.dart';
 import '../../widgets/skee_button.dart';
 import 'widgets/add_exercises_button.dart';
 import 'widgets/my_exercise_card.dart';
-import 'widgets/workout_timer_widget.dart';
 
 class MyExercisesPage extends StatefulWidget {
   const MyExercisesPage({
@@ -43,7 +43,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
               floating: true,
               bottom: const PreferredSize(
                 preferredSize: Size(0, 120),
-                child: WorkoutTimeWidget(),
+                child: WorkoutTimerWidget(),
               ),
               backgroundColor: SkeePalette.backgroudColor,
               actions: [
