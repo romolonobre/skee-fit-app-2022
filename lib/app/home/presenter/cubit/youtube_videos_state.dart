@@ -8,7 +8,7 @@ class YoutubeVideosInitial extends YoutubeVideosState {}
 class YoutubeVideosLoadingState extends YoutubeVideosState {}
 
 class YoutubeVideosLoadedState extends YoutubeVideosState {
-  final YoutubeModel channel;
+  final YoutubeChannelEntity channel;
   YoutubeVideosLoadedState({required this.channel});
 }
 

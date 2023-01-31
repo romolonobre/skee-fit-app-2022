@@ -24,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final cubit = Modular.get<YoutubeVideosCubit>();
-  YoutubeModel? _channel;
+  YoutubeChannelEntity? _channel;
 
   int selectedIndex = 0;
 
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _init() async {
-    YoutubeModel channel =
+    YoutubeChannelEntity channel =
         await cubit.getYoutubeVideos(channelId: selectedIndex == 0 ? 'UC6vkKAsph6kZuAsC5Q8MVNQ' : '');
     _channel = channel;
   }
