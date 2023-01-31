@@ -6,19 +6,23 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:skeefiapp/app/core/errors/error_handle.dart';
 import 'package:skeefiapp/app/core/errors/failure.dart';
+import 'package:skeefiapp/app/home/domain/entities/youtube_entity.dart';
 import 'package:skeefiapp/app/home/domain/errors/channel_not_found_error.dart';
-import 'package:skeefiapp/app/home/domain/models/youtube_model.dart';
+
+import '../domain/adapter/youtube_channel_entity_adapter.dart';
+import '../domain/adapter/youtube_video_adapter.dart';
 
 abstract class GetYoutubeVideosRepository {
-  Future<Either<Failure, YoutubeModel>> fetchChannel({required String channelId});
+  Future<Either<Failure, YoutubeChannelEntity>> fetchChannel({required String channelId});
 }
 
 class GetYoutubeVideosRepositoryImpl implements GetYoutubeVideosRepository {
   final String _baseUrl = 'www.googleapis.com';
   String _nextPageToken = '';
+  final YoutubeChannelEntityAdapter channelEntityAdapter = YoutubeChannelEntityAdapter();
 
   @override
-  Future<Either<Failure, YoutubeModel>> fetchChannel({required String channelId}) async {
+  Future<Either<Failure, YoutubeChannelEntity>> fetchChannel({required String channelId}) async {
     Map<String, String> parameters = {
       'part': 'snippet, contentDetails, statistics',
       'id': channelId,
@@ -47,7 +51,7 @@ class GetYoutubeVideosRepositoryImpl implements GetYoutubeVideosRepository {
 
       Map<String, dynamic> data = jsonDecode(response.body)['items'][0];
 
-      YoutubeModel channel = YoutubeModel.fromMap(data);
+      YoutubeChannelEntity channel = channelEntityAdapter.fromJson(data);
       // print(response.body);
       // Fetch first batch of videos from uploads playlist
 
@@ -63,7 +67,9 @@ class GetYoutubeVideosRepositoryImpl implements GetYoutubeVideosRepository {
     }
   }
 
-  Future<List<Video>> fetchVideosFromPlaylist({required String playlistId}) async {
+  Future<List<YoutubeVideo>> fetchVideosFromPlaylist({required String playlistId}) async {
+    final adapter = YoutubeVideoEntityAdapter();
+
     Map<String, String> parameters = {
       'part': 'snippet',
       'playlistId': playlistId,
@@ -89,10 +95,10 @@ class GetYoutubeVideosRepositoryImpl implements GetYoutubeVideosRepository {
       List<dynamic> videosJson = data['items'];
 
       // Fetch first eight videos from uploads playlist
-      List<Video> videos = [];
+      List<YoutubeVideo> videos = [];
       for (var json in videosJson) {
         videos.add(
-          Video.fromMap(json['snippet']),
+          adapter.fromJson(json['snippet']),
         );
       }
       return videos;

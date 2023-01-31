@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../widgets/skee_modal.dart';
-import '../../domain/models/exercises_model.dart';
+import '../../domain/entities/exercises_entity.dart';
 
 class DetailsBottomsheet {
-  static Future openExercisesdetail(BuildContext context, ExercisesModel exercise) async {
+  static Future openExercisesdetail(BuildContext context, ExerciseEntity exercise) async {
     SkeeModal(
       context,
       height: 300,

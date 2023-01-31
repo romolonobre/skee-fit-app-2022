@@ -3,10 +3,10 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../core/skee_ui/skee_ui.dart';
 import '../../widgets/skee_text.dart';
-import '../domain/models/youtube_model.dart';
+import '../domain/entities/youtube_entity.dart';
 
 class YoutuveVideoPlayerScren extends StatefulWidget {
-  final YoutubeModel? channel;
+  final YoutubeChannelEntity? channel;
   const YoutuveVideoPlayerScren({
     Key? key,
     this.channel,

@@ -6,14 +6,16 @@ import 'package:skeefiapp/app/core/client/api_request.dart';
 
 import '../../core/errors/error_handle.dart';
 import '../../core/errors/failure.dart';
+import '../domain/entities/exercises_entity.dart';
 import '../domain/errors/exercises_not_found_error.dart';
-import '../domain/models/exercises_model.dart';
+import '../domain/exercises_adapter.dart';
 import 'get_all_exercises_repository.dart';
 
 class GetAllExercisesRepositoryImpl extends ApiRequest implements GetAllExercisesRepository {
-  List<ExercisesModel> exerciseList = [];
+  List<ExerciseEntity> exerciseList = [];
+  ExercisesAdapter adapter = ExercisesAdapter();
   @override
-  Future<Either<Failure, List<ExercisesModel>>> getAllExerceses() async {
+  Future<Either<Failure, List<ExerciseEntity>>> getAllExerceses() async {
     try {
       final response = await ApiRequest.get(
         ('https://exercisedb.p.rapidapi.com/exercises'),
@@ -24,7 +26,7 @@ class GetAllExercisesRepositoryImpl extends ApiRequest implements GetAllExercise
       );
 
       final jsonResponse = jsonDecode(response.body) as List;
-      final exerciseList = jsonResponse.map<ExercisesModel>((e) => ExercisesModel.fromJson(e)).toList();
+      final exerciseList = jsonResponse.map<ExerciseEntity>((e) => adapter.fromJson(e)).toList();
 
       if (response is Left) {
         return Left(ExercisesNotFoundError(errorMessage: "Exercise not found "));

@@ -3,10 +3,10 @@ import 'package:either_dart/either.dart';
 import 'package:skeefiapp/app/home/repositories/get_youtube_videos_repository.dart';
 
 import '../../core/errors/failure.dart';
-import '../domain/models/youtube_model.dart';
+import '../domain/entities/youtube_entity.dart';
 
 abstract class GetYoutubeVideosService {
-  Future<Either<Failure, YoutubeModel>> fetchChannel({required String channelId});
+  Future<Either<Failure, YoutubeChannelEntity>> fetchChannel({required String channelId});
 }
 
 class GetYoutubeVideosServiceImpl implements GetYoutubeVideosService {
@@ -14,7 +14,7 @@ class GetYoutubeVideosServiceImpl implements GetYoutubeVideosService {
   GetYoutubeVideosServiceImpl({required this.repository});
 
   @override
-  Future<Either<Failure, YoutubeModel>> fetchChannel({required String channelId}) async {
+  Future<Either<Failure, YoutubeChannelEntity>> fetchChannel({required String channelId}) async {
     final response = await repository.fetchChannel(channelId: channelId);
     if (response is Left) {
       return Left(response.left);

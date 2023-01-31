@@ -9,7 +9,7 @@ class GetAllExercisesInitialState extends GetAllExercisesState {}
 class GetAllExercisesLaodingState extends GetAllExercisesState {}
 
 class AllExerciseLoadedState extends GetAllExercisesState {
-  List<ExercisesModel> exercises;
+  List<ExerciseEntity> exercises;
   AllExerciseLoadedState({
     required this.exercises,
   });
@@ -21,6 +21,6 @@ class AllExercisesErrorState extends GetAllExercisesState {
 }
 
 class FilterLoaded extends GetAllExercisesState {
-  final List<ExercisesModel> exercises;
+  final List<ExerciseEntity> exercises;
   FilterLoaded({required this.exercises});
 }

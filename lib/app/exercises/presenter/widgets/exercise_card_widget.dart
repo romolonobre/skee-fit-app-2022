@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import '../../../core/skee_ui/skee_container.dart';
 import '../../../core/skee_ui/skee_palette.dart';
 import '../../../widgets/flutter_widgets.dart';
-import '../../domain/models/exercises_model.dart';
+import '../../domain/entities/exercises_entity.dart';
 
 class ExerciseCardWidget extends StatelessWidget {
-  final ExercisesModel exercise;
+  final ExerciseEntity exercise;
   final Function? ontap;
   final Color? color;
   final Widget trailing;
@@ -51,7 +51,7 @@ class _ExerciseName extends StatelessWidget {
     required this.exercise,
   }) : super(key: key);
 
-  final ExercisesModel exercise;
+  final ExerciseEntity exercise;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class _ExerciseDescrition extends StatelessWidget {
     required this.exercise,
   }) : super(key: key);
 
-  final ExercisesModel exercise;
+  final ExerciseEntity exercise;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +92,7 @@ class _ExerciseGifCard extends StatelessWidget {
     required this.exercise,
   }) : super(key: key);
 
-  final ExercisesModel exercise;
+  final ExerciseEntity exercise;
 
   @override
   Widget build(BuildContext context) {

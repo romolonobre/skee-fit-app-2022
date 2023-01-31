@@ -3,18 +3,18 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
 import '../../../widgets/skee_text.dart';
-import '../../domain/models/youtube_model.dart';
+import '../../domain/entities/youtube_entity.dart';
 import '../youtube_videos_play_screen.dart';
 
 class YoutubeVideoView extends StatefulWidget {
   const YoutubeVideoView({
     Key? key,
-    required YoutubeModel? channel,
+    required YoutubeChannelEntity? channel,
     // required this.channelId,
   })  : _channel = channel,
         super(key: key);
 
-  final YoutubeModel? _channel;
+  final YoutubeChannelEntity? _channel;
   // final String channelId;
 
   @override

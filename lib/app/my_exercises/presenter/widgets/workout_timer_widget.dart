@@ -19,7 +19,7 @@ class _WorkoutTimerWidgetState extends State<WorkoutTimerWidget> with SingleTick
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 60),
+      duration: const Duration(seconds: 0),
     );
     controller.addListener(() {
       if (controller.isAnimating) {
@@ -117,6 +117,8 @@ class _WorkoutTimerWidgetState extends State<WorkoutTimerWidget> with SingleTick
             SkeeButton.text(
               'resume',
               ontap: () {
+                controller.reset;
+                print('sdsds');
                 setState(() {});
               },
             ),

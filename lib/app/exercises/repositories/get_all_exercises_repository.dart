@@ -1,8 +1,8 @@
 import 'package:either_dart/either.dart';
 
 import '../../core/errors/failure.dart';
-import '../domain/models/exercises_model.dart';
+import '../domain/entities/exercises_entity.dart';
 
 abstract class GetAllExercisesRepository {
-  Future<Either<Failure, List<ExercisesModel>>> getAllExerceses();
+  Future<Either<Failure, List<ExerciseEntity>>> getAllExerceses();
 }

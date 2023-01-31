@@ -7,13 +7,13 @@ import 'package:skeefiapp/app/widgets/custom_error_widget.dart';
 
 import '../../core/skee_ui/skee_loader.dart';
 import '../../widgets/skee_button.dart';
-import '../domain/models/exercises_model.dart';
+import '../domain/entities/exercises_entity.dart';
 import 'cubit/all_exercises_cubit.dart';
 import 'widgets/details_bottomsheet.dart';
 import 'widgets/exercises_info_app_bar.dart';
 
 class ExercisesPage extends StatefulWidget {
-  List<ExercisesModel> exercisesModel = [];
+  List<ExerciseEntity> exercisesModel = [];
 
   ExercisesPage({
     super.key,
@@ -66,7 +66,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                   child: ListView.builder(
                     itemCount: state.exercises.length,
                     itemBuilder: (cxt, index) {
-                      final ExercisesModel exercise = state.exercises[index];
+                      final ExerciseEntity exercise = state.exercises[index];
 
                       return ExerciseCardWidget(
                         exercise: exercise,
@@ -110,7 +110,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
                   child: ListView.builder(
                     itemCount: state.exercises.length,
                     itemBuilder: (cxt, index) {
-                      final ExercisesModel exercise = state.exercises[index];
+                      final ExerciseEntity exercise = state.exercises[index];
 
                       return ExerciseCardWidget(
                         exercise: exercise,
@@ -156,7 +156,7 @@ class _ExercisesPageState extends State<ExercisesPage> {
     );
   }
 
-  void onExerciseSelected(ExercisesModel exercise, int index) {
+  void onExerciseSelected(ExerciseEntity exercise, int index) {
     exercise.isSelected = !exercise.isSelected;
     if (exercise.isSelected) {
       widget.exercisesModel.add(exercise);
