@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../exercises/domain/models/exercises_model.dart';
+import '../../../exercises/domain/entities/exercises_entity.dart';
 import '../../../exercises/presenter/widgets/exercise_card_widget.dart';
 import '../../../widgets/skee_button.dart';
 import 'custom_dimissible_widget.dart';
 
 class MyExercisesBody extends StatefulWidget {
-  final List<ExercisesModel> exercises;
+  final List<ExerciseEntity> exercises;
 
   const MyExercisesBody({super.key, required this.exercises});
 

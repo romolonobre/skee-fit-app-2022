@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:either_dart/either.dart';
 import 'package:meta/meta.dart';
 
-import '../../domain/models/youtube_model.dart';
+import '../../domain/entities/youtube_entity.dart';
 import '../../service/get_youtube_videos_service.dart';
 
 part 'youtube_videos_state.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
 import '../../../widgets/skee_text.dart';
-import '../../domain/models/youtube_model.dart';
+import '../../domain/entities/youtube_entity.dart';
 import '../youtube_videos_play_screen.dart';
 
 class YoutubeVideoView extends StatefulWidget {

@@ -6,7 +6,7 @@ import 'package:skeefiapp/app/my_exercises/presenter/widgets/no_exercise_widget.
 import 'package:skeefiapp/app/my_exercises/presenter/widgets/workout_timer_widget.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
-import '../../exercises/domain/models/exercises_model.dart';
+import '../../exercises/domain/entities/exercises_entity.dart';
 import '../../exercises/presenter/cubit/all_exercises_cubit.dart';
 import '../../exercises/presenter/exercises_screen.dart';
 import '../../widgets/skee_button.dart';
@@ -24,7 +24,7 @@ class MyExercisesPage extends StatefulWidget {
 
 class _MyExercisesPageState extends State<MyExercisesPage> {
   final cubit = Modular.get<GetAllExercisesCubit>();
-  List<ExercisesModel> exercises = [];
+  List<ExerciseEntity> exercises = [];
 
   final scrollController = ScrollController();
 
@@ -61,7 +61,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
             exercises.isEmpty ? const NoExerciseWidget() : MyExercisesBody(exercises: exercises),
             AddExercisebutton(
               ontap: () async {
-                final List<ExercisesModel>? result = await Modular.to.push(
+                final List<ExerciseEntity>? result = await Modular.to.push(
                   MaterialPageRoute(builder: (context) => ExercisesPage(exercisesModel: exercises)),
                 );
                 setState(() => exercises = result ?? []);

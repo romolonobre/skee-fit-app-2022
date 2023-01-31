@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../exercises/domain/models/exercises_model.dart';
+import '../../../../exercises/domain/entities/exercises_entity.dart';
 import '../../../../widgets/skee_modal.dart';
 import '../../../../widgets/skee_text.dart';
 
@@ -37,7 +37,7 @@ class OpenBottomsheet {
     );
   }
 
-  static Future<void> exerciseDetail(BuildContext context, ExercisesModel exercise) async {
+  static Future<void> exerciseDetail(BuildContext context, ExerciseEntity exercise) async {
     SkeeModal(
       context,
       child: Container(

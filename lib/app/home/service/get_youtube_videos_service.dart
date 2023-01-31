@@ -3,7 +3,7 @@ import 'package:either_dart/either.dart';
 import 'package:skeefiapp/app/home/repositories/get_youtube_videos_repository.dart';
 
 import '../../core/errors/failure.dart';
-import '../domain/models/youtube_model.dart';
+import '../domain/entities/youtube_entity.dart';
 
 abstract class GetYoutubeVideosService {
   Future<Either<Failure, YoutubeModel>> fetchChannel({required String channelId});

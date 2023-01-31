@@ -3,7 +3,7 @@
 import 'package:either_dart/either.dart';
 
 import '../../core/errors/failure.dart';
-import '../domain/models/exercises_model.dart';
+import '../domain/entities/exercises_entity.dart';
 import '../repositories/get_all_exercises_repository.dart';
 import 'get_all_exercises_service.dart';
 
@@ -11,7 +11,7 @@ class GetAllExercisesServiceImpl extends GetAllExercisesService {
   final GetAllExercisesRepository repository;
   GetAllExercisesServiceImpl({required this.repository});
   @override
-  Future<Either<Failure, List<ExercisesModel>>> getAllExercises() async {
+  Future<Either<Failure, List<ExerciseEntity>>> getAllExercises() async {
     final exercises = await repository.getAllExerceses();
 
     if (exercises is Left) {
