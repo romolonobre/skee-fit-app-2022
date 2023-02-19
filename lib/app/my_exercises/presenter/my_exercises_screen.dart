@@ -33,10 +33,6 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             SliverAppBar(
-              elevation: 0,
-              pinned: true,
-              snap: true,
-              floating: true,
               bottom: const PreferredSize(
                 preferredSize: Size(0, 120),
                 child: WorkoutTimerWidget(),
