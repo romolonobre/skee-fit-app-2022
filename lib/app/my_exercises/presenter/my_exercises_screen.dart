@@ -2,16 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:skeefiapp/app/my_exercises/presenter/widgets/bottomsheets/bottomsheet.dart';
-import 'package:skeefiapp/app/my_exercises/presenter/widgets/no_exercise_widget.dart';
 import 'package:skeefiapp/app/my_exercises/presenter/widgets/workout_timer_widget.dart';
 
 import '../../core/skee_ui/skee_palette.dart';
 import '../../exercises/domain/entities/exercises_entity.dart';
 import '../../exercises/presenter/cubit/all_exercises_cubit.dart';
-import '../../exercises/presenter/exercises_screen.dart';
 import '../../widgets/skee_button.dart';
-import 'widgets/add_exercises_button.dart';
-import 'widgets/my_exercise_card.dart';
 
 class MyExercisesPage extends StatefulWidget {
   const MyExercisesPage({
@@ -53,17 +49,7 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
         },
         body: Stack(
           alignment: Alignment.center,
-          children: [
-            exercises.isEmpty ? const NoExerciseWidget() : MyExercisesBody(exercises: exercises),
-            AddExercisebutton(
-              ontap: () async {
-                final List<ExerciseEntity>? result = await Modular.to.push(
-                  MaterialPageRoute(builder: (context) => ExercisesPage(exercisesModel: exercises)),
-                );
-                setState(() => exercises = result ?? []);
-              },
-            )
-          ],
+          children: const [],
         ),
       ),
     );
@@ -72,5 +58,8 @@ class _MyExercisesPageState extends State<MyExercisesPage> {
 
 
 
+
 //sdjsdjsjdsjnd
 //dijsidjs
+
+
