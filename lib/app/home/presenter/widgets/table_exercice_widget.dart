@@ -24,35 +24,35 @@ class _TableExerciceWidgetState extends State<TableExerciceWidget> {
       columns: [
         if (!widget.isAddSet)
           DataColumn(
-            label: WEText.custom(
+            label: SkeeText.custom(
               'Set',
               fontWeight: FontWeight.w800,
             ),
           ),
         if (!widget.isAddSet)
           DataColumn(
-            label: WEText.custom(
+            label: SkeeText.custom(
               'Previus',
               fontWeight: FontWeight.w800,
             ),
           ),
         if (!widget.isAddSet)
           DataColumn(
-            label: WEText.custom(
+            label: SkeeText.custom(
               '+kg',
               fontWeight: FontWeight.w800,
             ),
           ),
         if (!widget.isAddSet)
           DataColumn(
-            label: WEText.custom(
+            label: SkeeText.custom(
               'Reps',
               fontWeight: FontWeight.w800,
             ),
           ),
         if (!widget.isAddSet)
           DataColumn(
-            label: WEText.custom(
+            label: SkeeText.custom(
               'Done',
               fontWeight: FontWeight.w800,
             ),
