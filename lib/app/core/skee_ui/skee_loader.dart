@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'skee_palette.dart';
 
 class SkeeLoader extends StatelessWidget {
-  const SkeeLoader({
-    Key? key,
-  }) : super(key: key);
+  const SkeeLoader({super.key});
 
   @override
   Widget build(BuildContext context) {

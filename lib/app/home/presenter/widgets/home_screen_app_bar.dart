@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
-import '../../../widgets/skee_text.dart';
+import '../../../core/widgets/skee_text.dart';
 
-class HomeScreenAppBar extends StatelessWidget with PreferredSizeWidget {
+class HomeScreenAppBar extends StatelessWidget {
   const HomeScreenAppBar({Key? key}) : super(key: key);
 
   @override
@@ -20,6 +20,5 @@ class HomeScreenAppBar extends StatelessWidget with PreferredSizeWidget {
     );
   }
 
-  @override
   Size get preferredSize => const Size.fromHeight(60);
 }

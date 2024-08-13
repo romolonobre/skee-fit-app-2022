@@ -7,5 +7,10 @@ import 'app/app_widget.dart';
 
 Future<void> main() async {
   await dotenv.load();
-  return runApp(ModularApp(module: AppModule(), child: AppWidget()));
+  return runApp(
+    ModularApp(
+      module: AppModule(),
+      child: AppWidget(),
+    ),
+  );
 }

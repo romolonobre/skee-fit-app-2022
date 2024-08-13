@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../core/skee_ui/skee_palette.dart';
+import '../skee_ui/skee_palette.dart';
 
 class SkeeCustomTextfield extends StatelessWidget {
   final String? hintText;
@@ -10,11 +10,11 @@ class SkeeCustomTextfield extends StatelessWidget {
   final GlobalKey<FormFieldState>? formFieldKey;
   final bool isSecret;
   final IconData icon;
-  bool? obscureText;
-  String? Function(String?)? validator;
   final TextEditingController? controller;
   final Function(String)? onChanged;
   final Function? ontap;
+  bool? obscureText;
+  String? Function(String?)? validator;
 
   SkeeCustomTextfield({
     Key? key,

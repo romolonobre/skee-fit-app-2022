@@ -2,21 +2,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../widgets/skee_button.dart';
+import '../../../core/widgets/skee_button.dart';
 import '../cubit/youtube_videos_cubit.dart';
 
 class TabButton extends StatefulWidget {
-  int selectedIndex;
+  final int selectedIndex;
   final Function ontap;
   final String title;
-  Color color;
-  TabButton({
-    Key? key,
+  final Color color;
+  const TabButton({
+    super.key,
     required this.selectedIndex,
     required this.ontap,
     required this.title,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   State<TabButton> createState() => _TabButtonState();
@@ -24,6 +24,7 @@ class TabButton extends StatefulWidget {
 
 class _TabButtonState extends State<TabButton> {
   final cubit = Modular.get<YoutubeVideosCubit>();
+
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -6,10 +6,7 @@ import '../../../core/skee_ui/skee_palette.dart';
 class TabIndicatorWidget extends StatelessWidget {
   int selectedIndex;
 
-  TabIndicatorWidget({
-    Key? key,
-    this.selectedIndex = 0,
-  }) : super(key: key);
+  TabIndicatorWidget({super.key, this.selectedIndex = 0});
 
   @override
   Widget build(BuildContext context) {
