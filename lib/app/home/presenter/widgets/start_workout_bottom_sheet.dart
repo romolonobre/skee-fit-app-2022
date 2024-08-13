@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
-import '../../../widgets/skee_bottom_sheet.dart';
-import '../../../widgets/skee_button.dart';
-import '../../../widgets/skee_text.dart';
+import '../../../core/widgets/skee_bottom_sheet.dart';
+import '../../../core/widgets/skee_button.dart';
+import '../../../core/widgets/skee_text.dart';
 
 class HomeBottomSheet {
   static Future openStartWorkout(BuildContext context) async {

@@ -2,20 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
-import '../../../widgets/skee_text.dart';
+import '../../../core/widgets/skee_text.dart';
 import '../../domain/entities/youtube_entity.dart';
 import '../youtube_videos_play_screen.dart';
 
 class YoutubeVideoView extends StatefulWidget {
-  const YoutubeVideoView({
-    Key? key,
-    required YoutubeChannelEntity? channel,
-    // required this.channelId,
-  })  : _channel = channel,
-        super(key: key);
-
-  final YoutubeChannelEntity? _channel;
-  // final String channelId;
+  final YoutubeChannelEntity? channel;
+  const YoutubeVideoView({super.key, required this.channel});
 
   @override
   State<YoutubeVideoView> createState() => _YoutubeVideoViewState();
@@ -28,25 +21,18 @@ class _YoutubeVideoViewState extends State<YoutubeVideoView> {
       color: SkeePalette.backgroudColor,
       height: MediaQuery.of(context).size.height - 290,
       child: ListView.builder(
-        itemCount: widget._channel?.videos?.length,
+        itemCount: widget.channel?.videos?.length,
         itemBuilder: (context, index) {
-          final video = widget._channel?.videos?[index];
+          final video = widget.channel?.videos?[index];
 
           return GestureDetector(
             onTap: (() => Modular.to.push(
                   MaterialPageRoute(
-                    builder: (context) => YoutuveVideoPlayerScren(
-                      id: video?.id ?? '',
-                      channel: widget._channel,
-                    ),
+                    builder: (context) => YoutuveVideoPlayerScren(id: video?.id ?? ''),
                   ),
                 )),
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-                vertical: 8,
-              ),
-              margin: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               decoration: BoxDecoration(
                 color: SkeePalette.cardColor,
                 borderRadius: BorderRadius.circular(10),
@@ -54,6 +40,8 @@ class _YoutubeVideoViewState extends State<YoutubeVideoView> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  //
+                  // Thumbnail Image
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
@@ -64,6 +52,8 @@ class _YoutubeVideoViewState extends State<YoutubeVideoView> {
                     ),
                   ),
                   const SizedBox(width: 13),
+
+                  // Video description
                   Expanded(child: SkeeText.custom(video?.title ?? '', color: Colors.white)),
                 ],
               ),

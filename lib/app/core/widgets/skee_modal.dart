@@ -1,7 +1,7 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:skeefiapp/app/widgets/skee_button.dart';
+import 'package:skeefiapp/app/core/widgets/skee_button.dart';
 
 Future SkeeModal(
   BuildContext context, {

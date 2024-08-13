@@ -3,44 +3,35 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:skeefiapp/app/home/presenter/cubit/imagepicker_cubit.dart';
-import 'package:skeefiapp/app/widgets/flutter_widgets.dart';
-import 'package:skeefiapp/app/widgets/skee_button.dart';
-import 'package:skeefiapp/app/widgets/snackbar/skee_snackbar_widget.dart';
+import 'package:skeefiapp/app/core/widgets/flutter_widgets.dart';
+import 'package:skeefiapp/app/core/widgets/skee_button.dart';
+import 'package:skeefiapp/app/core/widgets/snackbar/skee_snackbar_widget.dart';
+import 'package:skeefiapp/app/home/presenter/cubit/ImagePicker_cubit.dart';
 
 import '../../../core/skee_ui/skee_palette.dart';
+import '../cubit/image_picker_state.dart';
 
-class ProfileAvatarWidget extends StatefulWidget {
-  const ProfileAvatarWidget({Key? key}) : super(key: key);
+class ProfileAvatarWidget extends StatelessWidget {
+  ProfileAvatarWidget({Key? key}) : super(key: key);
 
-  @override
-  State<ProfileAvatarWidget> createState() => _ProfileAvatarWidgetState();
-}
-
-class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
-  final cubit = Modular.get<ImagepickerCubit>();
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  final cubit = Modular.get<ImagePickerCubit>();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        _openPickerImageBottomSheet();
+        _openImagePicker(context);
         await HapticFeedback.lightImpact();
       },
-      child: BlocConsumer<ImagepickerCubit, ImagepickerState>(
+      child: BlocConsumer<ImagePickerCubit, ImagePickerState>(
         bloc: cubit,
         listener: (context, state) {
-          if (state is ImagepickerError) {
+          if (state is ImagePickerError) {
             showSnackbar(context, state.message, SnackBarStatus.error);
           }
         },
         builder: (context, state) {
-          if (state is ImagepickerError) {
+          if (state is ImagePickerError) {
             return const CircleAvatar(
               radius: 60,
               backgroundColor: SkeePalette.primaryColor,
@@ -48,7 +39,7 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
             );
           }
 
-          if (state is ImagepickerLoaded) {
+          if (state is ImagePickerLoaded) {
             return CircleAvatar(
               radius: 60,
               backgroundColor: SkeePalette.primaryColor,
@@ -62,29 +53,33 @@ class _ProfileAvatarWidgetState extends State<ProfileAvatarWidget> {
     );
   }
 
-  Future<void> _openPickerImageBottomSheet() async {
-    return SkeeBottomSheet.show(
+  _openImagePicker(BuildContext context) async {
+    SkeeBottomSheet.show(
       context,
       floatted: true,
       content: SizedBox(
-          height: 180,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SkeeButton.filled(
-                'Gallery',
-                ontap: () async {
-                  Modular.to.pop();
-                  await cubit.pickImage(ImageSource.gallery);
-                },
-              ),
-              const SizedBox(height: 10),
-              SkeeButton.filled('Camera', ontap: () async {
+        height: 180,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SkeeButton.filled(
+              'Gallery',
+              ontap: () async {
+                Modular.to.pop();
+                await cubit.pickImage(ImageSource.gallery);
+              },
+            ),
+            const SizedBox(height: 10),
+            SkeeButton.filled(
+              'Camera',
+              ontap: () async {
                 Modular.to.pop();
                 await cubit.pickImage(ImageSource.camera);
-              }),
-            ],
-          )),
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

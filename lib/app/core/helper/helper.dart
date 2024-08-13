@@ -1,8 +1,4 @@
-import 'dart:developer';
-
 class Helper {
-  // String List Helper method
-  //
   static List<String> getStringList(dynamic value) {
     if (value == null) {
       return <String>[];
@@ -20,8 +16,6 @@ class Helper {
     return list;
   }
 
-  // String Helper method
-  //
   static String getString(dynamic valeu) {
     if (valeu == null) {
       return '';
@@ -38,8 +32,6 @@ class Helper {
     return '';
   }
 
-  // int Helper method
-  //
   static int getInt(dynamic value) {
     if (value == null) {
       return 0;
@@ -64,10 +56,4 @@ class Helper {
     }
     return 0;
   }
-}
-
-void debuLog(dynamic data, [String? title]) {
-  log('=============================================================');
-  log(data.toString());
-  log('=============================================================');
 }

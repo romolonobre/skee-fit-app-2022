@@ -1,7 +1,7 @@
 import 'package:skeefiapp/app/core/adpaters/entity_adatpter.dart';
 
 import '../../../core/helper/helper.dart';
-import '../entities/youtube_entity.dart';
+import '../entities/youtube_video_entity.dart';
 
 class YoutubeVideoEntityAdapter implements EntityAdatpter {
   @override

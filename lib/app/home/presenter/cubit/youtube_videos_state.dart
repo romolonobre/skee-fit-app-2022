@@ -1,6 +1,5 @@
 part of 'youtube_videos_cubit.dart';
 
-@immutable
 abstract class YoutubeVideosState {}
 
 class YoutubeVideosInitial extends YoutubeVideosState {}

@@ -1,3 +1,5 @@
+import 'youtube_video_entity.dart';
+
 class YoutubeChannelEntity {
   final String? id;
   final String? title;
@@ -15,19 +17,5 @@ class YoutubeChannelEntity {
     this.videoCount,
     this.uploadPlaylistId,
     this.videos,
-  });
-}
-
-class YoutubeVideo {
-  final String? id;
-  final String? title;
-  final String? thumbnailUrl;
-  final String? channelTitle;
-
-  YoutubeVideo({
-    this.id,
-    this.title,
-    this.thumbnailUrl,
-    this.channelTitle,
   });
 }

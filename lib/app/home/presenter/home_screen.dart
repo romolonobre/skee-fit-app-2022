@@ -2,16 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:skeefiapp/app/home/presenter/home_bottom_sheet/home_bottom_sheet.dart';
+import 'package:skeefiapp/app/home/presenter/widgets/start_workout_bottom_sheet.dart';
 import 'package:skeefiapp/app/home/presenter/widgets/tab_indicator_widget.dart';
 
 import '../../core/skee_ui/skee_loader.dart';
 import '../../core/skee_ui/skee_palette.dart';
-import '../../widgets/flutter_widgets.dart';
-import '../../widgets/skee_button.dart';
+import '../../core/widgets/flutter_widgets.dart';
+import '../../core/widgets/skee_button.dart';
 import '../domain/entities/youtube_entity.dart';
 import 'cubit/youtube_videos_cubit.dart';
-import 'widgets/home_screen_app_bar.dart';
 import 'widgets/tab_buttons.dart';
 import 'widgets/youtube_videos_view.dart';
 
@@ -25,7 +24,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final cubit = Modular.get<YoutubeVideosCubit>();
   YoutubeChannelEntity? _channel;
-
   int selectedIndex = 0;
 
   @override
@@ -44,7 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SkeePalette.backgroudColor,
-      appBar: const HomeScreenAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -64,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // Workout Videos tab button
                     TabButton(
                       selectedIndex: selectedIndex,
                       color: selectedIndex == 0 ? SkeePalette.primaryColor : Colors.grey,
@@ -73,6 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         _channel = await cubit.getYoutubeVideos(channelId: "UC6vkKAsph6kZuAsC5Q8MVNQ");
                       },
                     ),
+
+                    // Yoga Videos tab button
                     TabButton(
                         selectedIndex: selectedIndex,
                         color: selectedIndex == 1 ? SkeePalette.primaryColor : Colors.grey,
@@ -86,9 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 TabIndicatorWidget(selectedIndex: selectedIndex)
               ],
             ),
-            BlocConsumer<YoutubeVideosCubit, YoutubeVideosState>(
+            BlocBuilder<YoutubeVideosCubit, YoutubeVideosState>(
                 bloc: cubit,
-                listener: (context, state) {},
                 builder: (context, state) {
                   if (state is YoutubeVideosLoadingState) {
                     return const Center(

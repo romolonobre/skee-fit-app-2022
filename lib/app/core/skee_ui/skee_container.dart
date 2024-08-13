@@ -4,11 +4,11 @@ import 'package:flutter_ui_toolkit/flutter_ui_toolkit.dart';
 
 class SkeeContainer extends StatelessWidget {
   const SkeeContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.color = Colors.white,
     this.padding,
-  }) : super(key: key);
+  });
   final Widget child;
   final Color color;
   final EdgeInsetsGeometry? padding;

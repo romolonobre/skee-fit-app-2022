@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/skee_ui/skee_palette.dart';
+import '../skee_ui/skee_palette.dart';
 import 'flutter_widgets.dart';
 
 class SkeeButton {
